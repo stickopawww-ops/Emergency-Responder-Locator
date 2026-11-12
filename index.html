@@ -1,611 +1,111 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Emergency Responder Locator</title>
-    <style>
-      :root {
-        --bg: #17161b;
-        --panel: #d8d0f2;
-        --panel-alt: #c7d9d8;
-        --panel-purple: #d7c7ed;
-        --ink: #2d2d34;
-        --muted: #5d5c69;
-        --white: #ffffff;
-        --soft-white: #f3f1f9;
-        --soft-gray: #d7d5e4;
-        --teal: #67b9b8;
-        --teal-deep: #4a9698;
-        --deep-purple: #3e2c62;
-        --purple: #8f60d2;
-        --shadow: rgba(30, 18, 39, 0.12);
-        --green: #7ac68a;
-        --red: #ef7768;
-      }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cebu Emergency Finder</title>
 
-      * { box-sizing: border-box; }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-      html, body {
-        margin: 0;
-        min-height: 100%;
-        background: var(--bg);
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        color: var(--ink);
-      }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-      body {
-        display: flex;
-        justify-content: center;
-        padding: 30px 18px;
-      }
+    <link rel="stylesheet" href="style.css">
+</head>
 
-      .workspace {
-        width: 920px;
-      }
+<body>
 
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(210px, 1fr));
-        gap: 18px 16px;
-      }
+<div class="phone">
 
-      .frame {
-        width: 100%;
-        min-height: 250px;
-        position: relative;
-      }
+    <div class="header">
 
-      .frame-label {
-        display: block;
-        text-align: center;
-        font-size: 12px;
-        letter-spacing: 0.3px;
-        color: rgba(255,255,255,0.78);
-        margin-bottom: 10px;
-        font-weight: 600;
-      }
+       <div class="logo">🚨 Emergency Responder Locator</div>
 
-      .card {
-        position: relative;
-        border-radius: 14px;
-        box-shadow: 0 6px 0 rgba(0,0,0,0.04), 0 12px 18px var(--shadow);
-        padding: 16px 14px 14px;
-        border: 1px solid rgba(17, 16, 24, 0.08);
-        min-height: 248px;
-        overflow: hidden;
-      }
+        <h1>Who’s using the app?</h1>
 
-      .card.lavender { background: var(--panel); }
-      .card.teal { background: rgba(145, 204, 198, 0.92); }
-      .card.purple { background: #cabfe9; }
+        <p>
+            Choose one to continue. You can
+            change it later.
+        </p>
 
-      .tiny-head {
-        margin: 0 0 10px;
-        font-size: 11px;
-        font-weight: 700;
-        color: rgba(35, 32, 42, 0.76);
-      }
-
-      .option-stack {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 8px;
-      }
-
-      .option {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: rgba(255,255,255,0.13);
-        border: 1px solid rgba(55, 47, 75, 0.14);
-        border-radius: 10px;
-        padding: 8px 10px;
-        min-height: 42px;
-      }
-
-      .option .dot {
-        width: 11px;
-        height: 11px;
-        border-radius: 50%;
-        border: 2px solid rgba(30,26,40,0.7);
-        background: transparent;
-      }
-
-      .option strong {
-        font-size: 13px;
-        font-weight: 700;
-      }
-
-      .option .sub {
-        display: block;
-        font-size: 10px;
-        color: rgba(50,46,58,0.72);
-      }
-
-      .option.light .dot {
-        background: rgba(255,255,255,0.9);
-        border-color: rgba(24,18,34,0.4);
-      }
-
-      .sign-in {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 8px;
-      }
-
-      .sign-badge {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        background: rgba(16, 60, 65, 0.18);
-        position: relative;
-        margin-top: 8px;
-      }
-
-      .sign-badge::before {
-        content: "";
-        width: 16px;
-        height: 16px;
-        border: 2px solid rgba(29, 44, 54, 0.85);
-        border-radius: 50%;
-        position: absolute;
-        top: 10px;
-        left: 13px;
-      }
-
-      .sign-badge::after {
-        content: "";
-        width: 18px;
-        height: 10px;
-        border: 2px solid rgba(29, 44, 54, 0.85);
-        border-top: none;
-        border-radius: 0 0 10px 10px;
-        position: absolute;
-        bottom: 9px;
-        left: 12px;
-      }
-
-      .sign-in h3 {
-        margin: 12px 0 6px;
-        font-size: 22px;
-        line-height: 1.1;
-        font-weight: 700;
-      }
-
-      .field {
-        width: 100%;
-        background: rgba(255,255,255,0.38);
-        border: 1px solid rgba(38, 34, 48, 0.2);
-        border-radius: 8px;
-        height: 34px;
-        margin-top: 7px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: rgba(25, 22, 33, 0.5);
-        font-size: 11px;
-      }
-
-      .field.half {
-        width: 48%;
-      }
-
-      .group-row {
-        display: flex;
-        gap: 10px;
-        width: 100%;
-      }
-
-      .cta {
-        width: 100%;
-        border: none;
-        border-radius: 8px;
-        background: rgba(74, 79, 101, 0.7);
-        color: white;
-        font-weight: 600;
-        font-size: 12px;
-        padding: 10px 12px;
-        margin-top: 10px;
-        box-shadow: inset 0 -1px 0 rgba(0,0,0,0.14);
-      }
-
-      .enter-code {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-      }
-
-      .enter-code .title {
-        font-size: 18px;
-        font-weight: 700;
-        margin: 12px 0 8px;
-      }
-
-      .code-row {
-        display: flex;
-        gap: 10px;
-        margin: 8px 0;
-      }
-
-      .code-box {
-        width: 32px;
-        height: 34px;
-        border-radius: 6px;
-        border: 1px solid rgba(35, 27, 47, 0.24);
-        background: rgba(255,255,255,0.28);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 15px;
-        font-weight: 700;
-        color: rgba(45,45,55,0.82);
-      }
-
-      .mini-btn {
-        width: 100%;
-        border-radius: 8px;
-        border: 1px solid rgba(30, 26, 42, 0.26);
-        background: rgba(255,255,255,0.35);
-        padding: 7px 10px;
-        margin-top: 12px;
-        font-weight: 700;
-        font-size: 11px;
-        color: rgba(33, 31, 42, 0.82);
-      }
-
-      .waiting-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        margin-top: 6px;
-      }
-
-      .clock {
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.16);
-        border: 2px solid rgba(49,47,67,0.76);
-        position: relative;
-        margin-bottom: 6px;
-      }
-
-      .clock::before {
-        content: "";
-        position: absolute;
-        width: 2px;
-        height: 16px;
-        background: rgba(49,47,67,0.85);
-        left: 50%;
-        top: 12px;
-        transform: translateX(-50%) rotate(45deg);
-        transform-origin: bottom center;
-      }
-
-      .clock::after {
-        content: "";
-        position: absolute;
-        width: 2px;
-        height: 12px;
-        background: rgba(49,47,67,0.85);
-        left: 50%;
-        bottom: 12px;
-        transform: translateX(-50%);
-      }
-
-      .waiting-box h3 {
-        margin: 0;
-        font-size: 16px;
-        font-weight: 700;
-      }
-
-      .status-list {
-        width: 100%;
-        border-radius: 10px;
-        overflow: hidden;
-        margin-top: 4px;
-      }
-
-      .status-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        background: rgba(255,255,255,0.18);
-        border: 1px solid rgba(43, 38, 57, 0.14);
-        border-radius: 8px;
-        padding: 6px 8px;
-        margin-top: 6px;
-      }
-
-      .status-item:first-child { margin-top: 0; }
-
-      .status-item .left {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        min-width: 0;
-      }
-
-      .check {
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        position: relative;
-      }
-
-      .check.green {
-        background: rgba(84, 172, 118, 0.9);
-      }
-
-      .check.red {
-        background: rgba(210, 92, 84, 0.85);
-      }
-
-      .check::before {
-        content: "";
-        position: absolute;
-        left: 4px;
-        top: 2px;
-        width: 5px;
-        height: 8px;
-        border: solid white;
-        border-width: 0 2px 2px 0;
-        transform: rotate(45deg);
-      }
-
-      .check.red::before {
-        width: 0;
-        height: 0;
-        border: none;
-        left: 6px;
-        top: 3px;
-        border-left: 3px solid transparent;
-        border-right: 3px solid transparent;
-        border-top: 8px solid white;
-        transform: none;
-      }
-
-      .status-item span {
-        font-size: 10px;
-        font-weight: 600;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .status-item small {
-        color: rgba(39, 35, 47, 0.6);
-        font-size: 9px;
-        font-weight: 700;
-      }
-
-      .card-actions {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 7px;
-        margin-top: 10px;
-      }
-
-      .action {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        height: 30px;
-        border-radius: 8px;
-        border: 2px solid rgba(44, 35, 56, 0.5);
-        background: rgba(255,255,255,0.12);
-        font-size: 11px;
-        font-weight: 700;
-        color: rgba(45, 39, 58, 0.8);
-      }
-
-      .action.primary {
-        background: rgba(42, 124, 112, 0.26);
-        border-color: rgba(39, 48, 57, 0.45);
-      }
-
-      @media (max-width: 760px) {
-        .grid {
-          grid-template-columns: repeat(2, minmax(200px, 1fr));
-        }
-      }
-
-      @media (max-width: 560px) {
-        .grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="workspace">
-      <div class="grid">
-        <div class="frame">
-          <span class="frame-label">Frame 15</span>
-          <div class="card lavender">
-            <div class="tiny-head">Who's using the app?</div>
-            <div class="option-stack">
-              <div class="option red">
-                <span class="dot"></span>
-                <div>
-                  <strong>I'm a responder</strong>
-                </div>
-              </div>
-              <div class="option light">
-                <span class="dot"></span>
-                <div>
-                  <strong>I'm not a user</strong>
-                  <span class="sub">Create an account</span>
-                </div>
-              </div>
-              <div class="option light">
-                <span class="dot"></span>
-                <div>
-                  <strong>I'm a responder</strong>
-                  <span class="sub">View access</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="frame">
-          <span class="frame-label">Frame 12</span>
-          <div class="card teal">
-            <div class="tiny-head">Responder sign in</div>
-            <div class="sign-in">
-              <div class="sign-badge"></div>
-              <h3>Responder sign in</h3>
-              <div class="field">Email</div>
-              <div class="field">Password</div>
-              <div class="group-row">
-                <div class="field half">+63</div>
-                <div class="field half">911 456 7801</div>
-              </div>
-              <button class="cta">Sign In</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="frame">
-          <span class="frame-label">Frame 13</span>
-          <div class="card purple">
-            <div class="tiny-head">Enter the code</div>
-            <div class="enter-code">
-              <div class="title">Enter the code</div>
-              <div class="code-row">
-                <div class="code-box">4</div>
-                <div class="code-box">4</div>
-                <div class="code-box">4</div>
-                <div class="code-box">4</div>
-              </div>
-              <button class="mini-btn">Validate</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="frame">
-          <span class="frame-label">Frame 14</span>
-          <div class="card lavender">
-            <div class="tiny-head">Waiting for approval</div>
-            <div class="waiting-box">
-              <div class="clock"></div>
-              <h3>Waiting for approval</h3>
-              <div class="status-list">
-                <div class="status-item">
-                  <div class="left">
-                    <span class="check green"></span>
-                    <span>Responders</span>
-                  </div>
-                  <div class="right"><small>Approved</small></div>
-                </div>
-                <div class="status-item">
-                  <div class="left">
-                    <span class="check red"></span>
-                    <span>Authorities</span>
-                  </div>
-                  <div class="right"><small>Pending</small></div>
-                </div>
-                <div class="status-item">
-                  <div class="left">
-                    <span class="check green"></span>
-                    <span>VERIFIED</span>
-                  </div>
-                  <div class="right"><small>OK</small></div>
-                </div>
-              </div>
-              <div class="card-actions">
-                <div class="action primary">Contact my Admin</div>
-                <div class="action">Login</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="frame">
-          <span class="frame-label">Frame 28</span>
-          <div class="card lavender">
-            <div class="tiny-head">Waiting for approval</div>
-            <div class="waiting-box">
-              <div class="clock"></div>
-              <h3>Waiting for approval</h3>
-              <div class="status-list">
-                <div class="status-item">
-                  <div class="left">
-                    <span class="check green"></span>
-                    <span>Responders</span>
-                  </div>
-                  <div class="right"><small>Approved</small></div>
-                </div>
-                <div class="status-item">
-                  <div class="left">
-                    <span class="check green"></span>
-                    <span>Authorities</span>
-                  </div>
-                  <div class="right"><small>Approved</small></div>
-                </div>
-                <div class="status-item">
-                  <div class="left">
-                    <span class="check green"></span>
-                    <span>Verification</span>
-                  </div>
-                  <div class="right"><small>OK</small></div>
-                </div>
-              </div>
-              <div class="card-actions">
-                <div class="action primary">Contact my Admin</div>
-                <div class="action">Login</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="frame">
-          <span class="frame-label">Frame 29</span>
-          <div class="card lavender">
-            <div class="tiny-head">Waiting for approval</div>
-            <div class="waiting-box">
-              <div class="clock"></div>
-              <h3>Waiting for approval</h3>
-              <div class="status-list">
-                <div class="status-item">
-                  <div class="left">
-                    <span class="check green"></span>
-                    <span>Responders</span>
-                  </div>
-                  <div class="right"><small>Approved</small></div>
-                </div>
-                <div class="status-item">
-                  <div class="left">
-                    <span class="check green"></span>
-                    <span>Authorities</span>
-                  </div>
-                  <div class="right"><small>Approved</small></div>
-                </div>
-                <div class="status-item">
-                  <div class="left">
-                    <span class="check green"></span>
-                    <span>Verification</span>
-                  </div>
-                  <div class="right"><small>OK</small></div>
-                </div>
-              </div>
-              <div class="card-actions">
-                <div class="action primary">Contact my Admin</div>
-                <div class="action">Login</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </body>
+
+
+    <div class="card citizen">
+
+        <div class="circle white">
+    <i class="fa-solid fa-location-dot"></i>
+</div>
+
+        <h2>I need help</h2>
+
+        <p>
+            Find the nearest ambulance, fire truck,
+            tanod, or police station.
+        </p>
+
+        <button>
+            No sign in needed
+        </button>
+
+    </div>
+
+
+
+    <div class="card responder">
+
+        <div class="circle purple">
+          <i class="fa-solid fa-truck-medical"></i>
+        </div>
+        <h2>I'm a responder</h2>
+
+        <p>
+            Start your shift and receive calls from
+            people nearby.
+        </p>
+
+        <button>
+            Sign in with your registered number.
+        </button>
+
+    </div>
+
+
+
+
+    <div class="card admin">
+
+      <div class="circle purple">
+         <i class="fa-solid fa-shield-heart"></i>
+      </div>
+
+        <h2>I'm an admin</h2>
+
+        <p>
+            Manage responders and monitor
+            helper requests.
+        </p>
+
+        <button>
+            Sign in with your admin account.
+        </button>
+
+    </div>
+
+
+
+
+    <button class="emergency-btn">
+
+        Life-threatening? Call 911 now
+
+    </button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
 </html>
