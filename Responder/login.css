@@ -1,0 +1,283 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #ffffff;
+    padding: 30px;
+    color: #101b35;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 360px);
+    gap: 25px;
+    max-width: 1130px;
+    margin: auto;
+    justify-content: center;
+}
+
+.frame {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.frame h4 {
+    color: #aaa;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.screen {
+    background: #c9bfff;
+    border-radius: 15px;
+
+    width: 360px;
+    height: 800px;
+
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo {
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #253451;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 9px;
+}
+
+h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+p {
+    font-size: 10px;
+    line-height: 1.5;
+    color: #343c55;
+}
+
+.card {
+    padding: 18px;
+    border-radius: 13px;
+    margin-top: 15px;
+    min-height: 105px;
+}
+
+.help {
+    background: #8bbbc4;
+}
+
+.responder {
+    background: #18213f;
+    color: white;
+}
+
+.responder p,
+.responder h3 {
+    color: white;
+}
+
+.circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.responder .circle {
+    background: #c9bfff;
+}
+
+button {
+    border: none;
+    padding: 12px;
+    border-radius: 7px;
+    background: #171e48;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 11px;
+    margin-top: 12px;
+}
+
+button:hover {
+    opacity: .85;
+}
+
+.red-button {
+    background: #c91f24;
+    margin-top: auto;
+}
+
+.teal {
+    background: #5ba5a6;
+    border-radius: 10px;
+    padding: 17px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.teal p {
+    color: #10263a;
+}
+
+.shield {
+    font-size: 28px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    margin-top: 8px;
+    background: white;
+    font-size: 13px;
+}
+
+label {
+    font-size: 11px;
+    margin-top: 25px;
+}
+
+.phone {
+    display: flex;
+    gap: 6px;
+}
+
+.phone input:first-child {
+    width: 55px;
+}
+
+.small-text {
+    text-align: center;
+    font-size: 9px;
+    margin-top: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.otp {
+    display: flex;
+    gap: 8px;
+    margin-top: 25px;
+}
+
+.otp input {
+    width: 25%;
+    height: 48px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.back {
+    background: white;
+    color: #171e48;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.waiting {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.waiting .circle {
+    margin: auto;
+    background: #65b4b4;
+    font-size: 25px;
+}
+
+.status-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: 11px;
+}
+
+.status-icon {
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background: #42ce80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.pending {
+    background: #fff;
+    color: #222;
+    border: 1px solid #aaa;
+}
+
+.approved {
+    background: #5ba5a6;
+    padding: 15px;
+    border-radius: 9px;
+    margin-top: 15px;
+    font-size: 11px;
+}
+
+.outline {
+    border: 1px solid #171e48;
+    background: transparent;
+    color: #171e48;
+    width: 100%;
+}
+
+.footer {
+    text-align: center;
+    font-size: 9px;
+    margin-top: auto;
+    color: #555;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .screen {
+        min-height: 520px;
+    }
+}
