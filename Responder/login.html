@@ -4,273 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emergency Response App</title>
-
-    <!-- Connect CSS -->
-    <link rel="stylesheet" href="style.css">
+    <title>QuickEmergency Finder - Responder Sign In</title>
+    <link rel="stylesheet" href="login.css">
 </head>
-
 <body>
 
-<div class="container">
+    <main class="container">
 
-    <!-- FRAME 15 -->
-    <div class="frame">
-        <h4>Frame 15</h4>
-        <div class="screen">
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🚨</span>
+                <span>Emergency Responder Locator</span>
+            </div>
+        </header>
 
-            <div class="logo">🚨 QuickEmergency Finder</div>
-
-            <h2>Who's using the app?</h2>
-            <p>Choose one to continue. You can change it later.</p>
-
-            <div class="card help">
-                <div class="circle">🆘</div>
-                <h3>I need help</h3>
-                <p>Find nearby assistance, report an emergency, and get help quickly.</p>
-                <button>Get help now</button>
+        <section class="safety-card">
+            <div class="shield-icon">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M12 2L4 5V11C4 16 7.5 20 12 22C16.5 20 20 16 20 11V5L12 2Z"/>
+                    <path d="M12 2V22"/>
+                </svg>
             </div>
 
-            <div class="card responder">
-                <div class="circle">🛡️</div>
-                <h3>I'm a responder</h3>
-                <p>Join the emergency response team and help people in need.</p>
-                <button>Continue as responder</button>
-            </div>
+            <h2>For Your Safety</h2>
+            <p>Your identity will be verified.</p>
+        </section>
 
-            <div class="card admin">
-                <div class="circle">🛡️</div>
-                <h3>I'm a admin</h3>
-                <p>Verifying account if you are an responder or user.</p>
-                <button>Continue as admin</button>
-            </div>
+        <section class="signin-section">
 
-            <button class="red-button">Life-threatening? Call 911 now</button>
+            <h1>Responder sign in</h1>
+            <p class="description">
+                Enter your registered mobile number to sign in.
+            </p>
 
-        </div>
-    </div>
+            <form id="signinForm">
 
-    <!-- FRAME 12 -->
-    <div class="frame">
-        <h4>Frame 12</h4>
-        <div class="screen">
+                <label for="mobileNumber">Mobile Number</label>
 
-            <div class="logo">🚨 QuickEmergency Finder</div>
-
-            <div class="teal">
-                <div class="shield">🛡️</div>
-                <h3>For Your Safety</h3>
-                <p>Your identity will be verified.</p>
-            </div>
-
-            <h3>Responder sign in</h3>
-            <p>Enter your registered mobile number to sign in.</p>
-
-            <label>Mobile Number</label>
-
-            <div class="phone">
-                <input value="+63" readonly>
-                <input value="991 666 3601">
-            </div>
-
-            <button>Send Code</button>
-
-            <div class="small-text">Use another method</div>
-
-            <div class="footer">
-                By continuing, you agree to our Terms and Privacy Policy.
-            </div>
-
-        </div>
-    </div>
-
-    <!-- FRAME 13 -->
-    <div class="frame">
-        <h4>Frame 13</h4>
-        <div class="screen">
-
-            <div class="back">‹</div>
-
-            <h2>Enter the code</h2>
-            <p>We've sent a verification code to your registered mobile number.</p>
-
-            <div class="otp">
-                <input maxlength="1" value="4">
-                <input maxlength="1" value="4">
-                <input maxlength="1">
-                <input maxlength="1">
-            </div>
-
-            <button onclick="alert('Verification submitted!')">Verify</button>
-
-            <div class="small-text">Didn't receive a code?</div>
-
-            <div class="footer">
-                Your account is protected. Never share your verification code.
-            </div>
-
-        </div>
-    </div>
-
-    <!-- FRAME 14 -->
-    <div class="frame">
-        <h4>Frame 14</h4>
-        <div class="screen">
-
-            <div class="waiting">
-                <div class="circle">⌛</div>
-                <h2>Waiting for approval</h2>
-                <p>Your registration is being reviewed. Please wait while our admin verifies your details.</p>
-            </div>
-
-            <div class="status-card">
-
-                <div class="status">
-                    <div class="status-icon">✓</div>
-                    <div>
-                        <strong>Mobile verified</strong>
-                        <p>Your phone number is verified.</p>
-                    </div>
+                <div class="phone-input">
+                    <span class="country-code">+63</span>
+                    <input
+                        type="tel"
+                        id="mobileNumber"
+                        placeholder="991 666 3601"
+                        maxlength="10"
+                        required
+                    >
                 </div>
 
-                <div class="status">
-                    <div class="status-icon pending">◷</div>
-                    <div>
-                        <strong>Account review</strong>
-                        <p>Waiting for admin approval.</p>
-                    </div>
-                </div>
+                <button type="submit" class="send-code-btn">
+                    Send Code
+                </button>
 
-                <div class="status">
-                    <div class="status-icon pending">◷</div>
-                    <div>
-                        <strong>Training status</strong>
-                        <p>Pending verification.</p>
-                    </div>
-                </div>
+            </form>
 
+            <div class="alternative">
+                <a href="#" id="alternativeMethod">Use another method</a>
             </div>
 
-            <div class="approved">
-                <strong>Appointment ID</strong>
-                <p>Responder A1</p>
-                <strong>Application Status</strong>
-                <p>Pending Admin Review</p>
-            </div>
+            <p id="message" class="message"></p>
 
-            <button class="outline">Contact my Admin</button>
-            <div class="small-text">Log out</div>
+        </section>
 
-        </div>
-    </div>
+        <footer class="footer">
+            By continuing, you agree to our
+            <a href="#">Terms</a> and
+            <a href="#">Privacy Policy</a>.
+        </footer>
 
-    <!-- FRAME 28 -->
-    <div class="frame">
-        <h4>Frame 28</h4>
-        <div class="screen">
+    </main>
 
-            <div class="waiting">
-                <div class="circle">⌛</div>
-                <h2>Waiting for approval</h2>
-                <p>Your registration is being reviewed. Please wait while our admin verifies your details.</p>
-            </div>
-
-            <div class="status-card">
-
-                <div class="status">
-                    <div class="status-icon">✓</div>
-                    <div>
-                        <strong>Mobile verified</strong>
-                        <p>Your phone number is verified.</p>
-                    </div>
-                </div>
-
-                <div class="status">
-                    <div class="status-icon">✓</div>
-                    <div>
-                        <strong>Account review</strong>
-                        <p>Your account has been approved.</p>
-                    </div>
-                </div>
-
-                <div class="status">
-                    <div class="status-icon pending">◷</div>
-                    <div>
-                        <strong>Training status</strong>
-                        <p>Waiting for training approval.</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="approved">
-                <strong>Appointment ID</strong>
-                <p>Responder A1</p>
-                <strong>Application Status</strong>
-                <p>Pending Training Review</p>
-            </div>
-
-            <button class="outline">Contact my Admin</button>
-            <div class="small-text">Log out</div>
-
-        </div>
-    </div>
-
-    <!-- FRAME 29 -->
-    <div class="frame">
-        <h4>Frame 29</h4>
-        <div class="screen">
-
-            <div class="waiting">
-                <div class="circle">⌛</div>
-                <h2>Waiting for approval</h2>
-                <p>Your registration is being reviewed. Please wait while our admin verifies your details.</p>
-            </div>
-
-            <div class="status-card">
-
-                <div class="status">
-                    <div class="status-icon">✓</div>
-                    <div>
-                        <strong>Mobile verified</strong>
-                        <p>Your phone number is verified.</p>
-                    </div>
-                </div>
-
-                <div class="status">
-                    <div class="status-icon">✓</div>
-                    <div>
-                        <strong>Account review</strong>
-                        <p>Your account has been approved.</p>
-                    </div>
-                </div>
-
-                <div class="status">
-                    <div class="status-icon">✓</div>
-                    <div>
-                        <strong>Training status</strong>
-                        <p>Your training is approved.</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="approved">
-                <strong>Appointment ID</strong>
-                <p>Responder A1</p>
-                <strong>Application Status</strong>
-                <p>Approved - You're ready!</p>
-            </div>
-
-            <button onclick="alert('Welcome, Responder!')">Start</button>
-
-            <button class="outline">Contact my Admin</button>
-            <div class="small-text">Log out</div>
-
-        </div>
-    </div>
-
-</div>
-
+    <script src="login.js"></script>
 </body>
 </html>

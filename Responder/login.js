@@ -1,66 +1,27 @@
 
-// Get HTML elements
-const container = document.querySelector(".container");
-const screens = document.querySelectorAll(".screen");
+const signinForm = document.getElementById("signinForm");
+const mobileNumber = document.getElementById("mobileNumber");
+const message = document.getElementById("message");
+const alternativeMethod = document.getElementById("alternativeMethod");
 
-const widthSlider = document.getElementById("frameWidth");
-const heightSlider = document.getElementById("frameHeight");
-const gapSlider = document.getElementById("frameGap");
+signinForm.addEventListener("submit", function(event) {
+    event.preventDefault();
 
-const widthValue = document.getElementById("widthValue");
-const heightValue = document.getElementById("heightValue");
-const gapValue = document.getElementById("gapValue");
+    const number = mobileNumber.value.trim();
 
-const resetButton = document.getElementById("resetFrames");
+    if (!/^[0-9]{10}$/.test(number)) {
+        message.style.color = "red";
+        message.textContent = "Please enter a valid 10-digit mobile number.";
+        return;
+    }
 
-// Change frame width
-widthSlider.addEventListener("input", function () {
-    const width = this.value;
-
-    screens.forEach(screen => {
-        screen.style.width = width + "px";
-    });
-
-    widthValue.textContent = width + "px";
+    message.style.color = "#172044";
+    message.textContent = "Mobile number accepted. Connect an SMS service to send your verification code.";
 });
 
-// Change frame height
-heightSlider.addEventListener("input", function () {
-    const height = this.value;
+alternativeMethod.addEventListener("click", function(event) {
+    event.preventDefault();
 
-    screens.forEach(screen => {
-        screen.style.height = height + "px";
-    });
-
-    heightValue.textContent = height + "px";
+    message.style.color = "#172044";
+    message.textContent = "Alternative verification methods will be available soon.";
 });
-
-// Change spacing between frames
-gapSlider.addEventListener("input", function () {
-    const gap = this.value;
-
-    container.style.gap = gap + "px";
-
-    gapValue.textContent = gap + "px";
-});
-
-// Reset all frames
-resetButton.addEventListener("click", function () {
-
-    screens.forEach(screen => {
-        screen.style.width = "100%";
-        screen.style.height = "500px";
-    });
-
-    container.style.gap = "15px";
-
-    widthSlider.value = 100;
-    heightSlider.value = 500;
-    gapSlider.value = 15;
-
-    widthValue.textContent = "100%";
-    heightValue.textContent = "500px";
-    gapValue.textContent = "15px";
-});
-
-console.log("Frame customization loaded!");
