@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emergency Responder Locator</title>
+  <link rel="stylesheet" href="citizen.css" />
+  <script src="citizen.js" defer></script>
+</head>
+<body>
+  <div class="phone">
+    <header class="topbar">
+      <button class="back-btn" aria-label="Back">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" />
+        </svg>
+      </button>
+      <div class="title">Emergency Responder Locator</div>
+    </header>
+
+    <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="6"></circle>
+        <path d="M16 16L21 21"></path>
+      </svg>
+      <input type="text" placeholder="Search" />
+      <button class="mic-btn" aria-label="Voice Search">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 15a3 3 0 0 0 3-3V7a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3z"></path>
+          <path d="M19 11a7 7 0 0 1-14 0"></path>
+          <path d="M12 18v3"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 12h4l2-5h6l2 5h4"></path>
+            <path d="M6 17.5a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5zm12 0a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5z"></path>
+            <path d="M9 8h6"></path>
+            <path d="M12 5v6"></path>
+          </svg>
+        </div>
+        <div class="card-text">
+          <h3>Ambulance</h3>
+          <span>1 available</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2c2.2 2.7 4 4.5 4 7.2A4 4 0 0 1 8 9.2C8 6.6 9.8 4.7 12 2z"></path>
+            <path d="M6 15c0-3 2.2-5 6-5s6 2 6 5v2.5A2.5 2.5 0 0 1 15.5 20h-7A2.5 2.5 0 0 1 6 17.5V15z"></path>
+          </svg>
+        </div>
+        <div class="card-text">
+          <h3>Fire Station</h3>
+          <span>2 available</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3a7 7 0 0 1 7 7c0 5.3-7 11-7 11S5 15.3 5 10a7 7 0 0 1 7-7z"></path>
+            <circle cx="12" cy="10" r="2.5"></circle>
+          </svg>
+        </div>
+        <div class="card-text">
+          <h3>Barangay Tanod</h3>
+          <span>1 available</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24">
+            <path d="M11 2l7 3v4c0 4.2-2.7 8-7 10-4.3-2-7-5.8-7-10V5l7-3z"></path>
+            <path d="M9.5 11.5l1.5 1.5 3-3"></path>
+          </svg>
+        </div>
+        <div class="card-text">
+          <h3>Police</h3>
+          <span>1 available</span>
+        </div>
+      </div>
+
+      <div class="card wide">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2v6"></path>
+            <path d="M12 16v6"></path>
+            <path d="M2 12h6"></path>
+            <path d="M16 12h6"></path>
+            <circle cx="12" cy="12" r="4"></circle>
+          </svg>
+        </div>
+        <div class="card-text">
+          <h3>Nearest Any</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="other-list">
+      <div class="other-item">
+        <div class="tiny-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M13 2L4 13h6l-1 9 9-11h-6l1-9z"></path>
+          </svg>
+        </div>
+        <div class="other-text">Power Outage</div>
+        <div class="other-tag">Cebu</div>
+      </div>
+
+    <button class="emergency-btn">Life-threatening? Call 911 now</button>
+
+    <div class="bottom-nav">
+      <button class="nav-item active">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="6"></circle>
+          <path d="M16 16L21 21"></path>
+        </svg>
+        <span>Find</span>
+      </button>
+
+      <button class="nav-item">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3a9 9 0 1 0 9 9"></path>
+          <path d="M12 7v5l3 2"></path>
+        </svg>
+        <span>Responder</span>
+      </button>
+
+      <button class="nav-item">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 3.5h9l3 3V19a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2z"></path>
+          <path d="M15 3.5v4h4"></path>
+          <path d="M8 11h8"></path>
+          <path d="M8 15h8"></path>
+        </svg>
+        <span>Log</span>
+      </button>
+    </div>
+  </div>
+</body>
+</html>
