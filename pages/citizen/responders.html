@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3ff">
+  <title>Responder Directory | Cebu Emergency Finder</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../styles/screens/citizen-responders.css">
+</head>
+<body>
+  <main id="app" class="app-shell" aria-live="polite">
+    <section class="citizen-page">
+      <header class="page-header"><button class="back-link" type="button" data-nav="#citizen/home" aria-label="Go back"><span aria-hidden="true">←</span> Back</button><h1 class="page-title">Responders directory</h1></header>
+      <p class="screen-subtitle directory-subtitle">Browse local emergency units and their current status.</p>
+      <div class="filter-row" role="group" aria-label="Filter responders">
+        <button type="button" class="filter-chip" data-filter="All" aria-pressed="false">All<span data-filter-count="All">8</span></button>
+        <button type="button" class="filter-chip" data-filter="Available" aria-pressed="false">Available<span data-filter-count="Available">5</span></button>
+        <button type="button" class="filter-chip" data-filter="Busy" aria-pressed="false">Busy<span data-filter-count="Busy">3</span></button>
+      </div>
+      <div class="responder-list directory-list" data-directory-results></div>
+    </section>
+    <nav class="bottom-nav" aria-label="Citizen navigation">
+      <button type="button" data-nav="#citizen/home"><span class="nav-icon" aria-hidden="true">⌕</span>Find</button>
+      <button type="button" data-nav="#citizen/responders" aria-current="page"><span class="nav-icon" aria-hidden="true">♙</span>Responder</button>
+      <button type="button" data-nav="#citizen/log"><span class="nav-icon" aria-hidden="true">▤</span>Log</button>
+    </nav>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="../../js/screens/citizen-responders.js"></script>
+</body>
+</html>

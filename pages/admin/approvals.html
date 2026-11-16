@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3ff">
+  <title>Responder Approvals | Cebu Emergency Finder</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../styles/screens/admin-approvals.css">
+</head>
+<body>
+  <main id="app" class="app-shell" aria-live="polite">
+    <section class="admin-page">
+      <header class="admin-header"><div><p class="eyebrow">CEBU CITY DISPATCH</p><h1 class="page-title">Responder approvals</h1></div><button class="avatar" type="button" data-action="logout" aria-label="Log out of admin demo">RV</button></header>
+      <div class="approval-count-card card"><strong data-approval-count>0</strong><span>Pending requests</span><small>Verify unit details against the official roster before approving.</small></div>
+      <div class="approval-list" data-approval-list></div>
+    </section>
+    <nav class="bottom-nav admin-nav" aria-label="Dispatch navigation">
+      <button type="button" data-nav="#admin/live"><span class="nav-icon">⌖</span>Live</button>
+      <button type="button" data-nav="#admin/map"><span class="nav-icon">◇</span>Map</button>
+      <button type="button" data-nav="#admin/approvals" aria-current="page"><span class="nav-icon">✓</span>Approval</button>
+      <button type="button" data-nav="#admin/team"><span class="nav-icon">♙</span>Team</button>
+      <button type="button" data-nav="#admin/history"><span class="nav-icon">▤</span>History</button>
+    </nav>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="../../js/screens/admin-approvals.js"></script>
+</body>
+</html>

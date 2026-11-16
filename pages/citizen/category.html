@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3ff">
+  <title>Nearby Responders | Cebu Emergency Finder</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../styles/screens/citizen-category.css">
+</head>
+<body>
+  <main id="app" class="app-shell" aria-live="polite">
+    <section class="citizen-page">
+      <header class="page-header"><button class="back-link" type="button" data-nav="#citizen/home" aria-label="Go back"><span aria-hidden="true">←</span> Back</button><h1 class="page-title" data-category-title>Nearest Responders</h1></header>
+      <div data-map-slot></div>
+      <div class="results-heading"><h2 class="section-label">Nearby responders</h2><span data-result-count>0 results</span></div>
+      <div class="responder-list" data-responder-results></div>
+    </section>
+    <nav class="bottom-nav" aria-label="Citizen navigation">
+      <button type="button" data-nav="#citizen/home" aria-current="page"><span class="nav-icon" aria-hidden="true">⌕</span>Find</button>
+      <button type="button" data-nav="#citizen/responders"><span class="nav-icon" aria-hidden="true">♙</span>Responder</button>
+      <button type="button" data-nav="#citizen/log"><span class="nav-icon" aria-hidden="true">▤</span>Log</button>
+    </nav>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="../../js/screens/citizen-category.js"></script>
+</body>
+</html>

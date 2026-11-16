@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3ff">
+  <title>Verify Admin | Cebu Emergency Finder</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../styles/screens/admin-otp.css">
+</head>
+<body>
+  <main id="app" class="app-shell" aria-live="polite">
+    <section class="admin-auth otp-page">
+      <button class="back-link" type="button" data-nav="#admin/signin" aria-label="Go back"><span aria-hidden="true">←</span> Back</button>
+      <div class="admin-auth-mark">✓</div>
+      <h1 class="screen-title">Verify your email</h1>
+      <p class="screen-subtitle">Enter the six-digit demo code sent to your work email.</p>
+      <div class="otp-fields six-digit" role="group" aria-label="Six digit verification code">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 1" data-otp="0">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2" data-otp="1">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3" data-otp="2">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4" data-otp="3">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5" data-otp="4">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6" data-otp="5">
+      </div>
+      <p id="admin-otp-error" class="form-error" aria-live="polite"></p>
+      <button class="primary-button full-width" type="button" data-action="admin-verify">Verify</button>
+      <button id="admin-resend-code" class="link-button" type="button" data-action="admin-resend" disabled>Resend code in <span data-admin-countdown>0:42</span></button>
+      <p class="demo-note">Demo code: <strong>123456</strong></p>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="../../js/screens/admin-otp.js"></script>
+</body>
+</html>

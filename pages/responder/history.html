@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3ff">
+  <title>Responder History | Cebu Emergency Finder</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../styles/screens/responder-history.css">
+</head>
+<body>
+  <main id="app" class="app-shell" aria-live="polite">
+    <section class="responder-page workspace-page">
+      <header class="workspace-header"><div><p class="eyebrow">AMBULANCE 1</p><h1 class="page-title">Call history</h1></div><span class="avatar">JD</span></header>
+      <div class="history-list">
+        <article class="history-card card"><div class="history-top"><strong>Medical emergency</strong><span class="status available">Completed</span></div><p>Poblacion, Ginatilan</p><small>Today · 10:42 AM</small></article>
+        <article class="history-card card"><div class="history-top"><strong>Patient transport</strong><span class="status available">Completed</span></div><p>Samboan Health Center</p><small>Yesterday · 4:18 PM</small></article>
+      </div>
+    </section>
+    <nav class="bottom-nav responder-nav" aria-label="Responder navigation">
+      <button type="button" data-nav="#responder/today"><span class="nav-icon">⌂</span>Today</button>
+      <button type="button" data-nav="#responder/history" aria-current="page"><span class="nav-icon">▤</span>History</button>
+      <button type="button" data-nav="#responder/profile"><span class="nav-icon">♙</span>Profile</button>
+    </nav>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="../../js/screens/responder-history.js"></script>
+</body>
+</html>
