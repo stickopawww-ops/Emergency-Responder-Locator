@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickEmergency Finder - Responder Sign In</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <main class="container">
+
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🚨</span>
+                <span>Emergency Responder Locator</span>
+            </div>
+        </header>
+
+        <section class="safety-card">
+            <div class="shield-icon">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M12 2L4 5V11C4 16 7.5 20 12 22C16.5 20 20 16 20 11V5L12 2Z"/>
+                    <path d="M12 2V22"/>
+                </svg>
+            </div>
+
+            <h2>For Your Safety</h2>
+            <p>Your identity will be verified.</p>
+        </section>
+
+        <section class="signin-section">
+
+            <h1>Responder sign in</h1>
+            <p class="description">
+                Enter your registered mobile number to sign in.
+            </p>
+
+            <form id="signinForm">
+
+                <label for="mobileNumber">Mobile Number</label>
+
+                <div class="phone-input">
+                    <span class="country-code">+63</span>
+                    <input
+                        type="tel"
+                        id="mobileNumber"
+                        placeholder="991 666 3601"
+                        maxlength="10"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="send-code-btn">
+                    Send Code
+                </button>
+
+            </form>
+
+            <div class="alternative">
+                <a href="#" id="alternativeMethod">Use another method</a>
+            </div>
+
+            <p id="message" class="message"></p>
+
+        </section>
+
+        <footer class="footer">
+            By continuing, you agree to our
+            <a href="#">Terms</a> and
+            <a href="#">Privacy Policy</a>.
+        </footer>
+
+    </main>
+
+    <script src="login.js"></script>
+</body>
+</html>
