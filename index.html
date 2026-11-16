@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3ff">
+  <title>Cebu Emergency Finder</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/screens/role-selection.css">
+</head>
+<body>
+  <main id="app" class="app-shell" aria-live="polite">
+    <section class="role-screen">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">+</span><span>Cebu Emergency Finder</span></div>
+      <h1 class="screen-title">Who's using the app?</h1>
+      <p class="screen-subtitle">Choose one to continue. You can change it later.</p>
+      <button class="role-card citizen-role" type="button" data-nav="#citizen/home">
+        <span class="role-icon" aria-hidden="true">⌖</span>
+        <span class="role-copy"><strong>I need help</strong><small>Find the nearest ambulance, fire truck, barangay, or police station.</small><em>No sign in needed</em></span>
+        <span class="role-arrow" aria-hidden="true">›</span>
+      </button>
+      <button class="role-card responder-role" type="button" data-nav="#responder/signin">
+        <span class="role-icon" aria-hidden="true">⛨</span>
+        <span class="role-copy"><strong>I'm a responder</strong><small>Set your status and receive calls from people nearby.</small><em>Sign in with your registered number</em></span>
+        <span class="role-arrow" aria-hidden="true">›</span>
+      </button>
+      <button class="role-card admin-role" type="button" data-nav="#admin/signin">
+        <span class="role-icon" aria-hidden="true">▦</span>
+        <span class="role-copy"><strong>I'm an admin</strong><small>Manage dispatch, responder teams, and approvals.</small><em>Authorized administrators</em></span>
+        <span class="role-arrow" aria-hidden="true">›</span>
+      </button>
+      <button class="emergency-banner" type="button" data-action="call-911">Life-threatening? Call <strong>911</strong> now</button>
+      <p class="demo-note">Demo only · No live dispatch or GPS tracking</p>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="js/screens/role-selection.js"></script>
+</body>
+</html>

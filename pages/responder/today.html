@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3ff">
+  <title>Responder Today | Cebu Emergency Finder</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../styles/screens/responder-today.css">
+</head>
+<body>
+  <main id="app" class="app-shell" aria-live="polite">
+    <section class="responder-page workspace-page">
+      <header class="workspace-header"><div><p class="eyebrow">AMBULANCE 1</p><h1 class="page-title">Hi, Juan Dela Cruz</h1></div><span class="avatar">JD</span></header>
+      <div class="responder-status card"><div><small>Current status</small><strong class="status-text" data-status-label>Available</strong></div><span class="status status-available" data-status-badge>Available</span></div>
+      <h2 class="section-label">Set availability</h2>
+      <div class="status-options">
+        <button type="button" class="status-option" data-status="Available" aria-pressed="false"><span class="status-dot"></span>Available</button>
+        <button type="button" class="status-option" data-status="Busy" aria-pressed="false"><span class="status-dot busy"></span>Busy</button>
+        <button type="button" class="status-option" data-status="Break" aria-pressed="false"><span class="status-dot break"></span>Break</button>
+        <button type="button" class="status-option" data-status="Off duty" aria-pressed="false"><span class="status-dot off-duty"></span>Off duty</button>
+      </div>
+      <div class="metrics-grid"><article class="metric card"><strong>2</strong><small>Calls today</small></article><article class="metric card"><strong>5 min</strong><small>Avg. response</small></article><article class="metric card"><strong>3h 30m</strong><small>On duty</small></article></div>
+      <div data-availability-content></div>
+    </section>
+    <nav class="bottom-nav responder-nav" aria-label="Responder navigation">
+      <button type="button" data-nav="#responder/today" aria-current="page"><span class="nav-icon">⌂</span>Today</button>
+      <button type="button" data-nav="#responder/history"><span class="nav-icon">▤</span>History</button>
+      <button type="button" data-nav="#responder/profile"><span class="nav-icon">♙</span>Profile</button>
+    </nav>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="../../js/screens/responder-today.js"></script>
+</body>
+</html>
