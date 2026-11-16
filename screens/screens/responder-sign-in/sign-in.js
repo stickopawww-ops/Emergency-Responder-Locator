@@ -1,4 +1,3 @@
-
 const signinForm = document.getElementById("signinForm");
 const mobileNumber = document.getElementById("mobileNumber");
 const message = document.getElementById("message");

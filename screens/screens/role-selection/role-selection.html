@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role Selection</title>
+
+    <link rel="stylesheet" href="role-selection.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (temporary icons) -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="phone">
+
+    <div class="logo">
+        <div class="logo-icon">
+            <i class="fa-solid fa-shield-heart"></i>
+        </div>
+
+        <div class="logo-text">
+            <h4>Cebu Emergency Finder</h4>
+        </div>
+    </div>
+
+    <div class="title">
+        <h3>Who's using the app?</h3>
+
+        <p>
+            Choose one to continue.<br>
+            You can change it later.
+        </p>
+    </div>
+
+    <div class="cards">
+
+        <!-- Citizen -->
+        <div class="card citizen">
+
+            <div class="card-header">
+
+                <div class="circle">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <span>Citizen</span>
+
+            </div>
+
+            <h2>I need help</h2>
+
+            <p>
+                Find the nearest ambulance,
+                fire truck, tanod,
+                or police station.
+            </p>
+
+        </div>
+
+        <!-- Responder -->
+        <div class="card responder">
+
+            <div class="card-header">
+
+                <div class="circle">
+                    <i class="fa-solid fa-truck-medical"></i>
+                </div>
+
+                <span>Verified</span>
+
+            </div>
+
+            <h2>I'm a responder</h2>
+
+            <p>
+                Set your status and receive
+                calls from people nearby.
+            </p>
+
+        </div>
+
+        <!-- Admin -->
+        <div class="card admin">
+
+            <div class="card-header">
+
+                <div class="circle">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+
+                <span>Admin</span>
+
+            </div>
+
+            <h2>I'm an admin</h2>
+
+            <p>
+                Manage responders and monitor
+                emergency requests.
+            </p>
+
+        </div>
+
+    </div>
+
+    <button class="emergency">
+        <i class="fa-solid fa-phone"></i>
+        Life-threatening? Call 911 now
+    </button>
+
+</div>
+
+<script src="role-selection.js"></script>
+
+</body>
+
+</html>
