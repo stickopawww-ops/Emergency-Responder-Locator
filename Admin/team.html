@@ -3,18 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Team</title>
+<title>Team - Cebu City Dispatch</title>
 <link rel="stylesheet" href="team.css">
 </head>
 <body>
 <div class="phone">
-  <div class="header">
+  <div class="top">
     <div>
+      <p class="app-name">Cebu City Dispatch</p>
       <h1>Team</h1>
-      <p>Manage your response team</p>
     </div>
-    <button class="add-btn" onclick="addResponder()">+ Add Responder</button>
+    <div class="avatar">RV</div>
   </div>
+
+  <button class="add-btn-big" onclick="addResponder()">+ Add Responder</button>
 
   <div class="filters">
     <button class="filter active" onclick="filterTeam('All', this)">All</button>
@@ -25,23 +27,11 @@
 
   <div id="teamList"></div>
 
-  <dialog id="addResponderDialog">
-    <form id="addResponderForm">
-      <h2>Add responder</h2>
-      <label for="responderName">Responder name</label>
-      <input id="responderName" name="responderName" maxlength="60" required>
-      <div class="dialog-actions">
-        <button type="button" id="cancelAddResponder">Cancel</button>
-        <button type="submit">Add</button>
-      </div>
-    </form>
-  </dialog>
-
   <div class="bottom-nav">
-    <a href="#">Live</a>
+    <a href="#">Live <span class="notif">1</span></a>
     <a href="#">Map</a>
-    <a href="approval.html">Approval</a>
-    <a href="team.html" class="active">Team</a>
+    <a href="#">Approval <span class="notif">3</span></a>
+    <a href="#" class="active">Team</a>
     <a href="#">History</a>
   </div>
 </div>

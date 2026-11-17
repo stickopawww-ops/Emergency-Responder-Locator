@@ -11,18 +11,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px 0;
+  padding: 20px;
 }
 
 .phone {
-  width: 390px;
-  min-height: 760px;
+  width: 412px;
+  height: min(917px, calc(100vh - 40px));
   background: #f5f5f5;
   border-radius: 28px;
   box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
   border: 1px solid rgba(0, 0, 0, 0.05);
   padding: 14px 18px 0;
   position: relative;
+  overflow-y: auto;
 }
 
 .topbar {
@@ -58,6 +59,12 @@ body {
   font-weight: 700;
   color: #1e1e1e;
   letter-spacing: -0.03em;
+}
+.title h3{
+    font-size:10px;
+    color:#A49B9B;
+    font-weight:900;
+    margin-bottom:12px;
 }
 
 .search-box {
@@ -146,7 +153,7 @@ body {
 
 .card.wide {
   grid-column: 1 / -1;
-  min-height: 50px;
+  min-height: 70px;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
@@ -172,6 +179,12 @@ body {
   stroke-width: 1.9;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.icon-wrap i {
+  color: #202020;
+  font-size: 20px;
+  line-height: 1;
 }
 
 .card-text {
@@ -248,12 +261,12 @@ body {
   border: none;
   background: #eb4d3d;
   color: white;
-  border-radius: 12px;
+  border-radius: 20px;
   font-weight: 700;
   font-size: 0.96rem;
   padding: 15px 20px;
   cursor: pointer;
-  margin-bottom: 14px;
+  margin-top: 30px;
   box-shadow: 0 10px 18px rgba(235, 77, 61, 0.22);
 }
 
@@ -264,7 +277,7 @@ body {
   padding-top: 10px;
   border-top: 1px solid #e2e2e2;
   background: #f5f5f5;
-  margin-top: 4px;
+  margin-top: 140px;
 }
 
 .nav-item {
@@ -294,4 +307,22 @@ body {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+  @media (max-width: 600px) {
+  body {
+    background: #c9bcff;
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .phone {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    overflow-y: visible;
+  }
 }
