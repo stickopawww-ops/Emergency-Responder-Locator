@@ -1,7 +1,6 @@
 const signinForm = document.getElementById("signinForm");
 const mobileNumber = document.getElementById("mobileNumber");
 const message = document.getElementById("message");
-const alternativeMethod = document.getElementById("alternativeMethod");
 
 signinForm.addEventListener("submit", function(event) {
     event.preventDefault();
@@ -22,13 +21,6 @@ signinForm.addEventListener("submit", function(event) {
     localStorage.setItem("responderPhone", number);
     localStorage.removeItem("responderVerified");
     window.location.href = "../verification/verification.html";
-});
-
-alternativeMethod.addEventListener("click", function(event) {
-    event.preventDefault();
-
-    message.style.color = "#172044";
-    message.textContent = "Only phone verification is available in this demo.";
 });
 
 document.querySelectorAll(".footer a").forEach((link) => {

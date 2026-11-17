@@ -4,7 +4,8 @@ const STATUS = {
     APPROVED: "approved"
 };
 
-const currentStatus = localStorage.getItem("responderApprovalStatus") || STATUS.PENDING;
+const savedStatus = localStorage.getItem("responderApprovalStatus");
+let currentStatus = Object.values(STATUS).includes(savedStatus) ? savedStatus : STATUS.PENDING;
 const responderPhone = localStorage.getItem("responderPhone");
 
 const pageTitle = document.getElementById("pageTitle");
@@ -16,6 +17,7 @@ const step2 = document.getElementById("step2");
 const step3 = document.getElementById("step3");
 
 const startButton = document.getElementById("startButton");
+const advanceStatusButton = document.getElementById("advanceStatusButton");
 const contactButton = document.getElementById("contactButton");
 const logoutButton = document.getElementById("logoutButton");
 const phoneNumber = document.getElementById("phoneNumber");
@@ -32,6 +34,7 @@ function resetSteps() {
     step3.classList.remove("completed");
 
     startButton.classList.add("hidden");
+    advanceStatusButton.classList.remove("hidden");
     contactButton.style.display = "block";
 }
 
@@ -46,9 +49,10 @@ function setStatus(status) {
             pageTitle.textContent = "Waiting for approval";
 
             pageDescription.textContent =
-                "An admin has to confirm you before your unit goes live. This keeps fake units off the map.";
+                "An admin has to confirm you before your unit goes live. Use the demo action below to simulate review.";
 
             headerIcon.className = "fa-regular fa-hourglass-half";
+            advanceStatusButton.textContent = "Simulate admin review";
 
             step1.classList.add("completed");
 
@@ -59,9 +63,10 @@ function setStatus(status) {
             pageTitle.textContent = "Application under review";
 
             pageDescription.textContent =
-                "Your request is now being reviewed by your administrator.";
+                "Your request is under review. Use the demo action below to simulate approval.";
 
             headerIcon.className = "fa-regular fa-hourglass-half";
+            advanceStatusButton.textContent = "Simulate approval";
 
             step1.classList.add("completed");
             step2.classList.add("completed");
@@ -82,6 +87,7 @@ function setStatus(status) {
             step3.classList.add("completed");
 
             startButton.classList.remove("hidden");
+            advanceStatusButton.classList.add("hidden");
 
             contactButton.style.display = "none";
 
@@ -91,13 +97,19 @@ function setStatus(status) {
 
 }
 
+advanceStatusButton.addEventListener("click", () => {
+    currentStatus = currentStatus === STATUS.PENDING ? STATUS.REVIEWING : STATUS.APPROVED;
+    localStorage.setItem("responderApprovalStatus", currentStatus);
+    setStatus(currentStatus);
+});
+
 startButton.addEventListener("click", () => {
-    alert("The responder dashboard is not available in this demo yet.");
+    window.location.href = "../../../Responder today (avail, profile and history/responders(avail)/to.avail.html";
 });
 
 contactButton.addEventListener("click", () => {
 
-    alert("Contact your administrator.");
+    alert("No administrator contact is configured in this demo.");
 
 });
 

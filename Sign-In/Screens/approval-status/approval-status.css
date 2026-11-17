@@ -18,7 +18,7 @@ body{
 .phone{
     width:412px;
     height:917px;
-    background:#CDC4FF;
+    background:#F7F3FF;
     padding:32px 28px;
     position:relative;
 }
@@ -143,7 +143,8 @@ body{
 }
 
 #startButton,
-#contactButton{
+#contactButton,
+#advanceStatusButton{
     width:100%;
     height:46px;
     border-radius:10px;
@@ -154,6 +155,12 @@ body{
 }
 
 #startButton{
+    background:#344D87;
+    color:#fff;
+    margin-bottom:14px;
+}
+
+#advanceStatusButton{
     background:#344D87;
     color:#fff;
     margin-bottom:14px;
