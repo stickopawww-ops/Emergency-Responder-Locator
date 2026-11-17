@@ -25,6 +25,18 @@
 
   <div id="teamList"></div>
 
+  <dialog id="addResponderDialog">
+    <form id="addResponderForm">
+      <h2>Add responder</h2>
+      <label for="responderName">Responder name</label>
+      <input id="responderName" name="responderName" maxlength="60" required>
+      <div class="dialog-actions">
+        <button type="button" id="cancelAddResponder">Cancel</button>
+        <button type="submit">Add</button>
+      </div>
+    </form>
+  </dialog>
+
   <div class="bottom-nav">
     <a href="#">Live</a>
     <a href="#">Map</a>

@@ -5,7 +5,12 @@ const team = [
   { name: "Rescue Team 1", type: "Rescue • Rescue Van", status: "Off", icon: "🛟" },
 ];
 
-function render(filter = "All") {
+let currentFilter = "All";
+const addResponderDialog = document.getElementById("addResponderDialog");
+const addResponderForm = document.getElementById("addResponderForm");
+
+function render(filter = currentFilter) {
+  currentFilter = filter;
   const list = document.getElementById("teamList");
   list.innerHTML = "";
   team.filter(t => filter === "All" || t.status === filter).forEach(t => {
@@ -22,6 +27,34 @@ function filterTeam(status, btn) {
   render(status);
 }
 function addResponder() {
-  alert("Add Responder clicked!");
+  addResponderForm.reset();
+  addResponderDialog.showModal();
+  document.getElementById("responderName").focus();
 }
+
+document.getElementById("cancelAddResponder").addEventListener("click", () => {
+  addResponderDialog.close();
+});
+
+addResponderForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const name = document.getElementById("responderName").value.trim();
+  if (!name) return;
+
+  team.push({
+    name,
+    type: "Responder",
+    status: "Off",
+    icon: "🛟",
+  });
+  render();
+  addResponderDialog.close();
+});
+
+document.querySelectorAll('.bottom-nav a[href="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    alert(`${link.textContent.trim()} is not available in this demo yet.`);
+  });
+});
 render();
