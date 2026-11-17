@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm It's You</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <button class="back-button" onclick="goBack()">
+            <span>←</span> Back
+        </button>
+
+        <h2>Confirm it is you</h2>
+
+        <p class="description">
+            Enter a 6-digit code sent to the phone<br>
+            ending 08.
+        </p>
+
+        <div class="otp-container">
+            <input type="text" maxlength="1" class="otp-input" value="1">
+            <input type="text" maxlength="1" class="otp-input" value="1">
+            <input type="text" maxlength="1" class="otp-input">
+            <input type="text" maxlength="1" class="otp-input">
+            <input type="text" maxlength="1" class="otp-input">
+            <input type="text" maxlength="1" class="otp-input">
+        </div>
+
+        <button class="verify-button" onclick="verifyCode()">
+            Verify and sign in
+        </button>
+
+        <p class="resend-text">
+            <span id="resend-message">Resend code in</span>
+            <span id="timer">0:30</span>
+        </p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

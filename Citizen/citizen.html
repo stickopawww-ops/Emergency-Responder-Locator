@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emergency Responder Locator</title>
   <link rel="stylesheet" href="citizen.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
   <script src="citizen.js" defer></script>
 </head>
 <body>
@@ -33,15 +34,14 @@
       </button>
     </div>
 
+    <div class="title">
+      <h3>Who do you need help from?</h3>
+    </div>
+
     <div class="grid">
       <div class="card">
         <div class="icon-wrap">
-          <svg viewBox="0 0 24 24">
-            <path d="M3 12h4l2-5h6l2 5h4"></path>
-            <path d="M6 17.5a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5zm12 0a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5z"></path>
-            <path d="M9 8h6"></path>
-            <path d="M12 5v6"></path>
-          </svg>
+          <i class="fa-solid fa-truck-medical" aria-hidden="true"></i>
         </div>
         <div class="card-text">
           <h3>Ambulance</h3>
@@ -51,10 +51,7 @@
 
       <div class="card">
         <div class="icon-wrap">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 2c2.2 2.7 4 4.5 4 7.2A4 4 0 0 1 8 9.2C8 6.6 9.8 4.7 12 2z"></path>
-            <path d="M6 15c0-3 2.2-5 6-5s6 2 6 5v2.5A2.5 2.5 0 0 1 15.5 20h-7A2.5 2.5 0 0 1 6 17.5V15z"></path>
-          </svg>
+          <i class="fa-solid fa-fire" aria-hidden="true"></i>
         </div>
         <div class="card-text">
           <h3>Fire Station</h3>
@@ -64,10 +61,7 @@
 
       <div class="card">
         <div class="icon-wrap">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 3a7 7 0 0 1 7 7c0 5.3-7 11-7 11S5 15.3 5 10a7 7 0 0 1 7-7z"></path>
-            <circle cx="12" cy="10" r="2.5"></circle>
-          </svg>
+          <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
         </div>
         <div class="card-text">
           <h3>Barangay Tanod</h3>
@@ -77,31 +71,26 @@
 
       <div class="card">
         <div class="icon-wrap">
-          <svg viewBox="0 0 24 24">
-            <path d="M11 2l7 3v4c0 4.2-2.7 8-7 10-4.3-2-7-5.8-7-10V5l7-3z"></path>
-            <path d="M9.5 11.5l1.5 1.5 3-3"></path>
-          </svg>
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
         </div>
         <div class="card-text">
           <h3>Police</h3>
           <span>1 available</span>
         </div>
       </div>
-
-      <div class="card wide">
+    
+      <div class="card">
         <div class="icon-wrap">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 2v6"></path>
-            <path d="M12 16v6"></path>
-            <path d="M2 12h6"></path>
-            <path d="M16 12h6"></path>
-            <circle cx="12" cy="12" r="4"></circle>
-          </svg>
+          <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
         </div>
-        <div class="card">
+        <div class="card-text">
           <h3>Nearest Any</h3>
         </div>
       </div>
+    </div>
+    
+    <div class="title">
+      <h3>Other Services</h3>
     </div>
 
     <div class="other-list">
