@@ -4,7 +4,10 @@ cards.forEach((card) => {
   card.addEventListener("click", () => {
     cards.forEach((item) => item.classList.remove("active"));
     card.classList.add("active");
-    alert("Location details are not available in this demo yet.");
+
+    if (!card.matches("a")) {
+      alert("Location details are not available in this demo yet.");
+    }
   });
 });
 
