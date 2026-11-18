@@ -18,7 +18,13 @@ navItems.forEach((item) => {
     navItems.forEach((navItem) => navItem.classList.remove("active"));
     item.classList.add("active");
 
+<<<<<<< HEAD
+    if (item.textContent.trim() === "Responder") {
+      window.location.href = "../Sign-In/Screens/responder-sign-in/sign-in.html";
+    } else if (item.textContent.trim() === "Log") {
+=======
     if (item.textContent.trim() === "Log") {
+>>>>>>> 33c6f8f7ca1175513684fe21ba3e053d60990dd8
       alert("The emergency log is not available in this demo yet.");
     }
   });

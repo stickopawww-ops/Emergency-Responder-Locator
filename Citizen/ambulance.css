@@ -9,6 +9,8 @@
   --badge-avail-text: #1B5E20;
   --badge-busy-bg: #FFE082;
   --badge-busy-text: #7F4F00;
+  --nav-active: #2E7D32;
+  --nav-active: #111;
   --divider: #D8D3E8;
 }
 
@@ -246,6 +248,20 @@ body {
 
 .nav-item.active {
   color: #111;
+}
+
+.nav-item i {
+  font-size: 18px;
+}
+
+.nav-item.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 48px;
+  height: 3px;
+  background-color: var(--nav-active);
+  border-radius: 0 0 3px 3px;
 }
 
 .nav-item svg {

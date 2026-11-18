@@ -1,6 +1,10 @@
 const signinForm = document.getElementById("signinForm");
 const mobileNumber = document.getElementById("mobileNumber");
 const message = document.getElementById("message");
+<<<<<<< HEAD
+const alternativeMethod = document.getElementById("alternativeMethod");
+=======
+>>>>>>> 33c6f8f7ca1175513684fe21ba3e053d60990dd8
 
 signinForm.addEventListener("submit", function(event) {
     event.preventDefault();
@@ -23,6 +27,16 @@ signinForm.addEventListener("submit", function(event) {
     window.location.href = "../verification/verification.html";
 });
 
+<<<<<<< HEAD
+alternativeMethod.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    message.style.color = "#172044";
+    message.textContent = "Only phone verification is available in this demo.";
+});
+
+=======
+>>>>>>> 33c6f8f7ca1175513684fe21ba3e053d60990dd8
 document.querySelectorAll(".footer a").forEach((link) => {
     link.addEventListener("click", function(event) {
         event.preventDefault();
