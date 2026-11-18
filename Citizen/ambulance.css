@@ -10,11 +10,7 @@
   --badge-avail-text: #1B5E20;
   --badge-busy-bg: #FFE082;
   --badge-busy-text: #7F4F00;
-<<<<<<< HEAD
-  --nav-active: #2E7D32;
-=======
   --nav-active: #111;
->>>>>>> 33c6f8f7ca1175513684fe21ba3e053d60990dd8
   --divider: #D8D3E8;
 }
 
@@ -255,21 +251,6 @@ body {
   color: var(--nav-active);
 }
 
-<<<<<<< HEAD
-.nav-item i {
-  font-size: 18px;
-}
-
-.nav-item.active::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 48px;
-  height: 3px;
-  background-color: var(--nav-active);
-  border-radius: 0 0 3px 3px;
-}
-=======
 .nav-item svg {
   width: 18px;
   height: 18px;
@@ -280,7 +261,6 @@ body {
   stroke-linejoin: round;
 }
 
->>>>>>> 33c6f8f7ca1175513684fe21ba3e053d60990dd8
 @media (max-width: 600px) {
   body {
     background: #F7F3FF;
