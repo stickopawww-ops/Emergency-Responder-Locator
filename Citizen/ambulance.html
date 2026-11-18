@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frame 2 - Nearest Ambulance</title>
+  <link rel="stylesheet" href="ambulance.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+</head>
+<body>
+  <div class="mobile-frame">
+    <!-- Header -->
+    <header class="app-header">
+      <button class="back-btn" id="backBtn" aria-label="Go back"></button>
+      <h1 class="header-title">Nearest Ambulance</h1>
+    </header>
+
+
+    <main class="content-area">
+      <p class="map-caption-top">Ginatilan - Ambulance</p>
+
+    
+      <div class="map-container">
+        <svg width="100%" height="100%" viewBox="0 0 328 145" preserveAspectRatio="xMidYMid slice">
+        
+          <rect width="328" height="145" fill="#BEE0E6" />
+         
+          <path d="M135,0 L328,0 L328,145 L210,145 C195,120 185,95 170,75 C155,55 150,25 135,0 Z" fill="#EFECE6" />
+          
+          <path d="M142,0 C156,28 162,56 177,76 C192,96 202,122 216,145" fill="none" stroke="#FFFFFF" stroke-width="3" />
+          <path d="M177,76 L260,65 L328,45" fill="none" stroke="#FFFFFF" stroke-width="2" />
+
+          <g transform="translate(158, 32)">
+            <circle cx="0" cy="0" r="4" fill="#00897B" stroke="#FFFFFF" stroke-width="1.5" />
+            <rect x="8" y="-9" width="95" height="16" rx="3" fill="#FFFFFF" opacity="0.92" />
+            <text x="13" y="2" font-size="8" font-weight="600" fill="#1A1A2E">Ambulance 1 - RHU</text>
+          </g>
+
+          <g transform="translate(185, 84)">
+            <circle cx="0" cy="0" r="4" fill="#00897B" stroke="#FFFFFF" stroke-width="1.5" />
+            <rect x="-148" y="-9" width="140" height="16" rx="3" fill="#FFFFFF" opacity="0.92" />
+            <text x="-143" y="2" font-size="8" font-weight="600" fill="#1A1A2E">Ambulance 2 - Health Office</text>
+          </g>
+        </svg>
+      </div>
+
+      <p class="map-caption-bottom">Estimated location (Ginatilan, Cebu)</p>
+
+      <section class="responder-list" id="ambulanceList"></section>
+    </main>
+
+    <nav class="bottom-nav" id="bottomNav"></nav>
+  </div>
+
+  <script type="module" src="ambulance.js"></script>
+</body>
+</html>

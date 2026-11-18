@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Map - Cebu City Dispatch</title>
+<link rel="stylesheet" href="map.css">
+</head>
+<body>
+<div class="phone">
+  <!-- Header Section -->
+  <div class="top">
+    <div>
+      <p class="app-name">Cebu City Dispatch</p>
+      <h1>Live Map</h1>
+    </div>
+    <div class="avatar">RV</div>
+  </div>
+
+  <!-- Map Title -->
+  <p class="subtitle">Ginatilan-Samboan &middot; Schematic</p>
+
+  <!-- Schematic Map Container -->
+  <div class="map-box">
+    <div class="sea-left"></div>
+    <div class="sea-right"></div>
+    <div class="land"></div>
+
+    <!-- Town Labels -->
+    <div class="label town">Ginatilan Proper</div>
+    <div class="label town2">Poblacion Samboan</div>
+    <div class="label samboan">SAMBOAN</div>
+
+    <!-- Fire Truck Pins -->
+    <button class="pin pin1" onclick="showUnitDetail('Fire Truck 1 - Ginatilan', 'Status: Available - BFP R7 Ginatilan Fire Station')">●</button>
+    <span class="pin-label label1">Fire Truck 1 &middot; Ginatilan</span>
+
+    <button class="pin pin2" onclick="showUnitDetail('Fire Truck 2 - Samboan', 'Status: Available - Samboan Fire Station')">●</button>
+    <span class="pin-label label2">Fire Truck 2 &middot; Samboan</span>
+  </div>
+
+  <!-- Map Disclaimer -->
+  <p class="caption">Estimated station locations &middot; Not live GPS</p>
+
+  <!-- Status Legend -->
+  <div class="legend">
+    <span><i class="dot red"></i> Incident</span>
+    <span><i class="dot green"></i> Available</span>
+    <span><i class="dot orange"></i> Busy</span>
+    <span><i class="dot blue"></i> Off Duty</span>
+  </div>
+
+  <!-- Detail Box - Hidden by default -->
+  <div id="detailBox" class="detail hidden"></div>
+
+  <!-- Instructions -->
+  <p class="info">Tap a pin for details. Dashed lines show assigned unit heading to incidents. Positions are sample data.</p>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="#">Live <span class="notif">1</span></a>
+    <a href="#" class="active">Map</a>
+    <a href="#">Approval <span class="notif">3</span></a>
+    <a href="#">Team</a>
+    <a href="#">History</a>
+  </div>
+</div>
+<script src="map.js"></script>
+</body>
+</html>
