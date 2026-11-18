@@ -8,19 +8,28 @@
 }
 
 body{
-    background:#CFC6FF;
+    background:#F2F2F2;
     display:flex;
     justify-content:center;
     align-items:center;
     min-height:100vh;
-    padding:20px;
+    padding:0;
 }
 
 .phone{
+<<<<<<< HEAD
     width:412px;
     min-height:917px;
     background:#CFC6FF;
     padding:40px 28px;
+=======
+    width:100%;
+    max-width:412px;
+    min-height:100vh;
+    min-height:100dvh;
+    background:#F7F3FF;
+    padding:32px 28px;
+>>>>>>> 33c6f8f7ca1175513684fe21ba3e053d60990dd8
     display:flex;
     flex-direction:column;
 }
@@ -29,7 +38,7 @@ body{
     display:flex;
     align-items:center;
     gap:12px;
-    margin-bottom:45px;
+    margin-bottom:32px;
 }
 
 .logo-icon{
@@ -56,7 +65,7 @@ body{
 
 .title{
     text-align:center;
-    margin-bottom:35px;
+    margin-bottom:24px;
 }
 
 .title h3{
@@ -75,12 +84,12 @@ body{
 .cards{
     display:flex;
     flex-direction:column;
-    gap:20px;
+    gap:14px;
 }
 
 .card{
     border-radius:24px;
-    padding:22px;
+    padding:18px;
     color:white;
     cursor:pointer;
     transition:.25s;
@@ -95,7 +104,7 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:18px;
+    margin-bottom:14px;
 }
 
 .circle{
@@ -122,14 +131,14 @@ body{
 }
 
 .card h2{
-    font-size:30px;
+    font-size:27px;
     font-weight:800;
-    margin-bottom:12px;
+    margin-bottom:8px;
 }
 
 .card p{
-    font-size:14px;
-    line-height:1.7;
+    font-size:13px;
+    line-height:1.5;
     opacity:.95;
 }
 
@@ -146,8 +155,8 @@ body{
 }
 
 .emergency{
-    margin-top:20px;
-    height:60px;
+    margin-top:16px;
+    height:54px;
     border:none;
     border-radius:18px;
     background:#C11F1F;
@@ -164,18 +173,4 @@ body{
 
 .emergency i{
     margin-right:10px;
-}
-
-@media(max-width:430px){
-
-    body{
-        padding:0;
-    }
-
-    .phone{
-        width:100%;
-        min-height:100vh;
-        border-radius:0;
-    }
-
 }

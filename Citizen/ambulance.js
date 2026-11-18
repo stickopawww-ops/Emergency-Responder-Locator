@@ -1,9 +1,15 @@
 const ICONS = {
   backArrow: '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i>',
   ambulance: '<i class="fa-solid fa-truck-medical" aria-hidden="true"></i>',
+<<<<<<< HEAD
   navFind: '<i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>',
   navResponder: '<i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>',
   navLog: '<i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>'
+=======
+  navFind: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M16 16L21 21"></path></svg>',
+  navResponder: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"></path><path d="M12 7v5l3 2"></path></svg>',
+  navLog: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9l3 3V19a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2z"></path><path d="M15 3.5v4h4"></path><path d="M8 11h8"></path><path d="M8 15h8"></path></svg>'
+>>>>>>> 33c6f8f7ca1175513684fe21ba3e053d60990dd8
 };
 
 const ambulances = [

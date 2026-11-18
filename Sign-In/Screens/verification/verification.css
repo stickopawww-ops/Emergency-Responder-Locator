@@ -8,7 +8,11 @@
 }
 
 body{
+<<<<<<< HEAD
     background:#f2f2f2;
+=======
+    background:#F7F3FF;
+>>>>>>> 33c6f8f7ca1175513684fe21ba3e053d60990dd8
     display:flex;
     justify-content:center;
     align-items:center;
@@ -21,7 +25,11 @@ body{
     max-width:412px;
     height:100vh;
     height:100dvh;
+<<<<<<< HEAD
     background:#CDC4FF;
+=======
+    background:#F7F3FF;
+>>>>>>> 33c6f8f7ca1175513684fe21ba3e053d60990dd8
     padding:34px 24px;
     position:relative;
     overflow:hidden;
