@@ -233,6 +233,12 @@ h1{
     color:var(--navy);
     cursor:pointer
 }
+.logout-btn
+{
+    background:#fff;
+    border-color:#b33a3a;
+    color:#9f2626
+}
 .nav
 {
     display:grid;

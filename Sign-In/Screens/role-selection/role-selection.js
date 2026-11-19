@@ -1,7 +1,7 @@
 const routes = {
     citizen: "../../../Citizen/citizen.html",
     responder: "../responder-sign-in/sign-in.html",
-    admin: "../../../Responder/approval.html"
+    admin: "../../../Admin/admin-signin.html"
 };
 
 document.querySelectorAll(".card").forEach((card) => {
