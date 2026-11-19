@@ -91,22 +91,6 @@ loginForm.addEventListener("submit", function(event) {
 
     const password = passwordInput.value;
 
-
-    // =================================
-    // 1. CHECK EMPTY FIELDS
-    // =================================
-
-    if (email === "" && password.trim() === "") {
-
-        alert("Email and password are required.");
-
-        emailInput.focus();
-
-        return;
-
-    }
-
-
     // =================================
     // 2. CHECK EMPTY EMAIL
     // =================================
@@ -172,7 +156,7 @@ loginForm.addEventListener("submit", function(event) {
         // Login successful: go to the verification page
         console.log("Login OK. Going to: " + VERIFY_PAGE);
 
-        window.location.href = VERIFY_PAGE;
+        window.location.replace(VERIFY_PAGE);
 
     } else {
 

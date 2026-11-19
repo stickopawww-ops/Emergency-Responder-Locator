@@ -5,12 +5,12 @@ const messageElement = document.getElementById("message");
 // =====================================
 // PAGE LINKS
 // =====================================
-// Same folder:     "admin-signin.html" and "admin.html"
+// Same folder:     "admin-signin.html" and "approval.html"
 // Separate folder: "../signin/index.html" and "../today/index.html"
 
 const SIGNIN_PAGE = "admin-signin.html";
 
-const DASHBOARD_PAGE = "admin.html";
+const DASHBOARD_PAGE = "approval.html";
 
 
 // =====================================
