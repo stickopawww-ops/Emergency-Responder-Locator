@@ -1,9 +1,12 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Admin Sign In | Cebu Emergency Help</title>
+
     <link rel="stylesheet" href="admin-signin.css">
 </head>
 <body>
@@ -13,18 +16,24 @@
         <div class="login-content">
 
             <header class="header">
+
                 <div class="brand">
+
                     <svg class="shield-icon" viewBox="0 0 24 24" fill="none">
                         <path d="M12 2.5L20 5.5V11C20 16.5 16.5 20 12 22C7.5 20 4 16.5 4 11V5.5L12 2.5Z"
-                        stroke="currentColor" stroke-width="1.8"
+                        stroke="currentColor"
+                        stroke-width="1.8"
                         stroke-linejoin="round"/>
                     </svg>
 
                     <span>Cebu Emergency Help</span>
+
                 </div>
 
                 <span class="admin-badge">ADMIN</span>
+
             </header>
+
 
             <section class="login-form">
 
@@ -34,22 +43,29 @@
                     For dispatch staff only. Responders and citizens use the main app.
                 </p>
 
+
                 <form id="loginForm">
 
                     <div class="form-group">
+
                         <label for="email">Work email</label>
+
                         <input
                             type="email"
                             id="email"
                             placeholder="example@gmail.com"
                             required
                         >
+
                     </div>
 
+
                     <div class="form-group">
+
                         <label for="password">Password</label>
 
                         <div class="password-wrapper">
+
                             <input
                                 type="password"
                                 id="password"
@@ -64,17 +80,26 @@
                             >
                                 Show
                             </button>
+
                         </div>
+
                     </div>
 
+
                     <div class="form-buttons">
+
                         <button type="submit" class="sign-in-button">
                             Sign in
                         </button>
 
-                        <button type="button" class="forgot-button" id="forgotButton">
+                        <button
+                            type="button"
+                            class="forgot-button"
+                            id="forgotButton"
+                        >
                             Forgot password
                         </button>
+
                     </div>
 
                 </form>
@@ -83,12 +108,16 @@
 
         </div>
 
+
         <footer>
             Every sign in and action is recorded in the activity log.
         </footer>
 
     </div>
 
+
     <script src="admin-signin.js"></script>
+
 </body>
 </html>
+```

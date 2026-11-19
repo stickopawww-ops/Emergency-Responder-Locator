@@ -1,37 +1,28 @@
+```javascript
 // =====================================
 // DEBUG CHECK 1: CONFIRM THIS FILE IS LOADING
 // =====================================
-// If you do not see this message in the Console (F12), the HTML is not
-// loading this file. Check the file name and the <script src="..."> line.
 
 console.log("admin-signin.js is loading");
 
 
 const loginForm = document.getElementById("loginForm");
-
 const emailInput = document.getElementById("email");
-
 const passwordInput = document.getElementById("password");
-
 const showButton = document.getElementById("showButton");
-
 const forgotButton = document.getElementById("forgotButton");
 
 
 // =====================================
-// DEBUG CHECK 2: CONFIRM THE HTML HAS ALL THE IDS
+// DEBUG CHECK 2: CHECK REQUIRED HTML IDS
 // =====================================
 
 const missingIds = [];
 
 if (!loginForm) missingIds.push("loginForm");
-
 if (!emailInput) missingIds.push("email");
-
 if (!passwordInput) missingIds.push("password");
-
 if (!showButton) missingIds.push("showButton");
-
 if (!forgotButton) missingIds.push("forgotButton");
 
 if (missingIds.length > 0) {
@@ -44,10 +35,8 @@ if (missingIds.length > 0) {
 
 
 // =====================================
-// PAGE TO OPEN AFTER SUCCESSFUL SIGN IN
+// PAGE TO OPEN AFTER SUCCESSFUL LOGIN
 // =====================================
-// Same folder:     "admin-verify.html"
-// Separate folder: "../verify/index.html"
 
 const VERIFY_PAGE = "admin-verify.html";
 
@@ -56,18 +45,16 @@ const VERIFY_PAGE = "admin-verify.html";
 // SHOW AND HIDE PASSWORD
 // =====================================
 
-showButton.addEventListener("click", function() {
+showButton.addEventListener("click", function () {
 
     if (passwordInput.type === "password") {
 
         passwordInput.type = "text";
-
         showButton.textContent = "Hide";
 
     } else {
 
         passwordInput.type = "password";
-
         showButton.textContent = "Show";
 
     }
@@ -79,22 +66,22 @@ showButton.addEventListener("click", function() {
 // ADMIN LOGIN VALIDATION
 // =====================================
 
-loginForm.addEventListener("submit", function(event) {
+loginForm.addEventListener("submit", function (event) {
 
-    // Prevent automatic form submission
     event.preventDefault();
 
     console.log("Form submitted");
 
-    // Get user input
-    const email = emailInput.value.trim();
 
+    // Get user input
+
+    const email = emailInput.value.trim();
     const password = passwordInput.value;
 
 
-    // =================================
+    // =====================================
     // 1. CHECK EMPTY FIELDS
-    // =================================
+    // =====================================
 
     if (email === "" && password.trim() === "") {
 
@@ -107,9 +94,9 @@ loginForm.addEventListener("submit", function(event) {
     }
 
 
-    // =================================
+    // =====================================
     // 2. CHECK EMPTY EMAIL
-    // =================================
+    // =====================================
 
     if (email === "") {
 
@@ -122,9 +109,9 @@ loginForm.addEventListener("submit", function(event) {
     }
 
 
-    // =================================
+    // =====================================
     // 3. CHECK EMPTY PASSWORD
-    // =================================
+    // =====================================
 
     if (password.trim() === "") {
 
@@ -137,9 +124,9 @@ loginForm.addEventListener("submit", function(event) {
     }
 
 
-    // =================================
+    // =====================================
     // 4. CHECK GMAIL FORMAT
-    // =================================
+    // =====================================
 
     const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
@@ -154,13 +141,13 @@ loginForm.addEventListener("submit", function(event) {
     }
 
 
-    // =================================
+    // =====================================
     // 5. CHECK ADMIN CREDENTIALS
-    // =================================
-    // DEMO ONLY: real credentials must be checked on the server.
+    // =====================================
+    // DEMO ONLY: Real authentication must
+    // be checked by a secure backend.
 
     const adminEmail = "admin@gmail.com";
-
     const adminPassword = "Admin123";
 
 
@@ -169,14 +156,14 @@ loginForm.addEventListener("submit", function(event) {
         password === adminPassword
     ) {
 
-        // Login successful: go to the verification page
         console.log("Login OK. Going to: " + VERIFY_PAGE);
+
+        alert("Login successful! Proceeding to verification.");
 
         window.location.href = VERIFY_PAGE;
 
     } else {
 
-        // Incorrect credentials
         console.log("Wrong credentials");
 
         alert("Incorrect email or password. Please try again.");
@@ -194,10 +181,11 @@ loginForm.addEventListener("submit", function(event) {
 // FORGOT PASSWORD
 // =====================================
 
-forgotButton.addEventListener("click", function() {
+forgotButton.addEventListener("click", function () {
 
     alert(
         "Please contact your system administrator to reset your password."
     );
 
 });
+```
