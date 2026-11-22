@@ -11,7 +11,7 @@ function showTab(type) {
 
   // 2. Show correct card
   document.querySelectorAll('.card').forEach(card => {
-    if (card.getAttribute('data-type') === type) {
+    if (type === 'all' || card.getAttribute('data-type') === type) {
       card.style.display = 'block';
     } else {
       card.style.display = 'none';
