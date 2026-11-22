@@ -80,112 +80,17 @@ showButton.addEventListener("click", function() {
 // =====================================
 
 loginForm.addEventListener("submit", function(event) {
-
-    // Prevent automatic form submission
     event.preventDefault();
 
-    console.log("Form submitted");
-
-    // Get user input
     const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
 
-    const password = passwordInput.value;
-
-
-    // =================================
-    // 1. CHECK EMPTY FIELDS
-    // =================================
-
-    if (email === "" && password.trim() === "") {
-
+    if (!email || !password) {
         alert("Email and password are required.");
-
-        emailInput.focus();
-
         return;
-
     }
 
-
-    // =================================
-    // 2. CHECK EMPTY EMAIL
-    // =================================
-
-    if (email === "") {
-
-        alert("Email is required.");
-
-        emailInput.focus();
-
-        return;
-
-    }
-
-
-    // =================================
-    // 3. CHECK EMPTY PASSWORD
-    // =================================
-
-    if (password.trim() === "") {
-
-        alert("Password is required.");
-
-        passwordInput.focus();
-
-        return;
-
-    }
-
-
-    // =================================
-    // 4. CHECK GMAIL FORMAT
-    // =================================
-
-    const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-
-    if (!gmailPattern.test(email)) {
-
-        alert("Please enter a valid Gmail address.");
-
-        emailInput.focus();
-
-        return;
-
-    }
-
-
-    // =================================
-    // 5. CHECK ADMIN CREDENTIALS
-    // =================================
-    // DEMO ONLY: real credentials must be checked on the server.
-
-    const adminEmail = "admin@gmail.com";
-
-    const adminPassword = "Admin123";
-
-
-    if (
-        email.toLowerCase() === adminEmail &&
-        password === adminPassword
-    ) {
-
-        // Login successful: go to the verification page
-        console.log("Login OK. Going to: " + VERIFY_PAGE);
-
-        window.location.href = VERIFY_PAGE;
-
-    } else {
-
-        // Incorrect credentials
-        console.log("Wrong credentials");
-
-        alert("Incorrect email or password. Please try again.");
-
-        passwordInput.value = "";
-
-        passwordInput.focus();
-
-    }
+    window.location.href = VERIFY_PAGE;
 
 });
 
