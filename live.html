@@ -22,21 +22,35 @@
       <div class="stat"><b>1</b><span>Units free</span></div>
     </div>
 
-    <button class="alert-btn">Send alert to all units</button>
+    <button class="alert-btn" onclick="sendAlert()">Send alert to all units</button>
 
     <div class="tabs">
-      <button class="tab active" onclick="showTab('active')">All active</button>
-      <button class="tab" onclick="showTab('unassigned')">Unassigned</button>
+      <button class="tab active" id="tab-all" onclick="showTab('all')">All active</button>
+      <button class="tab" id="tab-unassigned" onclick="showTab('unassigned')">Unassigned</button>
     </div>
 
     <div id="incident-list">
-      <div class="card">
+      <!-- CARD 1: For All active view -->
+      <div class="card" data-type="all">
         <h3>Chest pain, adult male</h3>
         <p>Brgy. Lahug Ambulance · 12:59</p>
         <div class="row">
           <div class="tags">
             <span class="tag red">Unassigned</span>
             <span class="tag red">High Priority</span>
+          </div>
+          <button class="assign" onclick="assign(this)">Assign</button>
+        </div>
+      </div>
+
+      <!-- CARD 2: For Unassigned view - same incident, different tags -->
+      <div class="card" data-type="unassigned" style="display:none;">
+        <h3>Chest pain, adult male</h3>
+        <p>Brgy. Lahug Ambulance · 12:59</p>
+        <div class="row">
+          <div class="tags">
+            <span class="tag red">High Priority</span>
+            <span class="tag red">Unassigned, waiting for 4 mins.</span>
           </div>
           <button class="assign" onclick="assign(this)">Assign</button>
         </div>

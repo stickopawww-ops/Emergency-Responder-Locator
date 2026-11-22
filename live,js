@@ -1,12 +1,30 @@
 function showTab(type) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  event.target.classList.add('active');
-  // For now, same card ra. Pwede ta mag add ug filter later.
-  alert("Showing: " + type);
+  // 1. Change tab color
+  document.getElementById('tab-all').classList.remove('active');
+  document.getElementById('tab-unassigned').classList.remove('active');
+
+  if (type === 'all') {
+    document.getElementById('tab-all').classList.add('active');
+  } else {
+    document.getElementById('tab-unassigned').classList.add('active');
+  }
+
+  // 2. Show correct card
+  document.querySelectorAll('.card').forEach(card => {
+    if (card.getAttribute('data-type') === type) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
 }
 
 function assign(btn) {
   btn.textContent = "Assigned ✓";
   btn.style.background = "#2e7d32";
   alert("Assigned to Brgy. Lahug Ambulance!");
+}
+
+function sendAlert() {
+  alert("Alert sent to all units!");
 }
