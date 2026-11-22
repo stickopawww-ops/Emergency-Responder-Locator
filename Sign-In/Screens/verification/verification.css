@@ -8,7 +8,7 @@
 }
 
 body{
-    background:#F7F3FF;
+    background:#f2f2f2;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -21,7 +21,7 @@ body{
     max-width:412px;
     height:100vh;
     height:100dvh;
-    background:#F7F3FF;
+    background:#CDC4FF;
     padding:34px 24px;
     position:relative;
     overflow:hidden;

@@ -49,7 +49,7 @@ function setStatus(status) {
             pageTitle.textContent = "Waiting for approval";
 
             pageDescription.textContent =
-                "An admin has to confirm you before your unit goes live. Use the demo action below to simulate review.";
+                "An admin has to confirm you before your unit goes live. This keeps fake units off the map.";
 
             headerIcon.className = "fa-regular fa-hourglass-half";
             advanceStatusButton.textContent = "Simulate admin review";
@@ -119,7 +119,8 @@ logoutButton.addEventListener("click", (e) => {
 
     localStorage.removeItem("responderPhone");
     localStorage.removeItem("responderVerified");
-    window.location.href = "../role-selection/role-selection.html";
+    localStorage.removeItem("responderApprovalStatus");
+    window.location.href = "../responder-sign-in/sign-in.html";
 
 });
 

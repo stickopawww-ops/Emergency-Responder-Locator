@@ -1,136 +1,318 @@
 const otpInputs = document.querySelectorAll(".otp-input");
+const messageElement = document.getElementById("message");
 
-// Automatically move between OTP inputs
-otpInputs.forEach((input, index) => {
 
-    input.addEventListener("input", (e) => {
-        input.value = input.value.replace(/[^0-9]/g, "");
+// =====================================
+// PAGE LINKS
+// =====================================
+// Same folder:     "admin-signin.html" and "admin.html"
+// Separate folder: "../signin/index.html" and "../today/index.html"
 
-        if (input.value && index < otpInputs.length - 1) {
-            otpInputs[index + 1].focus();
-        }
+const SIGNIN_PAGE = "admin-signin.html";
+
+const DASHBOARD_PAGE = "../Admin(Responder)/map.html";
+
+
+// =====================================
+// MESSAGE HELPERS (replace alert())
+// =====================================
+
+function showMessage(text, type) {
+
+    messageElement.textContent = text;
+
+    messageElement.className = "message " + type;
+
+    otpInputs.forEach(input => {
+
+        input.classList.toggle("error", type === "error");
+
     });
 
-    // Move backward when pressing Backspace
-    input.addEventListener("keydown", (e) => {
-        if (e.key === "Backspace" && !input.value && index > 0) {
+}
+
+function clearMessage() {
+
+    messageElement.textContent = "";
+
+    messageElement.className = "message";
+
+    otpInputs.forEach(input => input.classList.remove("error"));
+
+}
+
+function getCode() {
+
+    return Array.from(otpInputs).map(input => input.value).join("");
+
+}
+
+
+// =====================================
+// AUTOMATIC OTP INPUT MOVEMENT
+// =====================================
+
+otpInputs.forEach((input, index) => {
+
+    input.addEventListener("input", function() {
+
+        input.value = input.value.replace(/[^0-9]/g, "");
+
+        clearMessage();
+
+        if (input.value && index < otpInputs.length - 1) {
+
+            otpInputs[index + 1].focus();
+
+        }
+
+        // AUTO-SUBMIT WHEN ALL 6 DIGITS ARE FILLED
+        if (getCode().length === otpInputs.length) {
+
+            verifyCode();
+
+        }
+
+    });
+
+
+    // BACKSPACE, ARROW KEYS, AND ENTER
+
+    input.addEventListener("keydown", function(e) {
+
+        if (
+            e.key === "Backspace" &&
+            !input.value &&
+            index > 0
+        ) {
+
+            otpInputs[index - 1].value = "";
+
             otpInputs[index - 1].focus();
+
         }
 
         if (e.key === "ArrowLeft" && index > 0) {
+
             otpInputs[index - 1].focus();
+
         }
 
-        if (e.key === "ArrowRight" && index < otpInputs.length - 1) {
+        if (
+            e.key === "ArrowRight" &&
+            index < otpInputs.length - 1
+        ) {
+
             otpInputs[index + 1].focus();
+
         }
+
+        if (e.key === "Enter") {
+
+            verifyCode();
+
+        }
+
     });
 
 });
 
-// Support pasting a complete OTP
+
+// =====================================
+// PASTE COMPLETE OTP
+// =====================================
+
 otpInputs.forEach((input) => {
-    input.addEventListener("paste", (e) => {
+
+    input.addEventListener("paste", function(e) {
+
         e.preventDefault();
 
         const pastedData = e.clipboardData
             .getData("text")
             .replace(/\D/g, "")
-            .slice(0, 6);
+            .slice(0, otpInputs.length);
 
-        pastedData.split("").forEach((digit, index) => {
-            otpInputs[index].value = digit;
+        if (!pastedData) return;
+
+        // CLEAR OLD DIGITS FIRST
+        otpInputs.forEach(i => i.value = "");
+
+        pastedData.split("").forEach((digit, i) => {
+
+            otpInputs[i].value = digit;
+
         });
 
-        const nextIndex = Math.min(pastedData.length, 5);
+        clearMessage();
+
+        const nextIndex = Math.min(pastedData.length, otpInputs.length - 1);
+
         otpInputs[nextIndex].focus();
+
+        if (pastedData.length === otpInputs.length) {
+
+            verifyCode();
+
+        }
+
     });
+
 });
 
-// Verify OTP
-function verifyCode() {
-    const code = Array.from(otpInputs)
-        .map(input => input.value)
-        .join("");
 
-    if (code.length !== 6) {
-        alert("Please enter the complete 6-digit code.");
+// =====================================
+// VERIFY OTP
+// =====================================
+
+function verifyCode() {
+
+    const code = getCode();
+
+
+    if (code.length !== otpInputs.length) {
+
+        showMessage("Please enter the complete 6-digit code.", "error");
+
         return;
+
     }
 
-    alert("Verification code entered: " + code);
 
-    // Connect your authentication API here.
+    // TEMPORARY DEMO VERIFICATION CODE
+    // (real verification must happen on the server)
+
+    const demoCode = "123456";
+
+
+    if (code === demoCode) {
+
+        showMessage("Verification successful! Welcome, Admin.", "success");
+
+        // REDIRECT TO ADMIN DASHBOARD
+        setTimeout(function() {
+
+            window.location.href = DASHBOARD_PAGE;
+
+        }, 800);
+
+    } else {
+
+        showMessage("Incorrect verification code. Please try again.", "error");
+
+        otpInputs.forEach(input => {
+
+            input.value = "";
+
+            input.classList.add("error");
+
+        });
+
+        otpInputs[0].focus();
+
+    }
+
 }
 
-// Back button
+
+// =====================================
+// BACK BUTTON (GO TO SIGN IN)
+// =====================================
+
 function goBack() {
-    window.history.back();
+
+    window.location.href = SIGNIN_PAGE;
+
 }
 
-// Countdown timer
+
+// =====================================
+// COUNTDOWN TIMER
+// =====================================
+
 let timeLeft = 30;
 
+let countdown = null;
+
 const timerElement = document.getElementById("timer");
+
 const resendMessage = document.getElementById("resend-message");
 
-const countdown = setInterval(() => {
-    timeLeft--;
 
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
+function startCountdown() {
 
-    timerElement.textContent =
-        `${minutes}:${String(seconds).padStart(2, "0")}`;
-
-    if (timeLeft <= 0) {
-        clearInterval(countdown);
-
-        timerElement.textContent = "Resend code";
-        timerElement.style.color = "#009cff";
-        timerElement.style.cursor = "pointer";
-
-        resendMessage.textContent = "";
-
-        timerElement.onclick = resendCode;
-    }
-
-}, 1000);
-
-// Resend OTP
-function resendCode() {
-    alert("A new verification code has been requested.");
+    clearInterval(countdown);
 
     timeLeft = 30;
 
-    timerElement.style.color = "#111111";
-    timerElement.style.cursor = "default";
     timerElement.textContent = "0:30";
+
+    timerElement.style.color = "#111111";
+
+    timerElement.style.cursor = "default";
 
     resendMessage.textContent = "Resend code in";
 
-    timerElement.onclick = null;
 
-    const newCountdown = setInterval(() => {
+    countdown = setInterval(function() {
+
         timeLeft--;
 
         const minutes = Math.floor(timeLeft / 60);
+
         const seconds = timeLeft % 60;
 
         timerElement.textContent =
             `${minutes}:${String(seconds).padStart(2, "0")}`;
 
+
         if (timeLeft <= 0) {
-            clearInterval(newCountdown);
+
+            clearInterval(countdown);
+
+            timerElement.textContent = "Resend code";
+
+            timerElement.style.color = "#009cff";
+
+            timerElement.style.cursor = "pointer";
 
             resendMessage.textContent = "";
-            timerElement.textContent = "Resend code";
-            timerElement.style.color = "#009cff";
-            timerElement.style.cursor = "pointer";
+
             timerElement.onclick = resendCode;
+
         }
+
     }, 1000);
+
 }
 
-// Initial focus matches the screenshot
-otpInputs[4].focus();
+
+// =====================================
+// RESEND OTP
+// =====================================
+
+function resendCode() {
+
+    // DEMONSTRATION ONLY:
+    // This does not send a real SMS code.
+
+    showMessage("A new verification code has been requested.", "success");
+
+    otpInputs.forEach(input => input.value = "");
+
+    otpInputs[0].focus();
+
+    timerElement.onclick = null;
+
+    startCountdown();
+
+}
+
+
+// =====================================
+// INITIALIZATION
+// =====================================
+
+startCountdown();
+
+otpInputs[0].focus();

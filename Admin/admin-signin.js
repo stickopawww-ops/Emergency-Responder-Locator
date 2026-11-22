@@ -1,310 +1,203 @@
-document.body.innerHTML = "";
+// =====================================
+// DEBUG CHECK 1: CONFIRM THIS FILE IS LOADING
+// =====================================
+// If you do not see this message in the Console (F12), the HTML is not
+// loading this file. Check the file name and the \<script src="..."> line.
 
-document.body.style.cssText = `
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-`;
+console.log("admin-signin.js is loading");
 
-const style = document.createElement("style");
 
-style.textContent = `
-    * {
-        box-sizing: border-box;
-    }
+const loginForm = document.getElementById("loginForm");
 
-    .login-container {
-        width: 100%;
-        max-width: 377px;
-        min-height: 100vh;
-        background: #f7f4ff;
-        padding: 45px 41px 14px;
-        border-radius: 0 0 24px 24px;
-        display: flex;
-        flex-direction: column;
-    }
+const emailInput = document.getElementById("email");
 
-    .header {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 35px;
-    }
+const passwordInput = document.getElementById("password");
 
-    .shield {
-        font-size: 21px;
-        color: #111044;
-    }
+const showButton = document.getElementById("showButton");
 
-    .brand {
-        font-size: 12px;
-        font-weight: bold;
-        color: #111044;
-        white-space: nowrap;
-    }
+const forgotButton = document.getElementById("forgotButton");
 
-    .admin-badge {
-        background: #100d48;
-        color: white;
-        font-size: 10px;
-        font-weight: bold;
-        padding: 5px 15px;
-        border-radius: 20px;
-        margin-left: 3px;
-    }
 
-    h2 {
-        color: #111044;
-        font-size: 19px;
-        margin: 0 0 8px;
-    }
+// =====================================
+// DEBUG CHECK 2: CONFIRM THE HTML HAS ALL THE IDS
+// =====================================
 
-    .description {
-        font-size: 13px;
-        line-height: 16px;
-        color: #111111;
-        margin: 0 0 25px;
-    }
+const missingIds = [];
 
-    .form-group {
-        margin-bottom: 12px;
-    }
+if (!loginForm) missingIds.push("loginForm");
 
-    label {
-        display: block;
-        font-size: 11px;
-        font-weight: bold;
-        color: #111044;
-        margin-bottom: 7px;
-    }
+if (!emailInput) missingIds.push("email");
 
-    input {
-        width: 100%;
-        height: 39px;
-        border: 1px solid #111044;
-        border-radius: 10px;
-        background: #f8f3f8;
-        padding: 0 17px;
-        font-size: 12px;
-        outline: none;
-        color: #111111;
-    }
+if (!passwordInput) missingIds.push("password");
 
-    input:focus {
-        border: 2px solid #009cff;
-    }
+if (!showButton) missingIds.push("showButton");
 
-    .password-wrapper {
-        display: flex;
-        gap: 5px;
-    }
+if (!forgotButton) missingIds.push("forgotButton");
 
-    .password-wrapper input {
-        flex: 1;
-        min-width: 0;
-    }
+if (missingIds.length > 0) {
 
-    .show-button {
-        width: 80px;
-        height: 39px;
-        border: 1px solid #777777;
-        border-radius: 10px;
-        background: #f8f3f8;
-        color: #111044;
-        font-size: 11px;
-        font-weight: bold;
-        cursor: pointer;
-    }
+    alert("The HTML is missing these IDs: " + missingIds.join(", "));
 
-    .sign-in-button {
-        width: 100%;
-        height: 47px;
-        margin-top: 16px;
-        background: #100d48;
-        color: white;
-        border: none;
-        border-radius: 11px;
-        font-size: 14px;
-        font-weight: bold;
-        cursor: pointer;
-    }
+    throw new Error("Missing IDs: " + missingIds.join(", "));
 
-    .sign-in-button:hover {
-        background: #211c65;
-    }
+}
 
-    .forgot-button {
-        width: 100%;
-        height: 39px;
-        margin-top: 10px;
-        background: #f8f3f8;
-        color: #111044;
-        border: 1px solid #777777;
-        border-radius: 10px;
-        font-size: 12px;
-        font-weight: bold;
-        cursor: pointer;
-    }
 
-    .forgot-button:hover {
-        background: #ebe5f4;
-    }
+// =====================================
+// PAGE TO OPEN AFTER SUCCESSFUL SIGN IN
+// =====================================
+// Same folder:     "admin-verify.html"
+// Separate folder: "../verify/index.html"
 
-    .footer {
-        margin-top: auto;
-        padding-top: 35px;
-        text-align: center;
-        color: #111111;
-        font-size: 12px;
-        white-space: nowrap;
-    }
+const VERIFY_PAGE = "admin-verify.html";
 
-    @media (max-width: 350px) {
-        .login-container {
-            padding-left: 25px;
-            padding-right: 25px;
-        }
 
-        .footer {
-            font-size: 10px;
-        }
-    }
-`;
+// =====================================
+// SHOW AND HIDE PASSWORD
+// =====================================
 
-document.head.appendChild(style);
+showButton.addEventListener("click", function() {
 
-// Main container
-const container = document.createElement("div");
-container.className = "login-container";
+    if (passwordInput.type === "password") {
 
-// Header
-const header = document.createElement("div");
-header.className = "header";
+        passwordInput.type = "text";
 
-const shield = document.createElement("span");
-shield.className = "shield";
-shield.textContent = "⬡";
+        showButton.textContent = "Hide";
 
-const brand = document.createElement("span");
-brand.className = "brand";
-brand.textContent = "Cebu Emergency Help";
+    } else {
 
-const badge = document.createElement("span");
-badge.className = "admin-badge";
-badge.textContent = "ADMIN";
+        passwordInput.type = "password";
 
-header.append(shield, brand, badge);
+        showButton.textContent = "Show";
 
-// Title
-const title = document.createElement("h2");
-title.textContent = "Admin sign in";
+    }
 
-// Description
-const description = document.createElement("p");
-description.className = "description";
-description.textContent =
-    "For dispatch staff only. Responders and citizens use the main app.";
-
-// Email group
-const emailGroup = document.createElement("div");
-emailGroup.className = "form-group";
-
-const emailLabel = document.createElement("label");
-emailLabel.textContent = "Work email";
-
-const emailInput = document.createElement("input");
-emailInput.type = "email";
-emailInput.value = "rosa@cebucity.gov.ph";
-emailInput.id = "email";
-emailInput.autocomplete = "username";
-
-emailGroup.append(emailLabel, emailInput);
-
-// Password group
-const passwordGroup = document.createElement("div");
-passwordGroup.className = "form-group";
-
-const passwordLabel = document.createElement("label");
-passwordLabel.textContent = "Password";
-
-const passwordWrapper = document.createElement("div");
-passwordWrapper.className = "password-wrapper";
-
-const passwordInput = document.createElement("input");
-passwordInput.type = "password";
-passwordInput.value = "password";
-passwordInput.id = "password";
-passwordInput.autocomplete = "current-password";
-
-const showButton = document.createElement("button");
-showButton.className = "show-button";
-showButton.textContent = "Show";
-showButton.type = "button";
-
-showButton.addEventListener("click", () => {
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        showButton.textContent = "Hide";
-    } else {
-        passwordInput.type = "password";
-        showButton.textContent = "Show";
-    }
 });
 
-passwordWrapper.append(passwordInput, showButton);
-passwordGroup.append(passwordLabel, passwordWrapper);
 
-// Sign in button
-const signInButton = document.createElement("button");
-signInButton.className = "sign-in-button";
-signInButton.textContent = "Sign in";
+// =====================================
+// ADMIN LOGIN VALIDATION
+// =====================================
 
-signInButton.addEventListener("click", () => {
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
+loginForm.addEventListener("submit", function(event) {
 
-    if (!email || !password) {
-        alert("Please enter your email and password.");
-        return;
-    }
+    // Prevent automatic form submission
+    event.preventDefault();
 
-    if (!emailInput.checkValidity()) {
-        alert("Please enter a valid email address.");
-        return;
-    }
+    console.log("Form submitted");
 
-    alert("Please connect your authentication system to sign in.");
+    // Get user input
+    const email = emailInput.value.trim();
+
+    const password = passwordInput.value;
+
+
+    // =================================
+    // 1. CHECK EMPTY FIELDS
+    // =================================
+
+    if (email === "" && password.trim() === "") {
+
+        alert("Email and password are required.");
+
+        emailInput.focus();
+
+        return;
+
+    }
+
+
+    // =================================
+    // 2. CHECK EMPTY EMAIL
+    // =================================
+
+    if (email === "") {
+
+        alert("Email is required.");
+
+        emailInput.focus();
+
+        return;
+
+    }
+
+
+    // =================================
+    // 3. CHECK EMPTY PASSWORD
+    // =================================
+
+    if (password.trim() === "") {
+
+        alert("Password is required.");
+
+        passwordInput.focus();
+
+        return;
+
+    }
+
+
+    // =================================
+    // 4. CHECK GMAIL FORMAT
+    // =================================
+
+    const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+    if (!gmailPattern.test(email)) {
+
+        alert("Please enter a valid Gmail address.");
+
+        emailInput.focus();
+
+        return;
+
+    }
+
+
+    // =================================
+    // 5. CHECK ADMIN CREDENTIALS
+    // =================================
+    // DEMO ONLY: real credentials must be checked on the server.
+
+    const adminEmail = "admin@gmail.com";
+
+    const adminPassword = "Admin123";
+
+
+    if (
+        email.toLowerCase() === adminEmail &&
+        password === adminPassword
+    ) {
+
+        // Login successful: go to the verification page
+        console.log("Login OK. Going to: " + VERIFY_PAGE);
+
+        window.location.href = VERIFY_PAGE;
+
+    } else {
+
+        // Incorrect credentials
+        console.log("Wrong credentials");
+
+        alert("Incorrect email or password. Please try again.");
+
+        passwordInput.value = "";
+
+        passwordInput.focus();
+
+    }
+
 });
 
-// Forgot password button
-const forgotButton = document.createElement("button");
-forgotButton.className = "forgot-button";
-forgotButton.textContent = "Forgot password";
 
-forgotButton.addEventListener("click", () => {
-    alert("Please contact your system administrator to reset your password.");
+// =====================================
+// FORGOT PASSWORD
+// =====================================
+
+forgotButton.addEventListener("click", function() {
+
+    alert(
+        "Please contact your system administrator to reset your password."
+    );
+
 });
-
-// Footer
-const footer = document.createElement("div");
-footer.className = "footer";
-footer.textContent =
-    "Every sign in and action is recorded in the activity log.";
-
-// Assemble page
-container.append(
-    header,
-    title,
-    description,
-    emailGroup,
-    passwordGroup,
-    signInButton,
-    forgotButton,
-    footer
-);
-
-document.body.appendChild(container);
