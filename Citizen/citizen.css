@@ -15,7 +15,7 @@ body {
 }
 
 .phone {
-  width: 412px;
+  width: min(412px, 100%);
   height: min(917px, calc(100vh - 40px));
   background: #F7F3FF;
   border-radius: 28px;
@@ -23,15 +23,23 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.05);
   padding: 14px 18px 0;
   position: relative;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
-
 .topbar {
   display: flex;
   align-items: center;
   gap: 12px;
   height: 42px;
   margin-bottom: 12px;
+}
+.page-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 
 .back-btn {
@@ -60,11 +68,11 @@ body {
   color: #1e1e1e;
   letter-spacing: -0.03em;
 }
-.title h3{
-    font-size:10px;
-    color:#A49B9B;
-    font-weight:900;
-    margin-bottom:12px;
+.title h3 {
+  font-size: 12px;
+  color: #777;
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
 .search-box {
@@ -196,6 +204,16 @@ body {
   font-size: 20px;
   line-height: 1;
 }
+.nav-item i {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.nav-item svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
 
 .card-text {
   display: flex;
@@ -204,13 +222,13 @@ body {
 }
 
 .card-text h3 {
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: #1f1f1f;
 }
 
 .card-text span {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: #7d7d7d;
 }
 
@@ -231,6 +249,12 @@ body {
   border-radius: 16px;
   padding: 12px 14px;
   cursor: pointer;
+}
+
+.other-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
 .tiny-icon {
@@ -281,13 +305,19 @@ body {
 }
 
 .bottom-nav {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding-top: 10px;
-  border-top: 1px solid #e2e2e2;
-  background: #f5f5f5;
-  margin-top: 140px;
+   height: 68px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  background: #faf9fc;
+  border-top: 1px solid #e8e5ed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 10;
 }
 
 .nav-item {
@@ -319,20 +349,59 @@ body {
   stroke-linejoin: round;
 }
 
-  @media (max-width: 600px) {
+@media (max-width: 600px) {
+  html,
   body {
-    background: #c9bcff;
+    height: 100%;
+    min-height: 0;
+  }
+
+  body {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    background: #F7F3FF;
     padding: 0;
     align-items: stretch;
+    overflow: hidden;
   }
 
   .phone {
     width: 100%;
-    height: auto;
-    min-height: 100vh;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
     border-radius: 0;
     box-shadow: none;
     border: none;
-    overflow-y: visible;
+    overflow: hidden;
+  }
+
+  .page-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+
+  .bottom-nav {
+    flex: 0 0 auto;
+    margin-top: 0;
+    padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+  }
+
+  .title h3 {
+    font-size: 12px;
+  }
+
+  .card-text h3 {
+    font-size: 15px;
+  }
+
+  .card-text span {
+    font-size: 12px;
   }
 }

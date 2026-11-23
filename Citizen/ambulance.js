@@ -59,9 +59,9 @@ function initFrame2() {
   // Render Bottom Nav
   const bottomNav = document.getElementById('bottomNav');
   bottomNav.innerHTML = `
-    <div class="nav-item active">${ICONS.navFind}<span>Find</span></div>
-    <div class="nav-item">${ICONS.navResponder}<span>Responder</span></div>
-    <div class="nav-item">${ICONS.navLog}<span>Log</span></div>
+    <a class="nav-item active" href="citizen.html" aria-current="page">${ICONS.navFind}<span>Find</span></a>
+    <a class="nav-item" href="responders.html">${ICONS.navResponder}<span>Responder</span></a>
+    <a class="nav-item" href="log.html">${ICONS.navLog}<span>Log</span></a>
   `;
 
   // Attach Call Button Event

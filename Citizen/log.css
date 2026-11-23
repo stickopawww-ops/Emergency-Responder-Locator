@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e5e5e5;
+  color: #171735;
+}
+
+.log-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(412px, 100%);
+  height: min(917px, 100vh);
+  overflow: hidden;
+  border-radius: 24px;
+  background: #f7f3ff;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.log-header {
+  display: flex;
+  flex: 0 0 82px;
+  align-items: center;
+  padding: 0 44px;
+  border-bottom: 1px solid #ded9e7;
+}
+
+.header-title {
+  color: #111111;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.log-content {
+  flex: 1;
+  min-height: 0;
+  padding: 48px 24px 82px;
+  overflow-y: auto;
+  background: #f7f3ff;
+}
+
+.empty-state {
+  max-width: 280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.empty-state h2 {
+  margin-bottom: 8px;
+  color: #141414;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.empty-state p {
+  max-width: 260px;
+  margin: 0 auto;
+  color: #555366;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.bottom-nav {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  height: 68px;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  border-top: 1px solid #e8e5ed;
+  background: #faf9fc;
+}
+
+.bottom-nav .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 0;
+  background: transparent;
+  color: #6d6d6d;
+  padding: 7px 0 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.bottom-nav .nav-item.active {
+  color: #111111;
+}
+
+.bottom-nav .nav-item svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bottom-nav .nav-item:focus-visible {
+  outline: 2px solid #5149a7;
+  outline-offset: -3px;
+}
+
+@media (max-width: 600px) {
+  body {
+    min-height: 100dvh;
+    background: #f7f3ff;
+  }
+
+  .log-frame {
+    width: 100%;
+    height: 100dvh;
+    min-height: 540px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .log-header {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .log-content {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
