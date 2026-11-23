@@ -5,7 +5,7 @@
 }
 
 body {
-  background: #dfe3e8;
+  background: #F7F3FF;
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
   display: flex;
@@ -17,7 +17,7 @@ body {
 .phone {
   width: 412px;
   height: min(917px, calc(100vh - 40px));
-  background: #f5f5f5;
+  background: #F7F3FF;
   border-radius: 28px;
   box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
   border: 1px solid rgba(0, 0, 0, 0.05);
@@ -140,6 +140,16 @@ body {
   gap: 10px;
   cursor: pointer;
   transition: 0.2s ease;
+}
+
+.card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-link:focus-visible {
+  outline: 2px solid #ff7066;
+  outline-offset: 2px;
 }
 
 .card:hover {

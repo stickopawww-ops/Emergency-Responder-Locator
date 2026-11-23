@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cebu City Dispatch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <header>
+        <div class="header-info">
+            <small>Cebu City Dispatch</small>
+            <h2>Live Incidents</h2>
+        </div>
+        <div class="profile">RV</div>
+    </header>
+
+    <!-- Statistics -->
+    <section class="stats">
+        <div class="stat-card">
+            <h2 id="activeCount">1</h2>
+            <small>Active</small>
+        </div>
+
+        <div class="stat-card">
+            <h2 id="unassignedCount">1</h2>
+            <small>Unassigned</small>
+        </div>
+
+        <div class="stat-card">
+            <h2 id="unitsCount">1</h2>
+            <small>Units free</small>
+        </div>
+    </section>
+
+    <!-- Alert Button -->
+    <button class="alert-button" onclick="sendAlert()">
+        Send alert to all units
+    </button>
+
+    <!-- Filters -->
+    <section class="filters">
+        <button class="filter-btn active"
+            onclick="filterIncidents('all', this)">
+            All active
+        </button>
+
+        <button class="filter-btn"
+            onclick="filterIncidents('unassigned', this)">
+            Unassigned
+        </button>
+    </section>
+
+    <!-- Incident List -->
+    <section id="incidentList">
+
+        <div class="incident-card" data-status="unassigned">
+
+            <div class="incident-info">
+                <strong>Chest pain, adult male</strong>
+                <small>Brgy. Lahug Ambulance · 12:59</small>
+            </div>
+
+            <div class="incident-actions">
+                <span class="status">Unassigned</span>
+                <button class="assign-btn"
+                    onclick="assignIncident(this)">
+                    Assign
+                </button>
+            </div>
+
+            <div class="priority">High Priority</div>
+
+        </div>
+
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+
+        <button class="nav-btn selected"
+            onclick="changeTab(this, 'Live')">
+            <span class="nav-icon">●</span>
+            Live
+            <span class="notification">1</span>
+        </button>
+
+        <button class="nav-btn"
+            onclick="changeTab(this, 'Map')">
+            <span class="nav-icon">●</span>
+            Map
+        </button>
+
+        <button class="nav-btn"
+            onclick="changeTab(this, 'Approval')">
+            <span class="nav-icon">●</span>
+            Approval
+            <span class="notification">3</span>
+        </button>
+
+        <button class="nav-btn"
+            onclick="changeTab(this, 'Team')">
+            <span class="nav-icon">●</span>
+            Team
+        </button>
+
+        <button class="nav-btn"
+            onclick="changeTab(this, 'History')">
+            <span class="nav-icon">●</span>
+            History
+        </button>
+
+    </nav>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

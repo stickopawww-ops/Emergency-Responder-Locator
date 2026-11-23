@@ -75,10 +75,16 @@ body {
 }
 
 .shield-icon {
+<<<<<<< HEAD
 
     width: 16px;
     height: 18px;
 
+=======
+    width: 18px;
+    height: 18px;
+    color: #101044;
+>>>>>>> 7a5e791a2c4e952a9a97f9f035a94d9e31029492
     flex-shrink: 0;
 
     color: #100e49;

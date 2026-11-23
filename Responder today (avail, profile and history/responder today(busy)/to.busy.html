@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Today · Cebu Admin</title>
+  <link rel="stylesheet" href="to.busy.css">
+</head>
+<body>
+  <div class="phone">
+    <main>
+      <div class="unit">Ambulance 1 · Juan Dela Cruz</div>
+      <div class="head"><h1>Today</h1><span class="badge busy">Busy</span></div>
+      <div class="tabs">
+      <button class="tab" data-href="../responders(avail)/to.avail.html">Available</button>
+      <button class="tab active" data-href="../responder today(busy)/to.busy.html">Busy</button>
+      <button class="tab" data-href="../responder (break)/to.break.html">Break</button>
+      <button class="tab" data-href="../responder(off duty)/to.off duty.html">Off duty</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>2</b><span>Calls today</span></div>
+        <div class="stat"><b>5</b><span>Avg min</span></div>
+        <div class="stat"><b>3h 30min</b><span>On duty</span></div>
+      </div>
+      <div class="empty"><h2>You will not get calls</h2><p>Switch to available to receive calls.</p></div>
+      <div class="empty"><h2>No active calls</h2><p>Dispatch will let you know<br>when you are assigned.</p></div>
+    </main>
+    <nav class="nav">
+    <a href="../responders(avail)/to.avail.html" class="active">Today</a>
+    <a href="../responder history/histo.html" class="">History</a>
+    <a href="../responder profile/profile.html" class="">Profile</a>
+    </nav>
+  </div>
+  <script src="to.busy.js"></script>
+</body>
+</html>
