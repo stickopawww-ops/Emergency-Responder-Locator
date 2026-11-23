@@ -18,7 +18,7 @@ window.location.href="../responder-sign-in/responder-sign-in.html";
 
 if(card.classList.contains("admin")){
 
-window.location.href="../admin-sign-in/admin-sign-in.html";
+window.location.href="../../../Admin/admin-signin.html";
 
 }
 
