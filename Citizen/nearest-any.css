@@ -1,0 +1,72 @@
+.any-map-panel {
+  padding: 2px;
+  border: 2px solid #149cff;
+  border-radius: 0;
+  background: #e8f4ec;
+}
+
+.any-map-panel .map-container {
+  border-radius: 0;
+}
+
+.any-list {
+  gap: 5px;
+}
+
+.any-list .station-card {
+  min-height: 44px;
+  gap: 6px;
+  padding: 4px 7px;
+}
+
+.police-icon svg,
+.tanod-icon svg,
+.ambulance-icon svg {
+  fill: none;
+}
+
+.police-icon svg {
+  stroke-width: 1.7;
+}
+
+.tanod-icon svg,
+.ambulance-icon svg {
+  stroke-width: 1.8;
+}
+
+.availability.busy {
+  background: #ffe4a3;
+  color: #74510b;
+}
+
+.availability.busy .status-dot {
+  background: #bd8112;
+}
+
+@media (max-width: 360px) {
+  .any-list .station-card {
+    gap: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  .any-list .fire-icon {
+    flex-basis: 23px;
+    width: 23px;
+  }
+
+  .any-list .fire-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .any-list .call-btn {
+    min-width: 38px;
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+
+  .any-list .station-location {
+    font-size: 7px;
+  }
+}
