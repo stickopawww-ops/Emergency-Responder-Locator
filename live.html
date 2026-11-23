@@ -1,70 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cebu City Dispatch - Live Incidents</title>
-  <link rel="stylesheet" href="live.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cebu City Dispatch - Live Incidents</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+  body { background: #f2f2f2; display: flex; justify-content: center; }
+  .phone { width: 420px; background: white; min-height: 100vh; padding: 20px; padding-bottom: 90px; }
+  .top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .small { font-size: 14px; color: #333; }
+  h1 { font-size: 30px; line-height: 1.1; }
+  .avatar { width: 42px; height: 42px; background: black; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+  .stats { display: flex; gap: 10px; margin: 20px 0; }
+  .stat { flex: 1; background: #f8f8f8; padding: 12px 5px; text-align: center; border-radius: 10px; }
+  .stat b { font-size: 18px; display: block; }
+  .stat span { font-size: 12px; color: #666; }
+  .alert-btn { width: 100%; padding: 14px; background: white; border: 1px solid #333; border-radius: 12px; font-size: 15px; font-weight: bold; cursor: pointer; }
+  .tabs { display: flex; gap: 10px; margin: 18px 0; }
+  .tab { flex: 1; padding: 12px; border: none; border-radius: 10px; font-size: 15px; font-weight: bold; cursor: pointer; background: transparent; }
+  .tab.active { background: black; color: white; }
+  .card { border: 1px solid #ddd; border-radius: 14px; padding: 14px; margin-bottom: 12px; }
+  .card h3 { font-size: 17px; }
+  .card p { font-size: 13px; color: #666; margin: 4px 0 10px; }
+  .pill-red { background: #e11d2e; color: white; text-align: center; padding: 9px; border-radius: 8px; font-size: 14px; font-weight: bold; margin-bottom: 8px; }
+  .row { display: flex; gap: 8px; }
+  .row .pill-red { flex: 1; margin-bottom: 0; }
+  .assign { background: black; color: white; border: none; padding: 9px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+  .bottom-nav { position: fixed; bottom: 0; width: 420px; max-width: 100%; background: white; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #ddd; font-size: 14px; }
+  .bottom-nav b { position: relative; }
+  .badge { position: absolute; top: -8px; right: -14px; background: red; color: white; font-size: 10px; width: 17px; height: 17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+</style>
 </head>
 <body>
-  <div class="phone">
-    <header>
-      <div>
-        <small>Cebu City Dispatch</small>
-        <h1>Live Incidents</h1>
-      </div>
-      <div class="avatar">RV</div>
-    </header>
-
-    <div class="stats">
-      <div class="stat"><b>1</b><span>Active</span></div>
-      <div class="stat"><b>1</b><span>Unassigned</span></div>
-      <div class="stat"><b>1</b><span>Units free</span></div>
+<div class="phone">
+  <div class="top">
+    <div>
+      <div class="small">Cebu City Dispatch</div>
+      <h1>Live Incidents</h1>
     </div>
-
-    <button class="alert-btn" onclick="sendAlert()">Send alert to all units</button>
-
-    <div class="tabs">
-      <button class="tab active" id="tab-all" onclick="showTab('all')">All active</button>
-      <button class="tab" id="tab-unassigned" onclick="showTab('unassigned')">Unassigned</button>
-    </div>
-
-    <div id="incident-list">
-      <!-- CARD 1: For All active view -->
-      <div class="card" data-type="all">
-        <h3>Chest pain, adult male</h3>
-        <p>Brgy. Lahug Ambulance · 12:59</p>
-        <div class="row">
-          <div class="tags">
-            <span class="tag red">Unassigned</span>
-            <span class="tag red">High Priority</span>
-          </div>
-          <button class="assign" onclick="assign(this)">Assign</button>
-        </div>
-      </div>
-
-      <!-- CARD 2: For Unassigned view - same incident, different tags -->
-      <div class="card" data-type="unassigned" style="display:none;">
-        <h3>Chest pain, adult male</h3>
-        <p>Brgy. Lahug Ambulance · 12:59</p>
-        <div class="row">
-          <div class="tags">
-            <span class="tag red">High Priority</span>
-            <span class="tag red">Unassigned, waiting for 4 mins.</span>
-          </div>
-          <button class="assign" onclick="assign(this)">Assign</button>
-        </div>
-      </div>
-    </div>
-
-    <nav>
-      <a href="live.html" class="active">Live <span class="badge">1</span></a>
-      <a href="map.html">Map</a>
-      <a href="approval.html">Approval <span class="badge">2</span></a>
-      <a href="team.html">Team</a>
-      <a href="history.html">History</a>
-    </nav>
+    <div class="avatar">RV</div>
   </div>
-  <script src="live.js"></script>
+
+  <div class="stats">
+    <div class="stat"><b>1</b><span>Active</span></div>
+    <div class="stat"><b>1</b><span>Unassigned</span></div>
+    <div class="stat"><b>1</b><span>Units free</span></div>
+  </div>
+
+  <button class="alert-btn">Send alert to all units</button>
+
+  <div class="tabs">
+    <button id="tab-all" class="tab active">All active</button>
+    <button id="tab-unassigned" class="tab">Unassigned</button>
+  </div>
+
+  <!-- CARD 1 - UNASSIGNED -->
+  <div class="card">
+    <h3>Chest pain, adult male</h3>
+    <p>Brgy. Lahug Ambulance · 12:59</p>
+    <div class="pill-red">Unassigned</div>
+    <div class="row">
+      <div class="pill-red">High Priority</div>
+      <button class="assign">Assign</button>
+    </div>
+  </div>
+
+  <!-- CARD 2 - ASSIGNED (para ma-test kung mo-filter ba) -->
+  <div class="card">
+    <h3>Road accident, motorcycle</h3>
+    <p>Brgy. Talamban · 12:45</p>
+    <div class="pill-red" style="background:#111;">Assigned - Unit 3</div>
+    <div class="row">
+      <div class="pill-red">Medium Priority</div>
+      <button class="assign">View</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="bottom-nav">
+  <div><b>Live<span class="badge">1</span></b></div>
+  <div>Map</div>
+  <div><b>Approval<span class="badge">2</span></b></div>
+  <div>Team</div>
+  <div>History</div>
+</div>
+
+<script>
+function showTab(type) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + type).classList.add('active');
+
+  document.querySelectorAll('.card').forEach(card => {
+    if (type === 'all') {
+      card.style.display = 'block';
+    } else {
+      if (card.textContent.includes('Unassigned')) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    }
+  });
+}
+
+document.getElementById('tab-all').addEventListener('click', function() {
+  showTab('all');
+});
+document.getElementById('tab-unassigned').addEventListener('click', function() {
+  showTab('unassigned');
+});
+</script>
 </body>
 </html>
