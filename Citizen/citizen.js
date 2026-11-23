@@ -19,7 +19,7 @@ navItems.forEach((item) => {
     item.classList.add("active");
 
     if (item.textContent.trim() === "Responder") {
-      window.location.href = "../Sign-In/Screens/responder-sign-in/sign-in.html";
+      window.location.href = "responders.html";
     } else if (item.textContent.trim() === "Log") {
       alert("The emergency log is not available in this demo yet.");
     }
