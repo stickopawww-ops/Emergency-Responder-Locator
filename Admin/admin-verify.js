@@ -10,7 +10,7 @@ const messageElement = document.getElementById("message");
 
 const SIGNIN_PAGE = "admin-signin.html";
 
-const DASHBOARD_PAGE = "admin.html";
+const DASHBOARD_PAGE = "../Admin(Responder)/map.html";
 
 
 // =====================================
