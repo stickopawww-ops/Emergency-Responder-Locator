@@ -1,109 +1,211 @@
+/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    background: #ffffff;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-}
-
-.container {
     width: 100%;
-    max-width: 400px;
-    min-height: 99.5vh;
-    background-color: #f7f4ff;
-    border-radius: 0 0 24px 24px;
-    padding: 22px 26px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #100e49;
+
+    overflow-x: hidden;
 }
 
+/* MAIN SCREEN */
+.screen {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    background: #f7f3ff;
+
+    padding-top: 22px;
+    padding-left: 26px;
+    padding-right: 22px;
+    padding-bottom: 30px;
+
+    border-radius: 0 0 24px 24px;
+}
+
+/* BACK BUTTON */
 .back-button {
+    width: 78px;
+    height: 41px;
+
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 7px;
-    padding: 10px;
-    border: 1px solid #c9bfd8;
-    border-radius: 12px;
-    background-color: #e5e0e9;
-    color: #111044;
+
+    background: #dedede;
+    border: 1px solid #c5b6d7;
+    border-radius: 11px;
+
+    color: #100e49;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
+
     cursor: pointer;
-    margin-bottom: 28px;
 }
 
 .back-button span {
     font-size: 20px;
-    line-height: 16px;
+    font-weight: 400;
 }
 
+/* HEADING */
 h2 {
-    color: #111044;
-    font-size: 19px;
+    margin-top: 28px;
+
+    font-size: 18px;
+    line-height: 22px;
     font-weight: 700;
-    margin-bottom: 17px;
+
+    color: #100e49;
 }
 
+/* DESCRIPTION */
 .description {
+    margin-top: 17px;
+
     font-size: 13px;
+    line-height: 15px;
+    font-weight: 400;
+
     color: #111111;
-    line-height: 16px;
-    margin-bottom: 12px;
 }
 
+/* OTP INPUTS */
 .otp-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 42px));
     justify-content: space-between;
-    gap: 10px;
+
     width: 100%;
-    margin-bottom: 10px;
+    max-width: 330px;
+
+    gap: 8px;
+    margin-top: 13px;
 }
 
 .otp-input {
-    width: 42px;
+    width: 100%;
     height: 42px;
+
     min-width: 0;
-    border: 1px solid #111044;
-    border-radius: 6px;
+
     background: #ffffff;
-    text-align: center;
-    font-size: 18px;
+
+    border: 1px solid #100e49;
+    border-radius: 6px;
+
     color: #111111;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+
+    text-align: center;
+
     outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+
+    caret-color: #009dff;
 }
 
 .otp-input:focus {
-    border: 2px solid #009cff;
+    border: 2px solid #009dff;
 }
 
+/* VERIFY BUTTON */
 .verify-button {
+    display: block;
+
     width: 100%;
+    max-width: 330px;
     height: 48px;
-    background-color: #100d48;
-    color: #ffffff;
+
+    margin-top: 10px;
+
+    background: #100e49;
     border: none;
     border-radius: 11px;
+
+    color: #ffffff;
+
     font-size: 14px;
     font-weight: 600;
+
     cursor: pointer;
-    margin-top: 0;
+
+    appearance: none;
+    -webkit-appearance: none;
 }
 
-.verify-button:hover {
-    background-color: #211c65;
+.verify-button:active {
+    background: #201c68;
 }
 
+/* RESEND TEXT */
 .resend-text {
-    font-size: 12px;
-    color: #111111;
     margin-top: 11px;
-    padding-left: 3px;
+    margin-left: 3px;
+
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #111111;
 }
 
 #timer {
-    margin-left: 2px;
+    font-variant-numeric: tabular-nums;
+}
+
+#timer.resend {
+    color: #100e49;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* SMALL MOBILE SCREENS */
+@media (max-width: 360px) {
+
+    .screen {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .otp-container {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .otp-input {
+        height: 40px;
+    }
+}
+
+/* LARGER SCREENS */
+@media (min-width: 500px) {
+
+    .screen {
+        max-width: 420px;
+        margin: 0 auto;
+    }
 }

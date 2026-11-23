@@ -1,0 +1,421 @@
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #FFFFFF;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    overflow: hidden;
+}
+
+/* MAIN APP */
+.app-container {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    max-width: none;
+
+    background: #F7F4FF;
+    border-radius: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+/* MAIN DASHBOARD */
+.dashboard {
+    flex: 1;
+    min-height: 0;
+
+    background: #F7F4FF;
+
+    padding: max(36px, env(safe-area-inset-top)) 11px 0;
+
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.dashboard::-webkit-scrollbar {
+    display: none;
+}
+
+/* HEADER */
+.header {
+    height: 43px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0 29px 13px 11px;
+}
+.header-text p {
+    font-size: 12px;
+    font-weight: 400;
+
+    margin-bottom: 4px;
+}
+
+.header-text h1 {
+    font-size: 22px;
+    font-weight: 700;
+
+    line-height: 23px;
+    color: #101943;
+}
+
+/* PROFILE CIRCLE */
+.profile {
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50%;
+    background: #202B49;
+    color: #FFFFFF;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* STATISTICS */
+.statistics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+
+    margin: 0 3px 12px;
+}
+
+.stat-card {
+    height: 64px;
+
+    border: 1.5px solid #C9BCFF;
+    border-radius: 11px;
+
+    background: #FFFFFF;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 4px;
+}
+
+.stat-card h2 {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 23px;
+
+    color: #101943;
+}
+
+.stat-card span {
+    font-size: 12px;
+    line-height: 13px;
+}
+
+/* SEND ALERT BUTTON */
+.alert-button {
+    display: block;
+
+    width: calc(100% - 2px);
+    height: 52px;
+
+    margin: 0 1px 12px;
+
+    border: 2px solid #111111;
+    border-radius: 13px;
+
+    background: #FBFAFF;
+
+    color: #101044;
+    font-size: 17px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* FILTER TABS */
+.tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+
+    margin: 0 5px 20px;
+}
+
+.tab {
+    height: 44px;
+
+    border: 1.5px solid #C9BCFF;
+    border-radius: 11px;
+
+    background: #FFFFFF;
+
+    color: #080808;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.tab.active {
+    background: #202B49;
+    border-color: #A99AFF;
+
+    color: #FFFFFF;
+}
+
+/* INCIDENT CONTAINER */
+.incident-container {
+    padding: 0 9px;
+}
+
+/* INCIDENT CARD */
+.incident-card {
+    width: 100%;
+    height: 152px;
+
+    padding: 12px 18px 12px 12px;
+
+    border: 2px solid #E00000;
+    border-radius: 13px;
+
+    background: #FFFFFF;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+}
+
+/* INCIDENT DETAILS */
+.incident-details {
+    min-width: 0;
+    align-self: flex-start;
+}
+
+.incident-details h3 {
+    margin: 0 0 8px 0;
+
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 15px;
+
+    white-space: nowrap;
+}
+
+.incident-location {
+    margin: 0 0 9px 0;
+
+    font-size: 12px;
+    line-height: 13px;
+
+    color: #555555;
+    white-space: nowrap;
+}
+
+/* PRIORITY AND WAITING TAGS */
+.incident-tags {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 8px;
+}
+
+.priority-tag,
+.waiting-tag {
+    display: inline-flex;
+    align-items: center;
+
+    height: 26px;
+    padding: 0 9px;
+
+    border-radius: 12px;
+
+    background: #BD2025;
+    color: #FFFFFF;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.priority-tag {
+    height: 26px;
+}
+
+/* ASSIGN BUTTON */
+.assign-button {
+    width: 70px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #171052;
+    color: #FFFFFF;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* BOTTOM NAVIGATION */
+.bottom-navigation {
+    height: 64px;
+    min-height: 64px;
+
+    background: #D9D9D9;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+/* NAVIGATION ITEMS */
+.nav-item {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 2px;
+
+    border: none;
+    background: transparent;
+
+    color: #000000;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* SELECTED LIVE NAVIGATION */
+.nav-item.selected::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 78px;
+    height: 3px;
+
+    background: #D60000;
+}
+
+/* RED NOTIFICATION BADGES */
+.badge {
+    position: absolute;
+    top: 10px;
+    left: calc(50% + 12px);
+
+    min-width: 18px;
+    height: 18px;
+
+    padding: 0 4px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    background: #BD1D25;
+    color: #FFFFFF;
+
+    font-size: 10px;
+    line-height: 1;
+
+    align-self: auto;
+    margin: 0;
+}
+
+/* RESPONSIVE: SMALL PHONES */
+@media (max-width: 360px) {
+
+    .dashboard {
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+
+    .statistics {
+        gap: 7px;
+    }
+
+    .incident-card {
+        padding-right: 8px;
+        gap: 4px;
+    }
+
+    .incident-location {
+        font-size: 9px;
+    }
+
+    .priority-tag,
+    .waiting-tag {
+        font-size: 9px;
+        padding: 0 6px;
+    }
+
+    .assign-button {
+        width: 60px;
+    }
+
+    .nav-item {
+        font-size: 11px;
+    }
+}
+
+/* RESPONSIVE: SHORT SCREENS */
+@media (max-height: 650px) {
+    .dashboard {
+        padding-top: 35px;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 600px) {
+
+    body {
+        align-items: center;
+        background: #EEEEEE;
+    }
+
+    .app-container {
+        width: min(408px, calc(100vw - 32px));
+        height: min(920px, calc(100dvh - 32px));
+        margin-top: 0;
+        border-radius: 22px;
+    }
+}
