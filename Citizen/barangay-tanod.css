@@ -1,0 +1,35 @@
+.tanod-map-panel {
+  padding: 2px;
+  border: 2px solid #149cff;
+  border-radius: 0;
+  background: #e8f4ec;
+}
+
+.tanod-map-panel .map-container {
+  border-radius: 0;
+}
+
+.app-header .header-title {
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.shield-icon svg {
+  fill: none;
+  stroke-width: 1.8;
+}
+
+.availability.busy {
+  background: #ffe4a3;
+  color: #74510b;
+}
+
+.availability.busy .status-dot {
+  background: #bd8112;
+}
+
+@media (max-width: 300px) {
+  .mobile-frame {
+    width: min(412px, calc(100% - 32px));
+  }
+}
