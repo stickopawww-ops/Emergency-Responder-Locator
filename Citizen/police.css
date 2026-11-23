@@ -19,7 +19,29 @@
 }
 
 @media (max-width: 360px) {
+  .station-card {
+    gap: 6px;
+    padding-right: 6px;
+    padding-left: 6px;
+  }
+
+  .siren-icon {
+    flex-basis: 24px;
+    width: 24px;
+  }
+
+  .siren-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .call-btn {
+    min-width: 40px;
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
   .station-location {
-    font-size: 6px;
+    font-size: 7px;
   }
 }
