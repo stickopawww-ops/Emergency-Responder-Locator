@@ -77,11 +77,14 @@ body{
 .cards{
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:50px;
+    align-items:center;
 }
 
 .card{
     border-radius:24px;
+    width:339px;
+    height: 227px;
     padding:18px;
     color:white;
     cursor:pointer;
@@ -136,6 +139,7 @@ body{
 }
 
 .citizen{
+    margin-top:29px;
     background:#6BAFC8;
 }
 
@@ -143,12 +147,8 @@ body{
     background:#1D2A44;
 }
 
-.admin{
-    background:#5A2C91;
-}
-
 .emergency{
-    margin-top:16px;
+    margin-top:100px;
     height:54px;
     border:none;
     border-radius:18px;
