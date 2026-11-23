@@ -1,16 +1,21 @@
-const feedback = document.querySelector(".feedback");
 
-document.querySelector(".back-btn").addEventListener("click", () => {
-  window.location.href = "citizen.html";
-});
+// BACK BUTTON
+function goBack() {
+  window.history.back();
+}
 
-document.querySelectorAll(".call-btn").forEach((button) => {
-  button.addEventListener("click", () => {
-    feedback.textContent = `Calling ${button.dataset.station} is not available in this preview.`;
-    feedback.hidden = false;
-  });
-});
+// NAVIGATION
+function goToPage(page) {
+  window.location.href = page;
+}
 
-document.querySelector('[data-nav="Log"]').addEventListener("click", () => {
-  window.location.href = "log.html";
-});
+// CALL POLICE STATION
+function callPolice(name) {
+  const confirmCall = confirm(
+    "Do you want to call " + name + "?"
+  );
+
+  if (confirmCall) {
+    alert("You selected " + name + ".");
+  }
+}

@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nearest Any Responder</title>
+  <link rel="stylesheet" href="nearest.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <script src="nearest.js" defer></script>
+</head>
+<body>
+
+  <div class="phone">
+
+    <!-- HEADER -->
+    <header class="topbar">
+      <button class="back-btn" onclick="goBack()" aria-label="Back">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" />
+        </svg>
+      </button>
+
+      <div class="title">Nearest Any Responder</div>
+    </header>
+
+    <!-- MAP SECTION -->
+    <div class="section-label">All Nearby Emergency Responders</div>
+
+    <!-- MAP -->
+    <div class="map-container">
+
+      <svg class="map-art" viewBox="0 0 360 145" preserveAspectRatio="none">
+
+        <rect width="360" height="145" fill="#bce2e5" />
+
+        <path d="M155 -10 L360 -10 L360 155 L205 155
+                 L190 85 L175 50 Z"
+              fill="#eeece7" />
+
+        <path d="M170 -10 L205 45 L225 90 L245 155"
+              stroke="#ffffff" stroke-width="7" fill="none" />
+
+        <path d="M195 48 L360 12"
+              stroke="#ffffff" stroke-width="3" fill="none" />
+
+        <path d="M215 87 L360 55"
+              stroke="#ffffff" stroke-width="3" fill="none" />
+
+        <path d="M250 115 L360 85"
+              stroke="#ffffff" stroke-width="3" fill="none" />
+
+        <path d="M245 5 L285 145"
+              stroke="#ffffff" stroke-width="2" fill="none" />
+
+      </svg>
+
+      <!-- AMBULANCE LOCATION -->
+      <div class="map-label location-one">
+        <span class="map-dot"></span>
+        Ambulance
+      </div>
+
+      <!-- FIRE STATION LOCATION -->
+      <div class="map-label location-two">
+        <span class="map-dot fire-dot"></span>
+        Fire Station
+      </div>
+
+      <!-- TANOD LOCATION -->
+      <div class="map-label location-three">
+        <span class="map-dot tanod-dot"></span>
+        Barangay Tanod
+      </div>
+
+      <!-- POLICE LOCATION -->
+      <div class="map-label location-four">
+        <span class="map-dot police-dot"></span>
+        Police
+      </div>
+
+    </div>
+
+    <!-- RESPONDER SECTION -->
+    <div class="section-label station-label">
+      Nearby Emergency Responders (Central, Cebu)
+    </div>
+
+    <!-- RESPONDER LIST -->
+    <div class="responder-list">
+
+      <!-- AMBULANCE -->
+      <div class="responder-card">
+
+        <div class="icon-wrap">
+          <i class="fa-solid fa-truck-medical" aria-hidden="true"></i>
+        </div>
+
+        <div class="card-text">
+          <h3>Ambulance 1</h3>
+          <span>Guadalupe Rural Health Unit</span>
+
+          <div class="status-row">
+            <span class="status available">
+              <i class="fa-solid fa-circle"></i>
+              Available
+            </span>
+            <small>1.2 km</small>
+          </div>
+        </div>
+
+        <button class="call-btn"
+          onclick="callResponder('Ambulance 1')">
+          Call
+        </button>
+
+      </div>
+
+      <!-- FIRE STATION -->
+      <div class="responder-card">
+
+        <div class="icon-wrap">
+          <i class="fa-solid fa-fire" aria-hidden="true"></i>
+        </div>
+
+        <div class="card-text">
+          <h3>Fire Station 1</h3>
+          <span>Guadalupe Fire Station</span>
+
+          <div class="status-row">
+            <span class="status available">
+              <i class="fa-solid fa-circle"></i>
+              Available
+            </span>
+            <small>1.5 km</small>
+          </div>
+        </div>
+
+        <button class="call-btn"
+          onclick="callResponder('Fire Station 1')">
+          Call
+        </button>
+
+      </div>
+
+      <!-- BARANGAY TANOD -->
+      <div class="responder-card">
+
+        <div class="icon-wrap">
+          <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+        </div>
+
+        <div class="card-text">
+          <h3>Barangay Tanod 1</h3>
+          <span>Guadalupe Barangay Hall</span>
+
+          <div class="status-row">
+            <span class="status available">
+              <i class="fa-solid fa-circle"></i>
+              Available
+            </span>
+            <small>1.8 km</small>
+          </div>
+        </div>
+
+        <button class="call-btn"
+          onclick="callResponder('Barangay Tanod 1')">
+          Call
+        </button>
+
+      </div>
+
+      <!-- POLICE -->
+      <div class="responder-card">
+
+        <div class="icon-wrap">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+        </div>
+
+        <div class="card-text">
+          <h3>Police Station 1</h3>
+          <span>Guadalupe Police Station</span>
+
+          <div class="status-row">
+            <span class="status busy">
+              <i class="fa-solid fa-circle"></i>
+              Busy
+            </span>
+            <small>2.0 km</small>
+          </div>
+        </div>
+
+        <button class="call-btn"
+          onclick="callResponder('Police Station 1')">
+          Call
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <div class="bottom-nav">
+
+      <button class="nav-item active" onclick="goToPage('citizen.html')">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="6"></circle>
+          <path d="M16 16L21 21"></path>
+        </svg>
+        <span>Find</span>
+      </button>
+
+      <button class="nav-item" onclick="goToPage('responders.html')">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3a9 9 0 1 0 9 9"></path>
+          <path d="M12 7v5l3 2"></path>
+        </svg>
+        <span>Responder</span>
+      </button>
+
+      <button class="nav-item" onclick="goToPage('log.html')">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 3.5h9l3 3V19a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2z"></path>
+          <path d="M15 3.5v4h4"></path>
+          <path d="M8 11h8"></path>
+          <path d="M8 15h8"></path>
+        </svg>
+        <span>Log</span>
+      </button>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -233,7 +233,12 @@ body {
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .other-item.service-link {
+=======
+.other-link {
+  display: block;
+>>>>>>> 2f4097bfea316676298bc59116e1aab1769d3332
   color: inherit;
   text-decoration: none;
 }
