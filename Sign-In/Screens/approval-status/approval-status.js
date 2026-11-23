@@ -21,11 +21,17 @@ const advanceStatusButton = document.getElementById("advanceStatusButton");
 const contactButton = document.getElementById("contactButton");
 const logoutButton = document.getElementById("logoutButton");
 const phoneNumber = document.getElementById("phoneNumber");
+const unitType = document.getElementById("unitType");
+const unitName = document.getElementById("unitName");
+const unitLocation = document.getElementById("unitLocation");
 
 if (!responderPhone || localStorage.getItem("responderVerified") !== "true") {
     window.location.replace("../responder-sign-in/sign-in.html");
 } else {
     phoneNumber.textContent = `+63 ${responderPhone}`;
+    unitType.textContent = `Requested ${localStorage.getItem("responderUnitType") || "unit"}`;
+    unitName.textContent = localStorage.getItem("responderUnitName") || "Unit name not provided";
+    unitLocation.textContent = localStorage.getItem("responderBaseStation") || "Base station not provided";
 }
 
 function resetSteps() {
