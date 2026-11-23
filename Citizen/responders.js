@@ -26,6 +26,5 @@ document.querySelectorAll(".call-btn").forEach((button) => {
 });
 
 document.querySelector('[data-nav="Log"]').addEventListener("click", () => {
-  feedback.textContent = "Your emergency log is not available in this preview.";
-  feedback.hidden = false;
+  window.location.href = "log.html";
 });

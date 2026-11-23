@@ -1,0 +1,43 @@
+.log-header {
+  flex-basis: 44px;
+  padding-right: 24px;
+  padding-left: 24px;
+}
+
+.log-content {
+  padding: 36px 12px 12px;
+  background: #f7f3ff;
+}
+
+.empty-state {
+  max-width: 210px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.empty-state h2 {
+  margin: 0 0 7px;
+  color: #141414;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.empty-state p {
+  max-width: 190px;
+  margin: 0 auto;
+  color: #171717;
+  font-size: 7.5px;
+  line-height: 1.35;
+}
+
+.log-frame .bottom-nav {
+  background: #f7f3ff;
+}
+
+@media (max-width: 280px) {
+  .log-content {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+}
