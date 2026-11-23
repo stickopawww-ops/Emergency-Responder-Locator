@@ -1,5 +1,4 @@
 function showTab(type) {
-  // 1. Change tab color
   document.getElementById('tab-all').classList.remove('active');
   document.getElementById('tab-unassigned').classList.remove('active');
 
@@ -9,7 +8,6 @@ function showTab(type) {
     document.getElementById('tab-unassigned').classList.add('active');
   }
 
-  // 2. Show correct card
   document.querySelectorAll('.card').forEach(card => {
     if (card.getAttribute('data-type') === type) {
       card.style.display = 'block';

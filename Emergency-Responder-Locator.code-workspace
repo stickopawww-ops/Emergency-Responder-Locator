@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "Emergency-Responder-Locator",
+			"path": "."
+		},
+		{
+			"name": "Backend",
+			"path": "../Backend"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Emergency-Responder-Locator",
+		"java.compile.nullAnalysis.mode": "automatic"
+	}
+}
