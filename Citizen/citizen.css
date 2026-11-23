@@ -233,6 +233,12 @@ body {
   cursor: pointer;
 }
 
+.other-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
 .tiny-icon {
   width: 28px;
   height: 28px;
