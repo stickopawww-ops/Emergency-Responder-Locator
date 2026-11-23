@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cebu City Dispatch - Live Incidents</title>
+  <link rel="stylesheet" href="live.css">
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <div>
+        <small>Cebu City Dispatch</small>
+        <h1>Live Incidents</h1>
+      </div>
+      <div class="avatar">RV</div>
+    </header>
+
+    <div class="stats">
+      <div class="stat"><b>1</b><span>Active</span></div>
+      <div class="stat"><b>1</b><span>Unassigned</span></div>
+      <div class="stat"><b>1</b><span>Units free</span></div>
+    </div>
+
+    <button class="alert-btn" onclick="sendAlert()">Send alert to all units</button>
+
+    <div class="tabs">
+      <button class="tab active" id="tab-all" onclick="showTab('all')">All active</button>
+      <button class="tab" id="tab-unassigned" onclick="showTab('unassigned')">Unassigned</button>
+    </div>
+
+    <div id="incident-list">
+      <!-- CARD 1: For All active view -->
+      <div class="card" data-type="all">
+        <h3>Chest pain, adult male</h3>
+        <p>Brgy. Lahug Ambulance · 12:59</p>
+        <div class="row">
+          <div class="tags">
+            <span class="tag red">Unassigned</span>
+            <span class="tag red">High Priority</span>
+          </div>
+          <button class="assign" onclick="assign(this)">Assign</button>
+        </div>
+      </div>
+
+      <!-- CARD 2: For Unassigned view - same incident, different tags -->
+      <div class="card" data-type="unassigned" style="display:none;">
+        <h3>Chest pain, adult male</h3>
+        <p>Brgy. Lahug Ambulance · 12:59</p>
+        <div class="row">
+          <div class="tags">
+            <span class="tag red">High Priority</span>
+            <span class="tag red">Unassigned, waiting for 4 mins.</span>
+          </div>
+          <button class="assign" onclick="assign(this)">Assign</button>
+        </div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="live.html" class="active">Live <span class="badge">1</span></a>
+      <a href="map.html">Map</a>
+      <a href="approval.html">Approval <span class="badge">2</span></a>
+      <a href="team.html">Team</a>
+      <a href="history.html">History</a>
+    </nav>
+  </div>
+  <script src="live.js"></script>
+</body>
+</html>
