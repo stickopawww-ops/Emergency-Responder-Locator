@@ -1,0 +1,25 @@
+.police-map-panel {
+  padding: 2px;
+  border: 2px solid #149cff;
+  border-radius: 0;
+  background: #e8f4ec;
+}
+
+.police-map-panel .map-container {
+  border-radius: 0;
+}
+
+.availability.busy {
+  background: #ffe4a3;
+  color: #74510b;
+}
+
+.availability.busy .status-dot {
+  background: #bd8112;
+}
+
+@media (max-width: 360px) {
+  .station-location {
+    font-size: 6px;
+  }
+}
