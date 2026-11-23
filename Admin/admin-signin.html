@@ -2,201 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<<<<<<< HEAD
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
-    <meta name="theme-color" content="#f7f3ff">
-
-    <title>Cebu Emergency Help - Admin Login</title>
-
-    <link rel="stylesheet" href="admin-signin.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-=======
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Sign In | Cebu Emergency Help</title>
     <link rel="stylesheet" href="admin-signin.css">
->>>>>>> 7a5e791a2c4e952a9a97f9f035a94d9e31029492
 </head>
-
 <body>
-
     <main class="login-screen">
-
-        <!-- HEADER -->
         <header class="header">
-
-            <svg class="shield-icon"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-
-                <path
-                    d="M12 2.5L4.5 5.5V11C4.5 16 7.7 19.5 12 21.5C16.3 19.5 19.5 16 19.5 11V5.5L12 2.5Z"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linejoin="round"
-                />
-
+            <svg class="shield-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2.5L4.5 5.5V11C4.5 16 7.7 19.5 12 21.5C16.3 19.5 19.5 16 19.5 11V5.5L12 2.5Z"
+                    stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
             </svg>
-
-            <span class="brand-name">
-                Cebu Emergency Help
-            </span>
-
-            <span class="admin-badge">
-                ADMIN
-            </span>
-
+            <span class="brand-name">Cebu Emergency Help</span>
+            <span class="admin-badge">ADMIN</span>
         </header>
 
-
-        <!-- LOGIN CONTENT -->
         <section class="login-content">
-
             <h1>Admin sign in</h1>
-
             <p class="description">
-                For dispatch staff only. Responders and citizens use
-                the main app.
+                For dispatch staff only. Responders and citizens use the main app.
             </p>
 
-
             <form id="loginForm">
-
-                <!-- EMAIL -->
                 <div class="form-group">
-
-                    <label for="email">
-                        Work email
-                    </label>
-
+                    <label for="email">Work email</label>
                     <input
                         type="email"
                         id="email"
                         name="email"
-                        value="rosa@cebucity.gov.ph"
+                        placeholder="example@gmail.com"
                         autocomplete="username"
                         required
                     >
-
                 </div>
 
-
-                <!-- PASSWORD -->
                 <div class="form-group password-group">
-
-                    <label for="password">
-                        Password
-                    </label>
-
+                    <label for="password">Password</label>
                     <div class="password-container">
-
-<<<<<<< HEAD
                         <input
                             type="password"
                             id="password"
                             name="password"
                             placeholder="Enter password"
                             autocomplete="current-password"
-=======
-                <form id="loginForm">
-
-                    <div class="form-group">
-                        <label for="email">Work email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="example@gmail.com"
->>>>>>> 7a5e791a2c4e952a9a97f9f035a94d9e31029492
                             required
                         >
-
-                        <button
-                            type="button"
-                            class="show-button"
-                            id="togglePassword">
-
-<<<<<<< HEAD
+                        <button type="button" class="show-button" id="togglePassword">
                             Show
-
                         </button>
-
-=======
-                        <div class="password-wrapper">
-                            <input
-                                type="password"
-                                id="password"
-                                placeholder="Password"
-                                required
-                            >
-
-                            <button
-                                type="button"
-                                class="show-button"
-                                id="showButton"
-                            >
-                                Show
-                            </button>
-                        </div>
                     </div>
-
-                    <div class="form-buttons">
-                        <button type="submit" class="sign-in-button">
-                            Sign in
-                        </button>
-
-                        <button type="button" class="forgot-button" id="forgotButton">
-                            Forgot password
-                        </button>
->>>>>>> 7a5e791a2c4e952a9a97f9f035a94d9e31029492
-                    </div>
-
                 </div>
 
-
-                <!-- SIGN IN -->
-                <button
-                    type="submit"
-                    class="signin-button">
-
-                    Sign in
-
-                </button>
-
-
-                <!-- FORGOT PASSWORD -->
-                <button
-                    type="button"
-                    class="forgot-button"
-                    id="forgotPassword">
-
+                <button type="submit" class="signin-button">Sign in</button>
+                <button type="button" class="forgot-button" id="forgotPassword">
                     Forgot password
-
                 </button>
-
             </form>
-
         </section>
 
-
-        <!-- FOOTER -->
         <footer class="footer">
-
             Every sign in and action is recorded in the activity log.
-
         </footer>
-
     </main>
-
     <script src="admin-signin.js"></script>
-<<<<<<< HEAD
-
-=======
->>>>>>> 7a5e791a2c4e952a9a97f9f035a94d9e31029492
 </body>
 </html>
