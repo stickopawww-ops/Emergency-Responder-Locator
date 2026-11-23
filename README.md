@@ -14,7 +14,8 @@ This project is a static HTML, CSS, and vanilla JavaScript prototype. No build s
 
 - Responder verification code: `1234`
 - Admin verification code: `123456`
-- Admin sign-in accepts any valid-looking email and a non-empty password; credentials are not sent to a server or saved.
+- Admin demo email: `rosa@cebucity.gov.ph`
+- Admin demo password: `Admin@123456`
 - Responder approval can be demonstrated with the explicit **Simulate admin approval (demo)** action, or from the admin Approvals page.
 
 All dispatch, availability, approvals, and call records are local demo data. There is no live SMS, GPS, dispatch, or verified responder contact number.

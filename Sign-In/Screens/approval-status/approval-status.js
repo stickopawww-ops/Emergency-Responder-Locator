@@ -113,15 +113,17 @@ contactButton.addEventListener("click", () => {
 
 });
 
-logoutButton.addEventListener("click", (e) => {
+if (logoutButton) {
+    logoutButton.addEventListener("click", (e) => {
 
-    e.preventDefault();
+        e.preventDefault();
 
-    localStorage.removeItem("responderPhone");
-    localStorage.removeItem("responderVerified");
-    localStorage.removeItem("responderApprovalStatus");
-    window.location.href = "../responder-sign-in/sign-in.html";
+        localStorage.removeItem("responderPhone");
+        localStorage.removeItem("responderVerified");
+        localStorage.removeItem("responderApprovalStatus");
+        window.location.replace("../responder-sign-in/sign-in.html");
 
-});
+    });
+}
 
 setStatus(currentStatus);
