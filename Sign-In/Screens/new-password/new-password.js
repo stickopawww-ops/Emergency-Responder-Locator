@@ -65,15 +65,21 @@ resetForm.addEventListener("submit", async (event) => {
     }
 
     try {
-        const passwordHash = await hashResponderPassword(newPasswordInput.value);
-        localStorage.setItem(responderPasswordKey(phoneNumber), passwordHash);
+        await EmergencyApi.request("/api/auth/responders/password-reset/complete", {
+            method: "POST",
+            auth: false,
+            body: {
+                resetToken: sessionStorage.getItem("responderResetToken"),
+                newPassword: newPasswordInput.value
+            }
+        });
+        sessionStorage.removeItem("responderResetToken");
+        sessionStorage.removeItem("responderChallengeId");
+        localStorage.removeItem("responderVerificationPurpose");
+        localStorage.removeItem("responderVerified");
+        localStorage.setItem("responderPasswordResetCompleted", "true");
+        window.location.href = "../responder-sign-in/sign-in.html";
     } catch (error) {
         resetMessage.textContent = error.message;
-        return;
     }
-
-    localStorage.removeItem("responderVerificationPurpose");
-    localStorage.removeItem("responderVerified");
-    localStorage.setItem("responderPasswordResetCompleted", "true");
-    window.location.href = "../responder-sign-in/sign-in.html";
 });

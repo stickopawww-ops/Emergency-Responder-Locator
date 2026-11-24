@@ -34,9 +34,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <p class="subtitle">
 
-<span id="verificationPrompt">Enter the demo code 1234 for</span>
+<span id="verificationPrompt">Enter the 4-digit code sent to</span>
 
-<strong id="phoneNumber"></strong>. No SMS is sent in this demo.
+<strong id="phoneNumber"></strong>.
 
 </p>
 
@@ -62,7 +62,7 @@ Verify
 
 <p class="resend">
 
-SMS delivery is not configured in this demo.
+In development, the code is printed in the backend terminal.
 
 </p>
 
@@ -74,7 +74,7 @@ SMS delivery is not configured in this demo.
 
 <p>
 
-Connect an SMS provider to enable real verification.
+Production SMS requires configured provider credentials.
 
 </p>
 
@@ -82,6 +82,7 @@ Connect an SMS provider to enable real verification.
 
 </div>
 
+<script src="../../../api-client.js"></script>
 <script src="verification.js"></script>
 
 </body>

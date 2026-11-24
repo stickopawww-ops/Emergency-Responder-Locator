@@ -1,37 +1,23 @@
-# Cebu Emergency Finder demo
+Cebu Emergency Finder
 
-This project is a static HTML, CSS, and vanilla JavaScript prototype. No build step or package installation is required; serve the repository root with any static file server and open `index.html`. ES modules require HTTP serving in browsers that do not allow modules from `file://`.
+Static HTML, CSS, and JavaScript frontend connected to the companion Spring Boot backend.
 
-## Screen organization
+Run locally
+Start the Spring Boot backend as described in the Backend README.
+Configure the admin bootstrap account before starting the backend.
+In VS Code, serve this repository using Live Server on port 5500.
+Open index.html in your browser.
 
-- `index.html` is the role-selection screen.
-- The citizen, responder, and admin screen documents are under `pages/`, grouped by experience.
-- Each document has a matching entry stylesheet under `styles/screens/` and an entry module under `js/screens/`.
-- Shared appearance is reused from `style.css` and the experience stylesheets; shared screen rendering, state, and actions live under `js/pages/`, `js/store.js`, and `js/services/`.
-- Navigation uses ordinary page URLs, so browser Back/Forward works between screens. Demo state and temporary filter/timer state are retained in browser storage as appropriate.
+Development OTP codes appear in the backend terminal. Responder accounts remain pending until approved by an administrator through the Admin Approval page.
 
-## Demo access
+Backend connection
 
-- Responder verification code: `1234`
-- Admin verification code: `123456`
-- Admin demo email: `rosa@cebucity.gov.ph`
-- Admin demo password: `Admin@123456`
-- Responder approval can be demonstrated with the explicit **Simulate admin approval (demo)** action, or from the admin Approvals page.
+The frontend communicates with the Spring Boot backend at http://localhost:8080, configured in api-client.js.
 
-All dispatch, availability, approvals, and call records are local demo data. There is no live SMS, GPS, dispatch, or verified responder contact number.
+The backend handles responder registration, authentication, OTP verification, password reset, admin approvals, responder management, incident records, and dashboard operations using persisted database records.
 
-## Run locally
+Integration boundary
 
-Open the repository folder in VS Code, install/use the Live Server extension if needed, then choose **Open with Live Server** on `index.html`. The app uses native JavaScript modules, so it must be served over HTTP rather than opened directly as a `file://` page.
+The API does not automatically place phone calls or notify emergency services. External dispatch integration, production SMS credentials, and a verified GPS feed are not yet configured.
 
-## Backend connection
-
-Run `npm start` in a terminal to start the Express server at `http://localhost:5000`. The responder sign-up screen checks `GET /api/message` and shows whether the frontend can reach the backend. The existing sign-up, verification, and approval flows still use browser-local demo data: the server does not yet provide account creation, authentication, SMS verification, or database persistence.
-
-## Integration boundary
-
-The backend connection indicator only verifies server reachability; it does not submit personal or account data. Production integration still requires server-backed authentication, responder registration and approval, SMS verification, dispatch, verified contact numbers, notifications, and GPS. Local role navigation is not authorization, and no demo action sends a real dispatch.
-
-## Reset demo data
-
-In the browser developer console, run `window.resetEmergencyFinderDemo()` to restore the initial demo state. The app stores non-sensitive state under `cebu-emergency-finder-demo-v1` in local storage.
+Direct tel:911 remains the immediate emergency-call path.

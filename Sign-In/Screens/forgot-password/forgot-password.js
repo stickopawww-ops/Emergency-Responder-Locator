@@ -29,7 +29,7 @@ input.addEventListener("input", () => {
     message.textContent = "";
 });
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const phoneNumber = input.value.replace(/\D/g, "");
 
@@ -38,8 +38,18 @@ form.addEventListener("submit", (event) => {
         return;
     }
 
-    localStorage.setItem("responderPhone", phoneNumber);
-    localStorage.setItem("responderVerificationPurpose", "password-reset");
-    localStorage.removeItem("responderVerified");
-    window.location.href = "../verification/verification.html";
+    try {
+        const challenge = await EmergencyApi.request("/api/auth/responders/password-reset/request", {
+            method: "POST",
+            auth: false,
+            body: { phone: `+63${phoneNumber}` }
+        });
+        sessionStorage.setItem("responderChallengeId", challenge.challengeId);
+        localStorage.setItem("responderPhone", phoneNumber);
+        localStorage.setItem("responderVerificationPurpose", "password-reset");
+        localStorage.removeItem("responderVerified");
+        window.location.href = "../verification/verification.html";
+    } catch (error) {
+        message.textContent = error.message;
+    }
 });

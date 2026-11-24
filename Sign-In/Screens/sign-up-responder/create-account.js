@@ -7,7 +7,7 @@ const backendStatus = document.getElementById("backendStatus");
 
 async function checkBackendConnection() {
     try {
-        const response = await fetch("http://localhost:5000/api/message");
+        const response = await fetch("http://localhost:8080/api/message");
         if (!response.ok) {
             throw new Error(`Backend returned HTTP ${response.status}.`);
         }
@@ -18,12 +18,12 @@ async function checkBackendConnection() {
         }
 
         backendStatus.textContent =
-            `Backend connected. ${data.message} Account creation is still demo-only.`;
+            `Backend connected. ${data.message}`;
         backendStatus.classList.add("connected");
     } catch (error) {
         const reason = error instanceof Error ? error.message : String(error);
         backendStatus.textContent =
-            `Backend connection failed: ${reason} Account creation is still demo-only.`;
+            `Backend connection failed: ${reason}`;
         backendStatus.classList.add("error");
         console.error("Backend connection check failed:", error);
     }
@@ -67,18 +67,30 @@ signupForm.addEventListener("submit", async (event) => {
     }
 
     confirmPasswordInput.setCustomValidity("");
-    const selectedUnit = document.querySelector(".units button.active").textContent.trim();
-    let passwordHash;
+    const activeUnit = document.querySelector(".units button.active");
+    const selectedUnit = activeUnit ? activeUnit.textContent.trim() : "";
+    const phone = `+63${mobileNumber}`;
 
     try {
-        passwordHash = await hashResponderPassword(password);
+        const challenge = await EmergencyApi.request("/api/auth/responders/register", {
+            method: "POST",
+            auth: false,
+            body: {
+                fullName: document.getElementById("fullName").value.trim(),
+                phone,
+                password,
+                unitType: selectedUnit,
+                unitName: document.getElementById("unitName").value.trim(),
+                baseStation: document.getElementById("baseStation").value.trim()
+            }
+        });
+        sessionStorage.setItem("responderChallengeId", challenge.challengeId);
     } catch (error) {
         signupMessage.textContent = error.message;
         return;
     }
 
     localStorage.setItem("responderPhone", mobileNumber);
-    localStorage.setItem(responderPasswordKey(mobileNumber), passwordHash);
     localStorage.setItem("responderUnitType", selectedUnit);
     localStorage.setItem("responderUnitName", document.getElementById("unitName").value.trim());
     localStorage.setItem("responderBaseStation", document.getElementById("baseStation").value.trim());
