@@ -9,6 +9,7 @@
 <title>Verify Code</title>
 
 <link rel="stylesheet" href="verification.css">
+<link rel="stylesheet" href="../auth-layout.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -21,19 +22,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="phone">
 
-<button class="back">
+<button class="back" type="button" aria-label="Back">
 
-<i class="fa-solid fa-arrow-left"></i>
+<span aria-hidden="true">‹</span>
 
 </button>
 
 <div class="content">
 
-<h1>Enter the code</h1>
+<h1>Verify your number</h1>
 
 <p class="subtitle">
 
-Enter the demo code <strong>1234</strong> for
+<span id="verificationPrompt">Enter the demo code 1234 for</span>
 
 <strong id="phoneNumber"></strong>. No SMS is sent in this demo.
 

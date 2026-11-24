@@ -1,11 +1,16 @@
 const inputs = document.querySelectorAll(".otp input");
 const message = document.getElementById("message");
 const phoneNumber = localStorage.getItem("responderPhone");
+const verificationPurpose = localStorage.getItem("responderVerificationPurpose");
 
-if (!phoneNumber) {
+if (!phoneNumber || !["signup", "password-reset"].includes(verificationPurpose)) {
     window.location.replace("../responder-sign-in/sign-in.html");
 } else {
     document.getElementById("phoneNumber").textContent = `+63 ${phoneNumber}`;
+    if (verificationPurpose === "password-reset") {
+        document.getElementById("verificationPrompt").textContent =
+            "Enter the demo code 1234 to reset the password for";
+    }
 }
 
 inputs.forEach((input,index)=>{
@@ -44,11 +49,12 @@ document.querySelector(".otp").addEventListener("paste", (event) => {
     inputs[Math.min(pastedCode.length, inputs.length - 1)].focus();
 });
 
-document.querySelector(".back").onclick=()=>{
-
-    window.location.href="../responder-sign-in/sign-in.html";
-
-};
+document.querySelector(".back").addEventListener("click", () => {
+    const destination = verificationPurpose === "password-reset"
+        ? "../forgot-password/forgot-password.html"
+        : "../sign-up-responder/create-account.html";
+    window.location.href = destination;
+});
 
 document.querySelector(".verify").onclick=()=>{
 
@@ -66,6 +72,11 @@ document.querySelector(".verify").onclick=()=>{
     }
 
     localStorage.setItem("responderVerified", "true");
-    window.location.href="../approval-status/approval-status.html";
+    if (verificationPurpose === "password-reset") {
+        window.location.href = "../new-password/new-password.html";
+    } else {
+        localStorage.removeItem("responderVerificationPurpose");
+        window.location.href = "../approval-status/approval-status.html";
+    }
 
 };
