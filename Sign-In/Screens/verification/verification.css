@@ -8,7 +8,7 @@
 }
 
 body{
-    background:#f2f2f2;
+    background:#F7F3FF;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -21,7 +21,7 @@ body{
     max-width:412px;
     height:100vh;
     height:100dvh;
-    background:#CDC4FF;
+    background:#F7F3FF;
     padding:34px 24px;
     position:relative;
     overflow:hidden;
@@ -45,7 +45,7 @@ body{
 }
 
 .content{
-    margin-top:65px;
+    margin-top:0;
 }
 
 .content h1{
@@ -53,7 +53,7 @@ body{
     font-weight:800;
     color:#1B1A4B;
     margin-bottom:8px;
-     margin-left:24px;
+     margin-left:0;
 }
 
 .subtitle{
@@ -61,7 +61,7 @@ body{
     color:#666;
     line-height:1.6;
     margin-bottom:28px;
-     margin-left:24px;
+     margin-left:0;
 }
 
 .subtitle strong{

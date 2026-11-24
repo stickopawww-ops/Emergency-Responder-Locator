@@ -6,12 +6,10 @@ document.querySelector(".back-btn").addEventListener("click", () => {
 
 document.querySelectorAll(".call-btn").forEach((button) => {
   button.addEventListener("click", () => {
-    feedback.textContent = `Calling ${button.dataset.station} is not available in this preview.`;
-    feedback.hidden = false;
+    EmergencyApi.reportCall(button, "Fire", `Citizen requested ${button.dataset.station}.`, feedback);
   });
 });
 
 document.querySelector('[data-nav="Log"]').addEventListener("click", () => {
-  feedback.textContent = "Your emergency log is not available in this preview.";
-  feedback.hidden = false;
+  window.location.href = "log.html";
 });

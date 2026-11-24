@@ -1,11 +1,17 @@
 const inputs = document.querySelectorAll(".otp input");
 const message = document.getElementById("message");
 const phoneNumber = localStorage.getItem("responderPhone");
+const verificationPurpose = localStorage.getItem("responderVerificationPurpose");
+const challengeId = sessionStorage.getItem("responderChallengeId");
 
-if (!phoneNumber) {
+if (!phoneNumber || !challengeId || !["signup", "password-reset"].includes(verificationPurpose)) {
     window.location.replace("../responder-sign-in/sign-in.html");
 } else {
     document.getElementById("phoneNumber").textContent = `+63 ${phoneNumber}`;
+    if (verificationPurpose === "password-reset") {
+        document.getElementById("verificationPrompt").textContent =
+            "Enter the 4-digit code sent to";
+    }
 }
 
 inputs.forEach((input,index)=>{
@@ -44,13 +50,22 @@ document.querySelector(".otp").addEventListener("paste", (event) => {
     inputs[Math.min(pastedCode.length, inputs.length - 1)].focus();
 });
 
-document.querySelector(".back").onclick=()=>{
+document.querySelector(".back").addEventListener("click", () => {
+    const destination = verificationPurpose === "password-reset"
+        ? "../forgot-password/forgot-password.html"
+        : "../sign-up-responder/create-account.html";
+    window.location.href = destination;
+});
 
+<<<<<<< HEAD
     window.location.href="../responder-sign-in/sign-in.html";
 
 };
 
 document.querySelector(".verify").onclick=async ()=>{
+=======
+document.querySelector(".verify").onclick = async () => {
+>>>>>>> origin/main
 
     const code=[...inputs].map(i=>i.value).join("");
 
@@ -60,6 +75,7 @@ document.querySelector(".verify").onclick=async ()=>{
         return;
     }
 
+<<<<<<< HEAD
     const challengeId = localStorage.getItem("responderChallengeId");
     if (!challengeId) {
         message.textContent = "Verification expired. Please send a new code.";
@@ -84,4 +100,33 @@ document.querySelector(".verify").onclick=async ()=>{
         message.textContent = error.message;
     }
 
+=======
+    try {
+        if (verificationPurpose === "password-reset") {
+            const result = await EmergencyApi.request("/api/auth/responders/password-reset/verify", {
+                method: "POST",
+                auth: false,
+                body: { challengeId, code }
+            });
+            sessionStorage.setItem("responderResetToken", result.resetToken);
+            localStorage.setItem("responderVerified", "true");
+            window.location.href = "../new-password/new-password.html";
+        } else {
+            const result = await EmergencyApi.request("/api/auth/responders/verify", {
+                method: "POST",
+                auth: false,
+                body: { challengeId, code }
+            });
+            sessionStorage.setItem("responderAuthToken", result.token);
+            localStorage.setItem("responderVerified", "true");
+            localStorage.setItem("responderApprovalStatus", result.responder.approvalStatus.toLowerCase());
+            sessionStorage.removeItem("responderChallengeId");
+            localStorage.removeItem("responderVerificationPurpose");
+            window.location.href = "../approval-status/approval-status.html";
+        }
+    } catch (error) {
+        message.textContent = error.message;
+    }
+
+>>>>>>> origin/main
 };

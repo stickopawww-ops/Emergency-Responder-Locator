@@ -56,6 +56,9 @@ function verifyToken(token) {
 function sendJson(res, status, value) {
   res.writeHead(status, {
     "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Cache-Control": "no-store"
   });
   res.end(JSON.stringify(value));
@@ -99,6 +102,10 @@ function adminFromRequest(req) {
 
 async function handleApi(req, res, url) {
   const method = req.method;
+  if (method === "OPTIONS") {
+    sendJson(res, 204, {});
+    return;
+  }
   let body = {};
   if (method !== "GET" && method !== "HEAD") body = await readJson(req);
 

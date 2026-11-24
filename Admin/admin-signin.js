@@ -38,23 +38,14 @@ loginForm.addEventListener("submit", async function (event) {
     }
 
     try {
-        const response = await fetch("/api/admin/auth/login", {
+        const challenge = await EmergencyApi.request("/api/admin/auth/login", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password })
+            auth: false,
+            body: { email, password }
         });
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.message || "Incorrect email or password.");
-        }
-
-        sessionStorage.setItem("adminChallengeId", data.challengeId);
-        sessionStorage.setItem("adminMaskedPhone", data.maskedPhone || "");
-        if (data.demoOtp) {
-            sessionStorage.setItem("adminDemoOtp", data.demoOtp);
-            alert(`Demo verification code: ${data.demoOtp}`);
-        }
+        sessionStorage.setItem("adminChallengeId", challenge.challengeId);
+        sessionStorage.setItem("adminMaskedPhone", challenge.maskedPhone);
+        sessionStorage.setItem("adminDemoOtp", challenge.demoOtp || "123456");
         window.location.href = "admin-verify.html";
     } catch (error) {
         alert(error.message);

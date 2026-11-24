@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3ff">
+  <title>Responders</title>
+  <link rel="stylesheet" href="responders.css">
+<<<<<<< HEAD
+  <script src="../api-client.js" defer></script>
+=======
+  <link rel="stylesheet" href="citizen-shell.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+>>>>>>> c15c58f9dfd149c3beb1cb2cc71cd0ae8bf35f38
+  <script src="responders.js" defer></script>
+</head>
+<body>
+  <div class="mobile-frame responders-frame">
+    <header class="app-header responders-header">
+      <h1 class="header-title">Responders</h1>
+    </header>
+
+    <main class="content-area responders-content">
+      <div class="responder-filters" role="group" aria-label="Filter responders">
+        <button class="filter-button selected" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-button" type="button" data-filter="available" aria-pressed="false">Available</button>
+        <button class="filter-button" type="button" data-filter="busy" aria-pressed="false">Busy</button>
+      </div>
+
+      <section class="station-list responder-list" aria-label="Responder directory">
+        <article class="station-card responder-card" data-status="available">
+          <div class="fire-icon ambulance-icon" aria-hidden="true">
+            <i class="fa-solid fa-truck-medical"></i>
+          </div>
+          <div class="station-info">
+            <h2>Ambulance 1</h2>
+            <p class="station-location">Ginatilan Rural Health Unit</p>
+            <div class="status-row"><span class="availability"><span class="status-dot"></span>Available</span><span class="distance">1.2km</span></div>
+          </div>
+          <button class="call-btn" type="button" data-responder="Ambulance 1">Call</button>
+        </article>
+
+        <article class="station-card responder-card" data-status="available">
+          <div class="fire-icon fire-truck-icon" aria-hidden="true">
+            <i class="fa-solid fa-fire"></i>
+          </div>
+          <div class="station-info">
+            <h2>Fire Truck 1</h2>
+            <p class="station-location">BFP Brgy. Ginatilan Fire Station</p>
+            <div class="status-row"><span class="availability"><span class="status-dot"></span>Available</span><span class="distance">1.2km</span></div>
+          </div>
+          <button class="call-btn" type="button" data-responder="Fire Truck 1">Call</button>
+        </article>
+
+        <article class="station-card responder-card" data-status="available">
+          <div class="fire-icon fire-truck-icon" aria-hidden="true">
+            <i class="fa-solid fa-fire"></i>
+          </div>
+          <div class="station-info">
+            <h2>Fire Truck 2</h2>
+            <p class="station-location">BFP Brgy. Samboan Fire Station</p>
+            <div class="status-row"><span class="availability"><span class="status-dot"></span>Available</span><span class="distance">2.1km</span></div>
+          </div>
+          <button class="call-btn" type="button" data-responder="Fire Truck 2">Call</button>
+        </article>
+
+        <article class="station-card responder-card" data-status="available">
+          <div class="fire-icon tanod-icon" aria-hidden="true">
+            <i class="fa-solid fa-user-shield"></i>
+          </div>
+          <div class="station-info">
+            <h2>Barangay Tanod</h2>
+            <p class="station-location">San Roque Barangay Hall</p>
+            <div class="status-row"><span class="availability"><span class="status-dot"></span>Available</span><span class="distance">1.1km</span></div>
+          </div>
+          <button class="call-btn" type="button" data-responder="Barangay Tanod, San Roque">Call</button>
+        </article>
+
+        <article class="station-card responder-card" data-status="available">
+          <div class="fire-icon police-icon" aria-hidden="true">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="station-info">
+            <h2>Police 1</h2>
+            <p class="station-location">Ginatilan Municipal Police Station</p>
+            <div class="status-row"><span class="availability"><span class="status-dot"></span>Available</span><span class="distance">1.0km</span></div>
+          </div>
+          <button class="call-btn" type="button" data-responder="Police 1">Call</button>
+        </article>
+
+        <article class="station-card responder-card" data-status="busy">
+          <div class="fire-icon ambulance-icon" aria-hidden="true">
+            <i class="fa-solid fa-truck-medical"></i>
+          </div>
+          <div class="station-info">
+            <h2>Ambulance 2</h2>
+            <p class="station-location">Ginatilan Municipal Health Office</p>
+            <div class="status-row"><span class="availability busy"><span class="status-dot"></span>Busy</span><span class="distance">1.9km</span></div>
+          </div>
+          <button class="call-btn" type="button" data-responder="Ambulance 2">Call</button>
+        </article>
+
+        <article class="station-card responder-card" data-status="busy">
+          <div class="fire-icon tanod-icon" aria-hidden="true">
+            <i class="fa-solid fa-user-shield"></i>
+          </div>
+          <div class="station-info">
+            <h2>Barangay Tanod</h2>
+            <p class="station-location">Palanas Barangay Hall</p>
+            <div class="status-row"><span class="availability busy"><span class="status-dot"></span>Busy</span><span class="distance">2.8km</span></div>
+          </div>
+          <button class="call-btn" type="button" data-responder="Barangay Tanod, Palanas">Call</button>
+        </article>
+
+        <article class="station-card responder-card" data-status="busy">
+          <div class="fire-icon police-icon" aria-hidden="true">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="station-info">
+            <h2>Police 2</h2>
+            <p class="station-location">Samboan Municipal Police Station</p>
+            <div class="status-row"><span class="availability busy"><span class="status-dot"></span>Busy</span><span class="distance">3.0km</span></div>
+          </div>
+          <button class="call-btn" type="button" data-responder="Police 2">Call</button>
+        </article>
+      </section>
+
+      <p class="feedback" aria-live="polite" hidden></p>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <a class="nav-item" href="citizen.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M16 16L21 21"></path></svg>
+        <span>Find</span>
+      </a>
+      <a class="nav-item active" href="responders.html" aria-current="page">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"></path><path d="M12 7v5l3 2"></path></svg>
+        <span>Responder</span>
+      </a>
+      <a class="nav-item" href="log.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9l3 3V19a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2z"></path><path d="M15 3.5v4h4"></path><path d="M8 11h8"></path><path d="M8 15h8"></path></svg>
+        <span>Log</span>
+      </a>
+    </nav>
+  </div>
+</body>
+</html>

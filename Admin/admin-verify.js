@@ -74,16 +74,11 @@ otpForm.addEventListener("submit", async function (event) {
     }
 
     try {
-        const response = await fetch("/api/admin/auth/verify", {
+        const data = await EmergencyApi.request("/api/admin/auth/verify", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ challengeId, code })
+            auth: false,
+            body: { challengeId, code }
         });
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.message || "Verification failed.");
-        }
 
         sessionStorage.setItem("adminToken", data.token);
         sessionStorage.setItem("adminUser", JSON.stringify(data.admin));
@@ -146,15 +141,11 @@ async function resendCode() {
     }
 
     try {
-        const response = await fetch("/api/admin/auth/resend", {
+        const data = await EmergencyApi.request("/api/admin/auth/resend", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ challengeId })
+            auth: false,
+            body: { challengeId }
         });
-        const data = await response.json();
-        if (!response.ok) {
-            throw new Error(data.message || "Unable to resend code.");
-        }
 
         sessionStorage.setItem("adminChallengeId", data.challengeId);
         sessionStorage.setItem("adminMaskedPhone", data.maskedPhone || "");

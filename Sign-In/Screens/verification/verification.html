@@ -9,6 +9,7 @@
 <title>Verify Code</title>
 
 <link rel="stylesheet" href="verification.css">
+<link rel="stylesheet" href="../auth-layout.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -21,21 +22,21 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="phone">
 
-<button class="back">
+<button class="back" type="button" aria-label="Back">
 
-<i class="fa-solid fa-arrow-left"></i>
+<span aria-hidden="true">‹</span>
 
 </button>
 
 <div class="content">
 
-<h1>Enter the code</h1>
+<h1>Verify your number</h1>
 
 <p class="subtitle">
 
-Enter the demo code <strong>1234</strong> for
+<span id="verificationPrompt">Enter the 4-digit code sent to</span>
 
-<strong id="phoneNumber"></strong>. No SMS is sent in this demo.
+<strong id="phoneNumber"></strong>.
 
 </p>
 
@@ -61,7 +62,7 @@ Verify
 
 <p class="resend">
 
-SMS delivery is not configured in this demo.
+In development, the code is printed in the backend terminal.
 
 </p>
 
@@ -73,7 +74,7 @@ SMS delivery is not configured in this demo.
 
 <p>
 
-Connect an SMS provider to enable real verification.
+Production SMS requires configured provider credentials.
 
 </p>
 
@@ -81,6 +82,7 @@ Connect an SMS provider to enable real verification.
 
 </div>
 
+<script src="../../../api-client.js"></script>
 <script src="verification.js"></script>
 
 </body>

@@ -1,114 +1,125 @@
-const token = sessionStorage.getItem("adminToken");
-if (!token) {
-    window.location.href = "admin-signin.html";
-}
+const allActive = document.getElementById("allActive");
+const unassigned = document.getElementById("unassigned");
+const incidentContainer = document.querySelector(".incident-container");
+const alertAll = document.getElementById("alertAll");
+const navItems = document.querySelectorAll(".nav-item");
+const statValues = document.querySelectorAll(".stat-card h2");
+let activeFilter = "all";
 
-const headers = {
-    "Authorization": `Bearer ${token}`,
-    "Content-Type": "application/json"
-};
-
-async function apiRequest(url, options = {}) {
-    const response = await fetch(url, { ...options, headers: { ...headers, ...(options.headers || {}) } });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message || "Request failed.");
-    return data;
-}
-
-let incidents = [];
-let responders = [];
-
-function renderIncidents(filter = "All") {
-    const container = document.querySelector(".incident-container");
-    const visible = filter === "Unassigned"
-        ? incidents.filter(incident => incident.status === "Unassigned")
-        : incidents.filter(incident => incident.status !== "Resolved");
-
-    if (!visible.length) {
-        container.innerHTML = '<div class="incident-card"><div class="incident-details"><h3>No active incidents</h3></div></div>';
-        return;
-    }
-
-    container.innerHTML = visible.map(incident => `
-        <div class="incident-card">
-            <div class="incident-details">
-                <h3>${incident.title}</h3>
-                <p class="incident-location">${incident.location}</p>
-                <div class="incident-tags">
-                    <span class="priority-tag">${incident.priority} Priority</span>
-                    <span class="waiting-tag">${incident.status === "Unassigned" ? "Unassigned" : `Assigned to ${incident.assigned_responder}`}</span>
-                </div>
-            </div>
-            ${incident.status === "Unassigned" ? `
-                <button class="assign-button" data-id="${incident.id}">Assign</button>
-            ` : ""}
-        </div>
-    `).join("");
+if (!sessionStorage.getItem("adminAuthToken")) {
+    window.location.replace("admin-signin.html");
 }
 
 async function loadDashboard() {
     try {
-        const [incidentData, responderData] = await Promise.all([
-            apiRequest("/api/admin/incidents"),
-            apiRequest("/api/admin/responders")
+        const [stats, incidents] = await Promise.all([
+            EmergencyApi.request("/api/admin/dashboard", { role: "admin" }),
+            EmergencyApi.request("/api/admin/incidents", { role: "admin" })
         ]);
-        incidents = incidentData.incidents;
-        responders = responderData.responders;
-
-        const active = incidents.filter(incident => incident.status !== "Resolved").length;
-        const unassigned = incidents.filter(incident => incident.status === "Unassigned").length;
-        const free = responders.filter(responder => responder.status === "Available").length;
-        const cards = document.querySelectorAll(".stat-card h2");
-        [active, unassigned, free].forEach((value, index) => {
-            if (cards[index]) cards[index].textContent = value;
-        });
-        renderIncidents();
+        [stats.openIncidents, stats.unassignedIncidents, stats.availableResponders]
+            .forEach((value, index) => {
+                if (statValues[index]) statValues[index].textContent = String(value);
+            });
+        renderIncidents(incidents);
     } catch (error) {
-        alert(error.message);
-        if (/Authentication|session|Admin access/i.test(error.message)) {
-            window.location.href = "admin-signin.html";
-        }
+        incidentContainer.textContent = error.message;
     }
 }
 
-document.getElementById("allActive").addEventListener("click", function () {
-    this.classList.add("active");
-    document.getElementById("unassigned").classList.remove("active");
-    renderIncidents("All");
-});
+function renderIncidents(incidents) {
+    incidentContainer.replaceChildren();
+    const activeIncidents = incidents.filter((incident) =>
+        ["OPEN", "ASSIGNED"].includes(incident.status)
+        && (activeFilter !== "unassigned" || incident.status === "OPEN")
+    );
 
-document.getElementById("unassigned").addEventListener("click", function () {
-    this.classList.add("active");
-    document.getElementById("allActive").classList.remove("active");
-    renderIncidents("Unassigned");
-});
-
-document.querySelector(".incident-container").addEventListener("click", async function (event) {
-    const button = event.target.closest(".assign-button");
-    if (!button) return;
-    const available = responders.filter(responder => responder.status === "Available");
-    if (!available.length) {
-        alert("No available responders.");
+    if (!activeIncidents.length) {
+        const empty = document.createElement("p");
+        empty.className = "empty-state";
+        empty.textContent = "No active incidents.";
+        incidentContainer.append(empty);
         return;
     }
-    const names = available.map((responder, index) => `${index + 1}. ${responder.name}`).join("\n");
-    const choice = prompt(`Choose a responder:\n${names}`);
-    const responder = available[Number(choice) - 1];
-    if (!responder) return;
 
-    try {
-        await apiRequest(`/api/admin/incidents/${button.dataset.id}/assign`, {
-            method: "PATCH",
-            body: JSON.stringify({ responderId: responder.id })
+    activeIncidents.forEach((incident) => {
+        const card = document.createElement("article");
+        card.className = "incident-card";
+
+        const details = document.createElement("div");
+        details.className = "incident-details";
+        const title = document.createElement("h3");
+        title.textContent = incident.category;
+        const location = document.createElement("p");
+        location.className = "incident-location";
+        location.textContent = `${incident.description || "No details provided"} · ${new Date(incident.createdAt).toLocaleString()}`;
+        const tags = document.createElement("div");
+        tags.className = "incident-tags";
+        const priority = document.createElement("span");
+        priority.className = "priority-tag";
+        priority.textContent = `${incident.priority} priority`;
+        const assignment = document.createElement("span");
+        assignment.className = "waiting-tag";
+        assignment.textContent = incident.assignedResponderName
+            ? `Assigned to ${incident.assignedResponderName}`
+            : "Unassigned";
+        tags.append(priority, assignment);
+        details.append(title, location, tags);
+
+        const button = document.createElement("button");
+        button.className = "assign-button";
+        button.textContent = incident.status === "ASSIGNED" ? "Assigned" : "Assign";
+        button.disabled = incident.status !== "OPEN";
+        button.addEventListener("click", async () => {
+            button.disabled = true;
+            try {
+                await EmergencyApi.request(`/api/admin/incidents/${incident.id}/assign`, {
+                    method: "POST",
+                    role: "admin",
+                    body: {}
+                });
+                await loadDashboard();
+            } catch (error) {
+                button.disabled = false;
+                window.alert(error.message);
+            }
         });
-        await loadDashboard();
-    } catch (error) {
-        alert(error.message);
-    }
+
+        card.append(details, button);
+        incidentContainer.append(card);
+    });
+}
+
+allActive.addEventListener("click", () => {
+    activeFilter = "all";
+    allActive.classList.add("active");
+    unassigned.classList.remove("active");
+    loadDashboard();
 });
 
-document.getElementById("alertAll").addEventListener("click", function () {
-    alert("Alert sent to all available units.");
+unassigned.addEventListener("click", () => {
+    activeFilter = "unassigned";
+    unassigned.classList.add("active");
+    allActive.classList.remove("active");
+    loadDashboard();
+});
+
+alertAll.addEventListener("click", () => {
+    window.alert("Alert delivery is not configured. No units were contacted.");
+});
+
+navItems.forEach((item) => {
+    item.addEventListener("click", () => {
+        const label = item.textContent.trim().split(/\s+/)[0].toLowerCase();
+        const destinations = {
+            approval: "approval.html",
+            team: "team.html",
+            live: "live.html",
+            map: "../Admin(Responder)/map.html"
+        };
+        if (destinations[label]) {
+            window.location.href = destinations[label];
+        }
+    });
 });
 
 loadDashboard();

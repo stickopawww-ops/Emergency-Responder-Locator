@@ -2,37 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#f7f3ff">
-    <title>Confirm It's You</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Verification | Cebu Emergency Help</title>
+    <link rel="stylesheet" href="admin-signin.css">
     <link rel="stylesheet" href="admin-verify.css">
 </head>
 <body>
-    <main class="screen">
-        <button class="back-button" type="button" onclick="goBack()">
-            <span>&larr;</span> Back
-        </button>
-        <h2>Confirm it is you</h2>
-        <p class="description" id="phoneDescription">
-            Enter the 6-digit code sent to your registered phone.
-        </p>
+    <main class="verify-screen">
+        <header class="header">
+            <span class="brand-name">Cebu Emergency Help</span>
+            <span class="admin-badge">ADMIN</span>
+        </header>
 
-        <form id="otpForm">
-            <div class="otp-container">
-                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" aria-label="Digit 1">
-                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" aria-label="Digit 2">
-                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" aria-label="Digit 3">
-                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" aria-label="Digit 4">
-                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" aria-label="Digit 5">
-                <input class="otp-input" type="text" maxlength="1" inputmode="numeric" aria-label="Digit 6">
-            </div>
-            <button class="verify-button" type="submit">Verify and sign in</button>
-            <p class="resend-text" id="resend-text">
-                <span id="resend-message">Resend code in</span>
-                <span id="timer">0:30</span>
-            </p>
-        </form>
+        <section class="verify-content">
+            <h1>Verify your sign in</h1>
+            <p id="phoneDescription">Enter the 6-digit verification code sent to your registered mobile number.</p>
+            <p class="demo-code">Demo code: <strong id="demoCode">123456</strong></p>
+
+            <form id="otpForm">
+                <div class="otp-row" aria-label="6-digit verification code">
+                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 1">
+                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+                </div>
+                <button type="submit" class="signin-button">Verify</button>
+            </form>
+
+            <p id="resend-message">Resend code in</p>
+            <button type="button" id="timer" class="timer">0:30</button>
+        </section>
     </main>
+    <script src="../api-client.js"></script>
+    <script>
+        const demoCode = sessionStorage.getItem("adminDemoOtp");
+        if (demoCode) document.getElementById("demoCode").textContent = demoCode;
+    </script>
     <script src="admin-verify.js"></script>
 </body>
 </html>

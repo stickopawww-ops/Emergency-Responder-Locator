@@ -1,0 +1,4 @@
+/target/
+/emergency-db.mv.db
+/emergency-db.trace.db
+/.env

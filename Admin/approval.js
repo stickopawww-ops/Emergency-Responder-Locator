@@ -1,69 +1,64 @@
-function approve(btn) {
-  let card = btn.closest('.card');
-  card.style.display = 'none';
-  alert("Approved!");
+const approvalList = document.getElementById("approvalList");
+
+if (!sessionStorage.getItem("adminAuthToken")) {
+    window.location.replace("admin-signin.html");
 }
 
-function reject(btn) {
-  let card = btn.closest('.card');
-  card.style.display = 'none';
-  alert("Rejected!");
-}
+async function loadApprovals() {
+    try {
+        const responders = await EmergencyApi.request("/api/admin/approvals", { role: "admin" });
+        approvalList.replaceChildren();
+        if (!responders.length) {
+            const empty = document.createElement("p");
+            empty.className = "empty";
+            empty.textContent = "No responder applications are awaiting approval.";
+            approvalList.append(empty);
+            return;
+        }
 
-async function loadResponderApprovals() {
-  const container = document.getElementById("responderApprovals");
-  const token = sessionStorage.getItem("adminToken");
-  if (!container) return;
-
-  try {
-    const response = await fetch("/api/admin/responders", {
-      headers: { "Authorization": `Bearer ${token || ""}` }
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message || "Unable to load responder accounts.");
-
-    container.innerHTML = "";
-    data.responders.forEach(responder => {
-      if (responder.status === "approved" || responder.status === "rejected") return;
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <b>Responder +63 ${responder.phone}</b>
-        <p>${responder.unit} · ${responder.station}</p>
-        <span class="badge">${String(responder.status).toUpperCase()}</span>
-        <button class="btn btn-green" type="button">Approve</button>
-        <button class="btn btn-red" type="button">Reject</button>
-      `;
-      card.querySelector(".btn-green").addEventListener("click", () =>
-        updateResponderApproval(responder.phone, "approve", card)
-      );
-      card.querySelector(".btn-red").addEventListener("click", () =>
-        updateResponderApproval(responder.phone, "reject", card)
-      );
-      container.appendChild(card);
-    });
-
-    if (!container.children.length) {
-      container.innerHTML = '<div class="card"><p>No responder accounts are waiting for approval.</p></div>';
+        responders.forEach((responder) => {
+            const card = document.createElement("div");
+            card.className = "card";
+            const heading = document.createElement("b");
+            heading.textContent = `${responder.unitType} - ${responder.unitName}`;
+            const details = document.createElement("p");
+            details.textContent = `${responder.fullName} · ${responder.baseStation}`;
+            const status = document.createElement("span");
+            status.className = "badge";
+            status.textContent = "PENDING";
+            const approveButton = document.createElement("button");
+            approveButton.className = "btn btn-green";
+            approveButton.textContent = "Approve";
+            approveButton.addEventListener("click", () => updateApproval(responder.id, "APPROVED", card));
+            const rejectButton = document.createElement("button");
+            rejectButton.className = "btn btn-red";
+            rejectButton.textContent = "Reject";
+            rejectButton.addEventListener("click", () => updateApproval(responder.id, "REJECTED", card));
+            card.append(heading, details, status, approveButton, rejectButton);
+            approvalList.append(card);
+        });
+    } catch (error) {
+        approvalList.textContent = error.message;
     }
-  } catch (error) {
-    container.innerHTML = `<div class="card"><p>${error.message}</p></div>`;
-  }
 }
 
-async function updateResponderApproval(phone, action, card) {
-  const token = sessionStorage.getItem("adminToken");
-  try {
-    const response = await fetch(`/api/admin/responders/${phone}/${action}`, {
-      method: "POST",
-      headers: { "Authorization": `Bearer ${token || ""}` }
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message || "Unable to update responder.");
-    card.style.display = "none";
-  } catch (error) {
-    alert(error.message);
-  }
+async function updateApproval(id, status, card) {
+    try {
+        await EmergencyApi.request(`/api/admin/approvals/${id}`, {
+            method: "PATCH",
+            role: "admin",
+            body: { status }
+        });
+        card.remove();
+        if (!approvalList.children.length) {
+            const empty = document.createElement("p");
+            empty.className = "empty";
+            empty.textContent = "No responder applications are awaiting approval.";
+            approvalList.append(empty);
+        }
+    } catch (error) {
+        window.alert(error.message);
+    }
 }
 
-loadResponderApprovals();
+loadApprovals();
