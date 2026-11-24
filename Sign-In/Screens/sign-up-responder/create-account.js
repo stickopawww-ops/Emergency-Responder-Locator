@@ -3,6 +3,33 @@ const backButton = document.querySelector(".back");
 const signupForm = document.getElementById("signupForm");
 const mobileNumberInput = document.getElementById("mobileNumber");
 const confirmPasswordInput = document.getElementById("confirmPassword");
+const backendStatus = document.getElementById("backendStatus");
+
+async function checkBackendConnection() {
+    try {
+        const response = await fetch("http://localhost:5000/api/message");
+        if (!response.ok) {
+            throw new Error(`Backend returned HTTP ${response.status}.`);
+        }
+
+        const data = await response.json();
+        if (typeof data.message !== "string") {
+            throw new Error("Backend returned an unexpected response.");
+        }
+
+        backendStatus.textContent =
+            `Backend connected. ${data.message} Account creation is still demo-only.`;
+        backendStatus.classList.add("connected");
+    } catch (error) {
+        const reason = error instanceof Error ? error.message : String(error);
+        backendStatus.textContent =
+            `Backend connection failed: ${reason} Account creation is still demo-only.`;
+        backendStatus.classList.add("error");
+        console.error("Backend connection check failed:", error);
+    }
+}
+
+checkBackendConnection();
 
 mobileNumberInput.addEventListener("input", () => {
     mobileNumberInput.setCustomValidity("");

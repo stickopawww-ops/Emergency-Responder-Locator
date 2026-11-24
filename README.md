@@ -24,9 +24,13 @@ All dispatch, availability, approvals, and call records are local demo data. The
 
 Open the repository folder in VS Code, install/use the Live Server extension if needed, then choose **Open with Live Server** on `index.html`. The app uses native JavaScript modules, so it must be served over HTTP rather than opened directly as a `file://` page.
 
+## Backend connection
+
+Run `npm start` in a terminal to start the Express server at `http://localhost:5000`. The responder sign-up screen checks `GET /api/message` and shows whether the frontend can reach the backend. The existing sign-up, verification, and approval flows still use browser-local demo data: the server does not yet provide account creation, authentication, SMS verification, or database persistence.
+
 ## Integration boundary
 
-The UI currently uses the mock adapter in `js/services/mock-service.js`. Replace that adapter with server-backed services for production SMS, secure authentication, dispatch, verified contact numbers, notifications, and GPS. Local role navigation is not authorization, and no demo action sends a real dispatch.
+The backend connection indicator only verifies server reachability; it does not submit personal or account data. Production integration still requires server-backed authentication, responder registration and approval, SMS verification, dispatch, verified contact numbers, notifications, and GPS. Local role navigation is not authorization, and no demo action sends a real dispatch.
 
 ## Reset demo data
 
