@@ -16,8 +16,8 @@ document.querySelectorAll("[data-zoom]").forEach((button) => {
 });
 
 document.querySelector(".call-btn").addEventListener("click", (event) => {
-  feedback.textContent = `Calling ${event.currentTarget.dataset.provider} is not available in this preview.`;
-  feedback.hidden = false;
+  const button = event.currentTarget;
+  EmergencyApi.reportCall(button, "Power outage", `Citizen requested ${button.dataset.provider}.`, feedback);
 });
 
 document.querySelector('[data-nav="Log"]').addEventListener("click", () => {

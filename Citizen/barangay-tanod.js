@@ -6,8 +6,7 @@ document.querySelector(".back-btn").addEventListener("click", () => {
 
 document.querySelectorAll(".call-btn").forEach((button) => {
   button.addEventListener("click", () => {
-    feedback.textContent = `Calling the Tanod at ${button.dataset.location} is not available in this preview.`;
-    feedback.hidden = false;
+    EmergencyApi.reportCall(button, "Barangay tanod", `Citizen requested the Tanod at ${button.dataset.location}.`, feedback);
   });
 });
 

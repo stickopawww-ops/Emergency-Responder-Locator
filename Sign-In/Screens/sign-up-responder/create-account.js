@@ -40,18 +40,30 @@ signupForm.addEventListener("submit", async (event) => {
     }
 
     confirmPasswordInput.setCustomValidity("");
-    const selectedUnit = document.querySelector(".units button.active").textContent.trim();
-    let passwordHash;
+    const activeUnit = document.querySelector(".units button.active");
+    const selectedUnit = activeUnit ? activeUnit.textContent.trim() : "";
+    const phone = `+63${mobileNumber}`;
 
     try {
-        passwordHash = await hashResponderPassword(password);
+        const challenge = await EmergencyApi.request("/api/auth/responders/register", {
+            method: "POST",
+            auth: false,
+            body: {
+                fullName: document.getElementById("fullName").value.trim(),
+                phone,
+                password,
+                unitType: selectedUnit,
+                unitName: document.getElementById("unitName").value.trim(),
+                baseStation: document.getElementById("baseStation").value.trim()
+            }
+        });
+        sessionStorage.setItem("responderChallengeId", challenge.challengeId);
     } catch (error) {
         signupMessage.textContent = error.message;
         return;
     }
 
     localStorage.setItem("responderPhone", mobileNumber);
-    localStorage.setItem(responderPasswordKey(mobileNumber), passwordHash);
     localStorage.setItem("responderUnitType", selectedUnit);
     localStorage.setItem("responderUnitName", document.getElementById("unitName").value.trim());
     localStorage.setItem("responderBaseStation", document.getElementById("baseStation").value.trim());

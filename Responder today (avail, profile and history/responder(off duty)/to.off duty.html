@@ -12,10 +12,10 @@
       <div class="unit">Ambulance 1 · Juan Dela Cruz</div>
       <div class="head"><h1>Today</h1><span class="badge off">Off duty</span></div>
       <div class="tabs">
-      <button class="tab" data-href="../responders(avail)/to.avail.html">Available</button>
-      <button class="tab" data-href="../responder today(busy)/to.busy.html">Busy</button>
-      <button class="tab" data-href="../responder (break)/to.break.html">Break</button>
-      <button class="tab active" data-href="../responder(off duty)/to.off duty.html">Off duty</button>
+      <button class="tab" data-status="AVAILABLE" data-href="../responders(avail)/to.avail.html">Available</button>
+      <button class="tab" data-status="BUSY" data-href="../responder today(busy)/to.busy.html">Busy</button>
+      <button class="tab" data-status="BREAK" data-href="../responder (break)/to.break.html">Break</button>
+      <button class="tab active" data-status="OFF_DUTY" data-href="../responder(off duty)/to.off duty.html">Off duty</button>
       </div>
       <div class="stats">
         <div class="stat"><b>2</b><span>Calls today</span></div>
@@ -31,6 +31,8 @@
     <a href="../responder profile/profile.html" class="">Profile</a>
     </nav>
   </div>
+  <script src="../../api-client.js"></script>
+  <script src="../../responder-app.js"></script>
   <script src="to.off duty.js"></script>
 </body>
 </html>
