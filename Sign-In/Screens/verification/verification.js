@@ -2,14 +2,15 @@ const inputs = document.querySelectorAll(".otp input");
 const message = document.getElementById("message");
 const phoneNumber = localStorage.getItem("responderPhone");
 const verificationPurpose = localStorage.getItem("responderVerificationPurpose");
+const challengeId = sessionStorage.getItem("responderChallengeId");
 
-if (!phoneNumber || !["signup", "password-reset"].includes(verificationPurpose)) {
+if (!phoneNumber || !challengeId || !["signup", "password-reset"].includes(verificationPurpose)) {
     window.location.replace("../responder-sign-in/sign-in.html");
 } else {
     document.getElementById("phoneNumber").textContent = `+63 ${phoneNumber}`;
     if (verificationPurpose === "password-reset") {
         document.getElementById("verificationPrompt").textContent =
-            "Enter the demo code 1234 to reset the password for";
+            "Enter the 4-digit code sent to";
     }
 }
 
@@ -56,7 +57,7 @@ document.querySelector(".back").addEventListener("click", () => {
     window.location.href = destination;
 });
 
-document.querySelector(".verify").onclick=()=>{
+document.querySelector(".verify").onclick = async () => {
 
     const code=[...inputs].map(i=>i.value).join("");
 
@@ -66,17 +67,31 @@ document.querySelector(".verify").onclick=()=>{
         return;
     }
 
-    if (code !== "1234") {
-        message.textContent = "That code is incorrect. Use the demo code 1234.";
-        return;
-    }
-
-    localStorage.setItem("responderVerified", "true");
-    if (verificationPurpose === "password-reset") {
-        window.location.href = "../new-password/new-password.html";
-    } else {
-        localStorage.removeItem("responderVerificationPurpose");
-        window.location.href = "../approval-status/approval-status.html";
+    try {
+        if (verificationPurpose === "password-reset") {
+            const result = await EmergencyApi.request("/api/auth/responders/password-reset/verify", {
+                method: "POST",
+                auth: false,
+                body: { challengeId, code }
+            });
+            sessionStorage.setItem("responderResetToken", result.resetToken);
+            localStorage.setItem("responderVerified", "true");
+            window.location.href = "../new-password/new-password.html";
+        } else {
+            const result = await EmergencyApi.request("/api/auth/responders/verify", {
+                method: "POST",
+                auth: false,
+                body: { challengeId, code }
+            });
+            sessionStorage.setItem("responderAuthToken", result.token);
+            localStorage.setItem("responderVerified", "true");
+            localStorage.setItem("responderApprovalStatus", result.responder.approvalStatus.toLowerCase());
+            sessionStorage.removeItem("responderChallengeId");
+            localStorage.removeItem("responderVerificationPurpose");
+            window.location.href = "../approval-status/approval-status.html";
+        }
+    } catch (error) {
+        message.textContent = error.message;
     }
 
 };

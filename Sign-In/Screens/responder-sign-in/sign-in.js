@@ -38,23 +38,23 @@ signinForm.addEventListener("submit", async function(event) {
         return;
     }
 
-    const savedPassword = localStorage.getItem(responderPasswordKey(number));
-    if (savedPassword) {
-        try {
-            if (!await verifyResponderPassword(password.value, savedPassword)) {
-                message.style.color = "red";
-                message.textContent = "The mobile number or password is incorrect.";
-                return;
-            }
-        } catch (error) {
-            message.style.color = "red";
-            message.textContent = error.message;
-            return;
-        }
+    try {
+        const result = await EmergencyApi.request("/api/auth/responders/login", {
+            method: "POST",
+            auth: false,
+            body: { phone: `+63${number}`, password: password.value }
+        });
+        sessionStorage.setItem("responderAuthToken", result.token);
+        localStorage.setItem("responderPhone", number);
+        localStorage.setItem("responderApprovalStatus", result.responder.approvalStatus.toLowerCase());
+        localStorage.setItem("responderUnitType", result.responder.unitType || "");
+        localStorage.setItem("responderUnitName", result.responder.unitName || "");
+        localStorage.setItem("responderBaseStation", result.responder.baseStation || "");
+        window.location.href = "../../../Responder today (avail, profile and history/responders(avail)/to.avail.html";
+    } catch (error) {
+        message.style.color = "red";
+        message.textContent = error.message;
     }
-
-    localStorage.setItem("responderPhone", number);
-    window.location.href = "../../../Responder today (avail, profile and history/responders(avail)/to.avail.html";
 });
 
 if (localStorage.getItem("responderPasswordResetCompleted") === "true") {

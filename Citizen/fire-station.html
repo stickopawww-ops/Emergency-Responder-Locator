@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3ff">
+  <title>Nearest Fire Station</title>
+  <link rel="stylesheet" href="fire-station.css">
+  <script src="../api-client.js" defer></script>
+  <script src="fire-station.js" defer></script>
+</head>
+<body>
+  <div class="mobile-frame">
+    <header class="app-header">
+      <button class="back-btn" type="button" aria-label="Back to services">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19 12H5M12 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <h1 class="header-title">Nearest Fire Station</h1>
+    </header>
+
+    <main class="content-area">
+      <section class="map-section" aria-label="Fire station locations">
+        <div class="map-panel">
+          <p class="map-caption-top">Ginatilan-Samboan · schematic</p>
+          <div class="map-container">
+            <svg class="map-art" viewBox="0 0 360 190" role="img" aria-labelledby="map-title map-desc" preserveAspectRatio="xMidYMid slice">
+            <title id="map-title">Schematic map of Ginatilan and Samboan</title>
+            <desc id="map-desc">Illustrated coastline, roads, and approximate positions of two fire trucks. This is not a live GPS map.</desc>
+            <rect width="360" height="190" fill="#b9dbe3"></rect>
+            <path d="M0 0h238c-10 26-28 35-39 51-18 25-8 43-27 63-17 18-21 45-45 76H0z" fill="#eeeade"></path>
+            <path d="M253 0h107v190H197c21-26 20-47 41-66 20-19 10-39 28-57 15-15 17-44-13-67z" fill="#e7e4d7"></path>
+            <path d="M33 0c18 32 41 38 59 59s26 49 50 65 34 39 43 66" fill="none" stroke="#fff" stroke-width="8"></path>
+            <path d="M84 26c40 9 75 4 113 20s61 28 103 23M112 154c44-16 76-20 112-17s73-5 112-22" fill="none" stroke="#fff" stroke-width="5"></path>
+            <path d="M21 25l51 10m-37 34 60-8m-73 94 83-19m118-104 82 11m-59 111 86 13" stroke="#d6d3c7" stroke-width="2"></path>
+            <g fill="#8bb7a1" opacity=".8">
+              <path d="M168 0h25l-8 20h-27zM211 83h27l-10 20h-24zM65 109h31l-11 20H55z"></path>
+            </g>
+            <g fill="#60787d" font-family="Arial, sans-serif" font-size="8">
+              <text x="12" y="17">Ginatilan</text>
+              <text x="12" y="183">Bohol Sea</text>
+              <text x="282" y="178">Samboan</text>
+              <text x="205" y="38">Poblacion</text>
+              <text x="96" y="91">Coastal Road</text>
+            </g>
+            <g transform="translate(201 57)">
+              <circle r="5" fill="#087d75" stroke="#fff" stroke-width="2"></circle>
+              <rect x="8" y="-10" width="116" height="19" rx="6" fill="#fff" opacity=".96"></rect>
+              <text x="14" y="3" fill="#172333" font-family="Arial, sans-serif" font-size="9" font-weight="700">Fire Truck 1 · Ginatilan</text>
+            </g>
+            <g transform="translate(252 130)">
+              <circle r="5" fill="#087d75" stroke="#fff" stroke-width="2"></circle>
+              <rect x="-119" y="-10" width="111" height="19" rx="6" fill="#fff" opacity=".96"></rect>
+              <text x="-113" y="3" fill="#172333" font-family="Arial, sans-serif" font-size="9" font-weight="700">Fire Truck 2 · Samboan</text>
+            </g>
+            </svg>
+          </div>
+          <p class="map-caption-bottom">Estimated station locations · not live GPS</p>
+        </div>
+      </section>
+
+      <section class="station-list" aria-label="Available fire trucks">
+        <article class="station-card">
+          <div class="fire-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12.5 2.5c.8 3.5-2.8 4.7-1.6 7.4.6 1.3 2 1.6 2.7.2.5-1 .4-2.1 0-3.1 3 2.1 5 5.2 4.2 8.6-.7 3.1-3.1 5-6.2 5s-5.8-2.2-6.1-5.3c-.3-2.6.9-4.9 3.1-6.8-.2 2.7.7 3.6 1.4 3.7 1.2-2.8-.6-5.4 2.5-9.7z"></path>
+            </svg>
+          </div>
+          <div class="station-info">
+            <h2>Fire Truck 1</h2>
+            <p class="station-location">BFP Brgy. Ginatilan Fire Station</p>
+            <div class="status-row">
+              <span class="availability"><span class="status-dot"></span>Available</span>
+              <span class="distance">1.2 km</span>
+            </div>
+          </div>
+          <button class="call-btn" type="button" data-station="Fire Truck 1">Call</button>
+        </article>
+
+        <article class="station-card">
+          <div class="fire-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12.5 2.5c.8 3.5-2.8 4.7-1.6 7.4.6 1.3 2 1.6 2.7.2.5-1 .4-2.1 0-3.1 3 2.1 5 5.2 4.2 8.6-.7 3.1-3.1 5-6.2 5s-5.8-2.2-6.1-5.3c-.3-2.6.9-4.9 3.1-6.8-.2 2.7.7 3.6 1.4 3.7 1.2-2.8-.6-5.4 2.5-9.7z"></path>
+            </svg>
+          </div>
+          <div class="station-info">
+            <h2>Fire Truck 2</h2>
+            <p class="station-location">BFP Brgy. Samboan Fire Station</p>
+            <div class="status-row">
+              <span class="availability"><span class="status-dot"></span>Available</span>
+              <span class="distance">2.1 km</span>
+            </div>
+          </div>
+          <button class="call-btn" type="button" data-station="Fire Truck 2">Call</button>
+        </article>
+      </section>
+
+      <p class="feedback" aria-live="polite" hidden></p>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <a class="nav-item active" href="citizen.html" aria-current="page">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="10.8" cy="10.8" r="6.3"></circle>
+          <path d="m15.5 15.5 4.2 4.2"></path>
+        </svg>
+        <span>Find</span>
+      </a>
+      <a class="nav-item" href="responders.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="9" cy="8" r="3"></circle>
+          <path d="M3.5 19v-1.5a5.5 5.5 0 0 1 11 0V19zM16 5.5a3 3 0 0 1 0 5.8M18 14a4.5 4.5 0 0 1 2.5 4v1"></path>
+        </svg>
+        <span>Responder</span>
+      </a>
+      <button class="nav-item" type="button" data-nav="Log">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 3.5h9l3 3V20H6zM15 3.5v4h4M9 12h6M9 16h6"></path>
+        </svg>
+        <span>Log</span>
+      </button>
+    </nav>
+  </div>
+</body>
+</html>

@@ -71,6 +71,32 @@ body {
   line-height: 1.5;
 }
 
+<<<<<<< HEAD
+.incident-log-card {
+  margin: 0 0 10px;
+  padding: 12px;
+  border: 1px solid #e4dff0;
+  border-radius: 12px;
+  background: #fff;
+  color: #171717;
+}
+
+.incident-log-card h2 {
+  margin: 0 0 6px;
+  font-size: 13px;
+}
+
+.incident-log-card p,
+.incident-log-card span,
+.incident-log-card time {
+  display: block;
+  margin: 4px 0;
+  font-size: 11px;
+}
+
+.log-frame .bottom-nav {
+  background: #f7f3ff;
+=======
 .bottom-nav {
   position: absolute;
   right: 0;
@@ -82,6 +108,7 @@ body {
   align-items: center;
   border-top: 1px solid #e8e5ed;
   background: #faf9fc;
+>>>>>>> c15c58f9dfd149c3beb1cb2cc71cd0ae8bf35f38
 }
 
 .bottom-nav .nav-item {

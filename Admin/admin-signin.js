@@ -15,7 +15,7 @@ showButton.addEventListener("click", function () {
     passwordInput.focus();
 });
 
-loginForm.addEventListener("submit", function (event) {
+loginForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const email = emailInput.value.trim().toLowerCase();
@@ -37,15 +37,20 @@ loginForm.addEventListener("submit", function (event) {
         return;
     }
 
-    const validAdmins = ["admin@gmail.com", "rosa@cebucity.gov.ph"];
-    if (validAdmins.includes(email) && password === "Admin123") {
+    try {
+        const challenge = await EmergencyApi.request("/api/admin/auth/login", {
+            method: "POST",
+            auth: false,
+            body: { email, password }
+        });
+        sessionStorage.setItem("adminChallengeId", challenge.challengeId);
+        sessionStorage.setItem("adminMaskedPhone", challenge.maskedPhone);
         window.location.href = "admin-verify.html";
-        return;
+    } catch (error) {
+        alert(error.message);
+        passwordInput.value = "";
+        passwordInput.focus();
     }
-
-    alert("Incorrect email or password. Please try again.");
-    passwordInput.value = "";
-    passwordInput.focus();
 });
 
 forgotButton.addEventListener("click", function () {
