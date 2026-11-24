@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f7f3ff">
@@ -8,121 +10,174 @@
   <link rel="stylesheet" href="fire-station.css">
   <link rel="stylesheet" href="police.css">
   <script src="../api-client.js" defer></script>
+=======
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nearest Police Station</title>
+  <link rel="stylesheet" href="police.css" />
+  <link rel="stylesheet" href="citizen-shell.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+>>>>>>> c15c58f9dfd149c3beb1cb2cc71cd0ae8bf35f38
   <script src="police.js" defer></script>
 </head>
 <body>
-  <div class="mobile-frame">
-    <header class="app-header">
-      <button class="back-btn" type="button" aria-label="Back to services">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M19 12H5M12 19l-7-7 7-7"></path>
+
+  <div class="phone">
+
+    <!-- HEADER -->
+    <header class="topbar">
+      <button class="back-btn" onclick="goBack()" aria-label="Back">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18L9 12L15 6" />
         </svg>
       </button>
-      <h1 class="header-title">Nearest Police</h1>
+
+      <div class="title">Nearest Police Station</div>
     </header>
 
-    <main class="content-area">
-      <section class="map-section" aria-label="Police station locations">
-        <div class="map-panel police-map-panel">
-          <p class="map-caption-top">Ginatilan-Samboan · schematic</p>
-          <div class="map-container">
-            <svg class="map-art" viewBox="0 0 360 190" role="img" aria-labelledby="map-title map-desc" preserveAspectRatio="xMidYMid slice">
-              <title id="map-title">Schematic map of Ginatilan and Samboan</title>
-              <desc id="map-desc">Illustrated coastline, roads, and approximate police station locations. This is not a live GPS map.</desc>
-              <rect width="360" height="190" fill="#b9dbe3"></rect>
-              <path d="M123 0h237v190H106c12-23 4-36 17-54 15-19 4-35 17-54 12-18 4-32 16-48 12-15 5-23-33-34z" fill="#eeeade"></path>
-              <path d="M128 0c22 20 9 34-3 50-12 17-5 34-17 52-12 18-3 34-17 52-9 12-8 22-7 36" fill="none" stroke="#fff" stroke-width="7"></path>
-              <path d="M168 24c33-9 61 3 91 0s57 4 91-11M130 77c42-15 76-5 107 3s60 3 109-8m-129 87c26-20 66-17 95-9s40 9 48 13" fill="none" stroke="#fff" stroke-width="5"></path>
-              <path d="M179 11l-18 18m88 14 29-20m-125 91-37 16m133-8 22 17m43-116 19 13" stroke="#d6d3c7" stroke-width="2"></path>
-              <g fill="#8bb7a1" opacity=".8">
-                <path d="M192 60h26l-10 19h-25zM293 72h29l-10 20h-27zM233 149h30l-11 20h-28zM329 27h22l-9 17h-22z"></path>
-              </g>
-              <g fill="#526b70" font-family="Arial, sans-serif" font-size="11">
-                <text x="12" y="17">Ginatilan</text>
-                <text x="47" y="112">Tañon Strait</text>
-                <text x="278" y="178">Samboan</text>
-                <text x="163" y="36">Poblacion</text>
-                <text x="244" y="118">Coastal Road</text>
-              </g>
-              <g transform="translate(163 57)">
-                <circle r="5" fill="#087d75" stroke="#fff" stroke-width="2"></circle>
-                <rect x="8" y="-10" width="124" height="19" rx="6" fill="#fff" opacity=".96"></rect>
-                <text x="14" y="3" fill="#172333" font-family="Arial, sans-serif" font-size="12" font-weight="700">Police 1 · Ginatilan</text>
-              </g>
-              <g transform="translate(175 128)">
-                <circle r="5" fill="#087d75" stroke="#fff" stroke-width="2"></circle>
-                <rect x="8" y="-10" width="126" height="19" rx="6" fill="#fff" opacity=".96"></rect>
-                <text x="14" y="3" fill="#172333" font-family="Arial, sans-serif" font-size="12" font-weight="700">Police 2 · Samboan</text>
-              </g>
-            </svg>
-          </div>
-          <p class="map-caption-bottom">Estimated station locations · Not live GPS</p>
+    <!-- MAP SECTION -->
+    <div class="section-label">Closest Police Station</div>
+
+    <!-- MAP -->
+    <div class="map-container">
+
+      <svg class="map-art" viewBox="0 0 360 145" preserveAspectRatio="none">
+
+        <rect width="360" height="145" fill="#bce2e5" />
+
+        <path d="M155 -10 L360 -10 L360 155 L205 155
+                 L190 85 L175 50 Z"
+              fill="#eeece7" />
+
+        <path d="M170 -10 L205 45 L225 90 L245 155"
+              stroke="#ffffff" stroke-width="7" fill="none" />
+
+        <path d="M195 48 L360 12"
+              stroke="#ffffff" stroke-width="3" fill="none" />
+
+        <path d="M215 87 L360 55"
+              stroke="#ffffff" stroke-width="3" fill="none" />
+
+        <path d="M250 115 L360 85"
+              stroke="#ffffff" stroke-width="3" fill="none" />
+
+        <path d="M245 5 L285 145"
+              stroke="#ffffff" stroke-width="2" fill="none" />
+
+      </svg>
+
+      <!-- POLICE STATION 1 -->
+      <div class="map-label location-one">
+        <span class="map-dot"></span>
+        Police Station 1
+      </div>
+
+      <!-- POLICE STATION 2 -->
+      <div class="map-label location-two">
+        <span class="map-dot"></span>
+        Police Station 2
+      </div>
+
+    </div>
+
+    <!-- STATION LABEL -->
+    <div class="section-label station-label">
+      Preferred Police Station (Central, Cebu)
+    </div>
+
+    <!-- POLICE STATION LIST -->
+    <div class="police-list">
+
+      <!-- POLICE STATION 1 -->
+      <div class="police-card">
+
+        <div class="icon-wrap">
+          <i class="fa-solid fa-shield-halved"
+             aria-hidden="true"></i>
         </div>
-      </section>
 
-      <section class="station-list" aria-label="Nearby police stations">
-        <article class="station-card">
-          <div class="fire-icon siren-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M5 18h14l-1.1-7.2a5.9 5.9 0 0 0-11.8 0L5 18z"></path>
-              <path d="M3 21h18M12 3V1M5.2 5.2 3.8 3.8m15 1.4 1.4-1.4M2 11H1m22 0h-1"></path>
-            </svg>
-          </div>
-          <div class="station-info">
-            <h2>Police 1</h2>
-            <p class="station-location">Ginatilan Municipal Police Station</p>
-            <div class="status-row">
-              <span class="availability"><span class="status-dot"></span>Available</span>
-              <span class="distance">1.0 km</span>
-            </div>
-          </div>
-          <button class="call-btn" type="button" data-station="Police 1">Call</button>
-        </article>
+        <div class="card-text">
+          <h3>Police Station 1</h3>
+          <span>Guadalupe Police Station</span>
 
-        <article class="station-card">
-          <div class="fire-icon siren-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M5 18h14l-1.1-7.2a5.9 5.9 0 0 0-11.8 0L5 18z"></path>
-              <path d="M3 21h18M12 3V1M5.2 5.2 3.8 3.8m15 1.4 1.4-1.4M2 11H1m22 0h-1"></path>
-            </svg>
+          <div class="status-row">
+            <span class="status available">
+              <i class="fa-solid fa-circle"></i>
+              Available
+            </span>
+            <small>1.2 km</small>
           </div>
-          <div class="station-info">
-            <h2>Police 2</h2>
-            <p class="station-location">Samboan Municipal Police Station</p>
-            <div class="status-row">
-              <span class="availability busy"><span class="status-dot"></span>Busy</span>
-              <span class="distance">2.0 km</span>
-            </div>
+        </div>
+
+        <button class="call-btn"
+          onclick="callPolice('Police Station 1')">
+          Call
+        </button>
+
+      </div>
+
+      <!-- POLICE STATION 2 -->
+      <div class="police-card">
+
+        <div class="icon-wrap">
+          <i class="fa-solid fa-shield-halved"
+             aria-hidden="true"></i>
+        </div>
+
+        <div class="card-text">
+          <h3>Police Station 2</h3>
+          <span>Central Cebu Police Station</span>
+
+          <div class="status-row">
+            <span class="status busy">
+              <i class="fa-solid fa-circle"></i>
+              Busy
+            </span>
+            <small>1.8 km</small>
           </div>
-          <button class="call-btn" type="button" data-station="Police 2">Call</button>
-        </article>
-      </section>
+        </div>
 
-      <p class="feedback" aria-live="polite" hidden></p>
-    </main>
+        <button class="call-btn"
+          onclick="callPolice('Police Station 2')">
+          Call
+        </button>
 
+      </div>
+
+    </div>
+
+    <!-- BOTTOM NAVIGATION -->
     <nav class="bottom-nav" aria-label="Main navigation">
-      <a class="nav-item active" href="citizen.html" aria-current="page">
+
+      <a class="nav-item active" href="citizen.html">
         <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="10.8" cy="10.8" r="6.3"></circle>
-          <path d="m15.5 15.5 4.2 4.2"></path>
+          <circle cx="11" cy="11" r="6"></circle>
+          <path d="M16 16L21 21"></path>
         </svg>
         <span>Find</span>
       </a>
+
       <a class="nav-item" href="responders.html">
         <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="9" cy="8" r="3"></circle>
-          <path d="M3.5 19v-1.5a5.5 5.5 0 0 1 11 0V19zM16 5.5a3 3 0 0 1 0 5.8M18 14a4.5 4.5 0 0 1 2.5 4v1"></path>
+          <path d="M12 3a9 9 0 1 0 9 9"></path>
+          <path d="M12 7v5l3 2"></path>
         </svg>
         <span>Responder</span>
       </a>
-      <button class="nav-item" type="button" data-nav="Log">
+
+      <a class="nav-item" href="log.html">
         <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M6 3.5h9l3 3V20H6zM15 3.5v4h4M9 12h6M9 16h6"></path>
+          <path d="M6 3.5h9l3 3V19a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2z"></path>
+          <path d="M15 3.5v4h4"></path>
+          <path d="M8 11h8"></path>
+          <path d="M8 15h8"></path>
         </svg>
         <span>Log</span>
-      </button>
+      </a>
+
     </nav>
+
   </div>
+
 </body>
 </html>

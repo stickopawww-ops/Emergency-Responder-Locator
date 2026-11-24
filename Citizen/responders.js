@@ -88,9 +88,12 @@ responderList.addEventListener("click", async (event) => {
     button.disabled = false;
   }
 });
+<<<<<<< HEAD
 
 document.querySelector('[data-nav="Log"]').addEventListener("click", () => {
   window.location.href = "log.html";
 });
 
 loadResponders();
+=======
+>>>>>>> c15c58f9dfd149c3beb1cb2cc71cd0ae8bf35f38
