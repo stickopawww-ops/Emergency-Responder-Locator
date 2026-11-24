@@ -50,7 +50,7 @@ document.querySelector(".back").onclick=()=>{
 
 };
 
-document.querySelector(".verify").onclick=()=>{
+document.querySelector(".verify").onclick=async ()=>{
 
     const code=[...inputs].map(i=>i.value).join("");
 
@@ -60,12 +60,28 @@ document.querySelector(".verify").onclick=()=>{
         return;
     }
 
-    if (code !== "1234") {
-        message.textContent = "That code is incorrect. Use the demo code 1234.";
+    const challengeId = localStorage.getItem("responderChallengeId");
+    if (!challengeId) {
+        message.textContent = "Verification expired. Please send a new code.";
         return;
     }
 
-    localStorage.setItem("responderVerified", "true");
-    window.location.href="../approval-status/approval-status.html";
+    try {
+        const response = await fetch("/api/responder/verify-otp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ challengeId, code })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message || "Verification failed.");
+
+        localStorage.setItem("responderToken", data.token);
+        localStorage.setItem("responderVerified", "true");
+        localStorage.setItem("responderApprovalStatus", data.responder.status);
+        localStorage.removeItem("responderChallengeId");
+        window.location.href="../approval-status/approval-status.html";
+    } catch (error) {
+        message.textContent = error.message;
+    }
 
 };

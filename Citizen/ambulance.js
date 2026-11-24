@@ -6,22 +6,21 @@ const ICONS = {
   navLog: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9l3 3V19a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2z"></path><path d="M15 3.5v4h4"></path><path d="M8 11h8"></path><path d="M8 15h8"></path></svg>'
 };
 
-const ambulances = [
-  {
-    id: 'amb-1',
-    name: 'Ambulance 1',
-    location: 'Ginatilan Rural Health Unit',
-    status: 'Available',
-    distance: '1.4 km'
-  },
-  {
-    id: 'amb-2',
-    name: 'Ambulance 2',
-    location: 'Ginatilan Municipal Health Office',
-    status: 'Busy',
-    distance: '1.8 km'
+let ambulances = [];
+
+async function loadAmbulances() {
+  try {
+    const response = await fetch("/api/public/responders");
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message || "Unable to load responders.");
+    ambulances = data.responders.filter(unit =>
+      unit.responder_type.toLowerCase().includes("ambulance")
+    );
+  } catch (error) {
+    ambulances = [];
   }
-];
+  initFrame2();
+}
 
 function initFrame2() {
   // Render Back Button Icon
@@ -33,7 +32,7 @@ function initFrame2() {
 
   // Render Ambulance Cards
   const listContainer = document.getElementById('ambulanceList');
-  listContainer.innerHTML = ambulances.map(unit => {
+  listContainer.innerHTML = ambulances.length ? ambulances.map(unit => {
     const isAvailable = unit.status === 'Available';
     const badgeClass = isAvailable ? 'available' : 'busy';
     const statusDot = isAvailable ? '●' : '▲';
@@ -54,7 +53,7 @@ function initFrame2() {
         <button class="call-btn" data-name="${unit.name}">Call</button>
       </div>
     `;
-  }).join('');
+  }).join('') : '<div class="responder-card"><div class="card-info"><span class="responder-name">No ambulances available</span></div></div>';
 
   // Render Bottom Nav
   const bottomNav = document.getElementById('bottomNav');
@@ -68,9 +67,20 @@ function initFrame2() {
   listContainer.addEventListener('click', (e) => {
     if (e.target.classList.contains('call-btn')) {
       const unitName = e.target.getAttribute('data-name');
-      alert(`Calling ${unitName}... Incident logged.`);
+      fetch("/api/public/incidents", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: `Call for ${unitName}`,
+          location: "Citizen request"
+        })
+      }).then(response => response.json()).then(() => {
+        alert(`Calling ${unitName}... Incident logged.`);
+      }).catch(() => {
+        alert(`Calling ${unitName}... Backend unavailable.`);
+      });
     }
   });
 }
 
-document.addEventListener('DOMContentLoaded', initFrame2);
+document.addEventListener('DOMContentLoaded', loadAmbulances);

@@ -13,6 +13,7 @@ if (logoutButton) {
       localStorage.removeItem("responderPhone");
       localStorage.removeItem("responderVerified");
       localStorage.removeItem("responderApprovalStatus");
+      localStorage.removeItem("responderToken");
       window.location.replace("../../Sign-In/Screens/responder-sign-in/sign-in.html");
     }
   });

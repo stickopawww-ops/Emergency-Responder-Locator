@@ -1,11 +1,14 @@
-const team = [
-  { name: "Ambulance 1", location: "Ginatilan Rural Health Unit", status: "Available" },
-  { name: "Ambulance 1", location: "Ginatilan Municipal Health Office", status: "Available" },
-  { name: "Fire Truck 1", location: "BFP R7 Ginatilan Fire Station", status: "Available" },
-  { name: "Tanod Post A", location: "San Roque Barangay Hall", status: "Available" },
-  { name: "Police Station", location: "Ginatilan Municipal Police Station", status: "Available" },
-  { name: "Tanod Post B", location: "San Roque Barangay Hall", status: "Off" },
-];
+const token = sessionStorage.getItem("adminToken");
+if (!token) window.location.href = "admin-signin.html";
+const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
+let team = [];
+
+async function apiRequest(url, options = {}) {
+  const response = await fetch(url, { ...options, headers: { ...headers, ...(options.headers || {}) } });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.message || "Request failed.");
+  return data;
+}
 
 function render(filter = "All") {
   const list = document.getElementById("teamList");
@@ -34,7 +37,25 @@ function filterTeam(status, btn) {
 }
 
 function addResponder() {
-  alert("Add Responder clicked!");
+  const name = prompt("Responder name:");
+  const responderType = prompt("Responder type (Ambulance, Fire, Police, or Tanod):");
+  const location = prompt("Station or location:");
+  if (!name || !responderType || !location) return;
+
+  apiRequest("/api/admin/responders", {
+    method: "POST",
+    body: JSON.stringify({ name: name.trim(), responderType: responderType.trim(), location: location.trim() })
+  }).then(loadTeam).catch(error => alert(error.message));
 }
 
-render();
+async function loadTeam() {
+  try {
+    const data = await apiRequest("/api/admin/responders");
+    team = data.responders;
+    render();
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+loadTeam();

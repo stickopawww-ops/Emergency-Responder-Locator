@@ -22,7 +22,26 @@ All dispatch, availability, approvals, and call records are local demo data. The
 
 ## Run locally
 
+To use responder OTP verification, admin approval, and dashboard authorization:
+
+1. From the repository root, run `npm start`.
+2. Open `http://127.0.0.1:8080`.
+3. Responder demo OTP: `1234`.
+4. Admin email: `rosa@cebucity.gov.ph`
+5. Admin password: `Admin@123456`
+6. Admin demo OTP: `123456`.
+
+For the static-only demo:
+
 Open the repository folder in VS Code, install/use the Live Server extension if needed, then choose **Open with Live Server** on `index.html`. The app uses native JavaScript modules, so it must be served over HTTP rather than opened directly as a `file://` page.
+
+For the MySQL-backed admin authentication backend:
+
+1. Import `server/database.sql` into MySQL.
+2. Copy `server/.env.example` to `server/.env` and set the database credentials and a random `JWT_SECRET`.
+3. From the repository root, run `npm install`.
+4. Run `npm start`.
+5. Open `http://localhost:8080/Admin/admin-signin.html`.
 
 ## Integration boundary
 

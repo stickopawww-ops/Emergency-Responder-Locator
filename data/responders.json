@@ -1,0 +1,32 @@
+[
+  {
+    "phone": "9916663601",
+    "name": "Responder",
+    "unit": "Unassigned unit",
+    "station": "Unassigned station",
+    "status": "approved",
+    "verified": true,
+    "availability": "off-duty",
+    "createdAt": "2026-11-24T00:29:52.802Z"
+  },
+  {
+    "phone": "9357252890",
+    "name": "Responder",
+    "unit": "Unassigned unit",
+    "station": "Unassigned station",
+    "status": "approved",
+    "verified": true,
+    "availability": "off-duty",
+    "createdAt": "2026-11-24T00:47:00.857Z"
+  },
+  {
+    "phone": "9123233423",
+    "name": "Responder",
+    "unit": "Unassigned unit",
+    "station": "Unassigned station",
+    "status": "approved",
+    "verified": true,
+    "availability": "off-duty",
+    "createdAt": "2026-11-24T00:53:56.795Z"
+  }
+]

@@ -98,9 +98,7 @@ function setStatus(status) {
 }
 
 advanceStatusButton.addEventListener("click", () => {
-    currentStatus = currentStatus === STATUS.PENDING ? STATUS.REVIEWING : STATUS.APPROVED;
-    localStorage.setItem("responderApprovalStatus", currentStatus);
-    setStatus(currentStatus);
+    window.location.reload();
 });
 
 startButton.addEventListener("click", () => {
@@ -121,9 +119,38 @@ if (logoutButton) {
         localStorage.removeItem("responderPhone");
         localStorage.removeItem("responderVerified");
         localStorage.removeItem("responderApprovalStatus");
+        localStorage.removeItem("responderToken");
         window.location.replace("../responder-sign-in/sign-in.html");
 
     });
 }
 
+advanceStatusButton.textContent = "Refresh approval status";
+
+async function refreshFromServer() {
+    const token = localStorage.getItem("responderToken");
+    if (!token) return;
+
+    try {
+        const response = await fetch("/api/responder/status", {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message || "Unable to check approval.");
+
+        const serverStatus = data.responder.status;
+        currentStatus = serverStatus === "approved"
+            ? STATUS.APPROVED
+            : serverStatus === "rejected"
+                ? STATUS.PENDING
+                : STATUS.PENDING;
+        localStorage.setItem("responderApprovalStatus", currentStatus);
+        setStatus(currentStatus);
+    } catch (error) {
+        pageDescription.textContent = error.message;
+    }
+}
+
 setStatus(currentStatus);
+refreshFromServer();
+setInterval(refreshFromServer, 5000);

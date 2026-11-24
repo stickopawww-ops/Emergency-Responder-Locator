@@ -56,7 +56,7 @@ otpInputs.forEach((input, index) => {
     });
 });
 
-otpForm.addEventListener("submit", function (event) {
+otpForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const code = getCode();
@@ -66,17 +66,38 @@ otpForm.addEventListener("submit", function (event) {
         return;
     }
 
-    if (code === "123456") {
-        window.location.href = "approval.html";
+    const challengeId = sessionStorage.getItem("adminChallengeId");
+    if (!challengeId) {
+        alert("Your sign-in session expired. Please sign in again.");
+        window.location.href = "admin-signin.html";
         return;
     }
 
-    alert("Incorrect verification code. Please try again.");
-    otpInputs.forEach(input => {
-        input.value = "";
-        input.classList.add("error");
-    });
-    otpInputs[0].focus();
+    try {
+        const response = await fetch("/api/admin/auth/verify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ challengeId, code })
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Verification failed.");
+        }
+
+        sessionStorage.setItem("adminToken", data.token);
+        sessionStorage.setItem("adminUser", JSON.stringify(data.admin));
+        sessionStorage.removeItem("adminChallengeId");
+        sessionStorage.removeItem("adminDemoOtp");
+        window.location.href = "approval.html";
+    } catch (error) {
+        alert(error.message);
+        otpInputs.forEach(input => {
+            input.value = "";
+            input.classList.add("error");
+        });
+        otpInputs[0].focus();
+    }
 });
 
 function goBack() {
@@ -110,14 +131,43 @@ function startCountdown() {
     }, 1000);
 }
 
-function resendCode() {
+async function resendCode() {
     otpInputs.forEach(input => {
         input.value = "";
         input.classList.remove("error");
     });
     otpInputs[0].focus();
-    alert("A new demo verification code has been requested. Use 123456.");
-    startCountdown();
+
+    const challengeId = sessionStorage.getItem("adminChallengeId");
+    if (!challengeId) {
+        alert("Your sign-in session expired. Please sign in again.");
+        window.location.href = "admin-signin.html";
+        return;
+    }
+
+    try {
+        const response = await fetch("/api/admin/auth/resend", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ challengeId })
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message || "Unable to resend code.");
+        }
+
+        sessionStorage.setItem("adminChallengeId", data.challengeId);
+        sessionStorage.setItem("adminMaskedPhone", data.maskedPhone || "");
+        if (data.demoOtp) {
+            sessionStorage.setItem("adminDemoOtp", data.demoOtp);
+            alert(`A new demo verification code has been requested: ${data.demoOtp}`);
+        } else {
+            alert("A new verification code has been requested.");
+        }
+        startCountdown();
+    } catch (error) {
+        alert(error.message);
+    }
 }
 
 window.goBack = goBack;
