@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:#F3F3F3;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+/* PHONE */
+
+.phone{
+
+    width:412px;
+
+    height:917px;
+
+    background:#F1EDFF;
+
+    border-radius:0;
+
+    padding:32px 36px;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* HEADER */
+
+.simple-header{
+
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:32px;
+
+}
+
+.back-btn{
+
+    width:28px;
+    height:28px;
+    border:none;
+    border-radius:50%;
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.arrow{
+
+    width:7px;
+    height:7px;
+    border-left:1.5px solid #111052;
+    border-bottom:1.5px solid #111052;
+    transform:rotate(45deg);
+
+}
+
+.app-header{
+
+    display:flex;
+    align-items:center;
+    gap:5px;
+    margin-left:0;
+
+}
+
+.shield-icon{
+
+    width:18px;
+    height:18px;
+    color:#101044;
+    flex-shrink:0;
+
+}
+
+.app-name{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#111052;
+
+}
+
+/* TITLE */
+
+.title-section{
+
+    margin-bottom:18px;
+
+}
+
+.title-section h1{
+
+    font-size:25px;
+
+    font-weight:800;
+
+    color:#111052;
+
+    margin-bottom:6px;
+
+}
+
+.title-section p{
+
+    font-size:11px;
+
+    line-height:15px;
+
+    color:#555;
+
+}
+
+/* UNIT CARD */
+
+.unit-card{
+
+    width:100%;
+
+    height:78px;
+
+    background:#62A9AE;
+
+    border-radius:7px;
+
+    padding:12px;
+
+    margin-bottom:20px;
+
+}
+
+.unit-label{
+
+    font-size:8px;
+
+    color:white;
+
+    margin-bottom:1px;
+
+}
+
+.unit-card h2{
+
+    font-size:16px;
+
+    font-weight:800;
+
+    color:#111052;
+
+}
+
+.unit-card p{
+
+    font-size:10px;
+
+    color:#111052;
+
+    margin-top:1px;
+
+}
+
+.unit-card span{
+
+    font-size:8px;
+
+    color:#111052;
+
+}
+
+/* OTP SECTION */
+
+.verification-section p{
+
+    font-size:11px;
+
+    color:#111052;
+
+    margin-bottom:12px;
+
+}
+
+.otp-boxes{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.otp-boxes input{
+
+    width:49px;
+
+    height:49px;
+
+    background:white;
+
+    border:1px solid #111052;
+
+    border-radius:6px;
+
+    text-align:center;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#111052;
+
+    outline:none;
+
+}
+
+/* BUTTON */
+
+.verify-btn{
+
+    width:100%;
+
+    height:40px;
+
+    margin-top:17px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#111052;
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+.resend-btn{
+
+    width:100%;
+
+    margin-top:13px;
+
+    border:none;
+
+    background:transparent;
+
+    color:#111052;
+
+    font-size:11px;
+
+    font-weight:500;
+
+    text-decoration:underline;
+
+}
+
+.decline-btn{
+
+    width:100%;
+
+    margin-top:10px;
+
+    border:none;
+
+    background:transparent;
+
+    color:#C62828;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    text-decoration:underline;
+
+}
+
+/* HELP BOX */
+
+.help-box{
+
+    position:absolute;
+
+    bottom:20px;
+
+    left:26px;
+
+    width:360px;
+
+    background:#E9E3F5;
+
+    border-radius:7px;
+
+    padding:10px;
+
+}
+
+.help-box p{
+
+    font-size:8px;
+
+    line-height:11px;
+
+    color:#555;
+
+}

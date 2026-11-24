@@ -1,16 +1,29 @@
-const feedback = document.querySelector(".feedback");
 
-document.querySelector(".back-btn").addEventListener("click", () => {
-  window.location.href = "citizen.html";
-});
+// BACK BUTTON
+function goBack() {
+  window.history.back();
+}
 
+<<<<<<< HEAD
 document.querySelectorAll(".call-btn").forEach((button) => {
   button.addEventListener("click", () => {
-    feedback.textContent = `Calling ${button.dataset.station} is not available in this preview.`;
-    feedback.hidden = false;
+    EmergencyApi.reportCall(button, "Police", `Citizen requested ${button.dataset.station}.`, feedback);
   });
 });
+=======
+// NAVIGATION
+function goToPage(page) {
+  window.location.href = page;
+}
+>>>>>>> c15c58f9dfd149c3beb1cb2cc71cd0ae8bf35f38
 
-document.querySelector('[data-nav="Log"]').addEventListener("click", () => {
-  window.location.href = "log.html";
-});
+// CALL POLICE STATION
+function callPolice(name) {
+  const confirmCall = confirm(
+    "Do you want to call " + name + "?"
+  );
+
+  if (confirmCall) {
+    alert("You selected " + name + ".");
+  }
+}

@@ -6,8 +6,7 @@ document.querySelector(".back-btn").addEventListener("click", () => {
 
 document.querySelectorAll(".call-btn").forEach((button) => {
   button.addEventListener("click", () => {
-    feedback.textContent = `Calling ${button.dataset.responder} is not available in this preview.`;
-    feedback.hidden = false;
+    EmergencyApi.reportCall(button, "Responder request", `Citizen requested ${button.dataset.responder}.`, feedback);
   });
 });
 

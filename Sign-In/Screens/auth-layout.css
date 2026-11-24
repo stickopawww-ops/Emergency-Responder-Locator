@@ -1,0 +1,101 @@
+*{
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    min-height:100dvh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    background:#eeeeee;
+    padding:0;
+}
+
+.phone,
+.container{
+    width:100%;
+    max-width:412px;
+    height:100vh;
+    height:100dvh;
+    min-height:100dvh;
+    max-height:none;
+    padding:24px 30px;
+    overflow-x:hidden;
+    overflow-y:auto;
+    position:relative;
+    border-radius:18px;
+    background:#F7F3FF;
+    box-shadow:0 8px 30px rgba(23,29,62,.18);
+}
+
+.back{
+    width:30px;
+    min-width:30px;
+    height:30px;
+    margin:0 0 16px;
+    padding:0;
+    border:0;
+    border-radius:50%;
+    background:#ffffff;
+    color:#101044;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:inherit;
+    font-size:22px;
+    line-height:1;
+    cursor:pointer;
+    box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+
+.phone h1,
+.container h1{
+    font-size:22px;
+    line-height:1.25;
+    font-weight:800;
+    color:#0B0B4F;
+    margin-bottom:8px;
+}
+
+.phone .subtitle,
+.container .description{
+    width:auto;
+    max-width:100%;
+    font-size:9px;
+    line-height:12px;
+    margin:0 0 16px;
+}
+
+.phone label,
+.container label{
+    font-size:8px;
+    margin-bottom:4px;
+}
+
+.phone .main-btn,
+.phone .send-btn,
+.phone .reset-btn,
+.phone .verify,
+.container .send-code-btn{
+    height:43px;
+    border-radius:10px;
+}
+
+@media (max-width:600px){
+    body{
+        background:#F7F3FF;
+    }
+
+    .phone,
+    .container{
+        border-radius:0;
+        box-shadow:none;
+    }
+}
+
+@media (max-width:360px){
+    .units{
+        flex-wrap:wrap;
+    }
+}

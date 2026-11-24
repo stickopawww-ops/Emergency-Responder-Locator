@@ -6,24 +6,7 @@ const ICONS = {
   navLog: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9l3 3V19a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2z"></path><path d="M15 3.5v4h4"></path><path d="M8 11h8"></path><path d="M8 15h8"></path></svg>'
 };
 
-const ambulances = [
-  {
-    id: 'amb-1',
-    name: 'Ambulance 1',
-    location: 'Ginatilan Rural Health Unit',
-    status: 'Available',
-    distance: '1.4 km'
-  },
-  {
-    id: 'amb-2',
-    name: 'Ambulance 2',
-    location: 'Ginatilan Municipal Health Office',
-    status: 'Busy',
-    distance: '1.8 km'
-  }
-];
-
-function initFrame2() {
+async function initFrame2() {
   // Render Back Button Icon
   const backButton = document.getElementById('backBtn');
   backButton.innerHTML = ICONS.backArrow;
@@ -31,44 +14,75 @@ function initFrame2() {
     window.location.href = 'citizen.html';
   });
 
-  // Render Ambulance Cards
   const listContainer = document.getElementById('ambulanceList');
-  listContainer.innerHTML = ambulances.map(unit => {
-    const isAvailable = unit.status === 'Available';
-    const badgeClass = isAvailable ? 'available' : 'busy';
-    const statusDot = isAvailable ? '●' : '▲';
-
-    return `
-      <div class="responder-card">
-        <div class="card-left">
-          <div class="icon-box">${ICONS.ambulance}</div>
-          <div class="card-info">
-            <span class="responder-name">${unit.name}</span>
-            <span class="responder-location">${unit.location}</span>
-            <div class="status-row">
-              <span class="badge ${badgeClass}">${statusDot} ${unit.status}</span>
-              <span class="distance">${unit.distance}</span>
-            </div>
-          </div>
-        </div>
-        <button class="call-btn" data-name="${unit.name}">Call</button>
-      </div>
-    `;
-  }).join('');
+  const feedback = document.createElement('p');
+  feedback.className = 'feedback';
+  feedback.setAttribute('aria-live', 'polite');
+  feedback.hidden = true;
+  listContainer.after(feedback);
+  try {
+    const responders = await EmergencyApi.request('/api/responders', { auth: false });
+    const ambulances = responders.filter(unit => /ambulance|medical/i.test(`${unit.unitType} ${unit.unitName}`));
+    if (!ambulances.length) {
+      listContainer.textContent = 'No medical responders are currently listed.';
+    } else {
+      listContainer.replaceChildren();
+      ambulances.forEach(unit => {
+        const card = document.createElement('div');
+        card.className = 'responder-card';
+        const left = document.createElement('div');
+        left.className = 'card-left';
+        const icon = document.createElement('div');
+        icon.className = 'icon-box';
+        icon.innerHTML = ICONS.ambulance;
+        const info = document.createElement('div');
+        info.className = 'card-info';
+        const name = document.createElement('span');
+        name.className = 'responder-name';
+        name.textContent = unit.unitName || unit.fullName;
+        const location = document.createElement('span');
+        location.className = 'responder-location';
+        location.textContent = unit.baseStation || 'Base station not provided';
+        const row = document.createElement('div');
+        row.className = 'status-row';
+        const status = document.createElement('span');
+        status.className = `badge ${unit.availability.toLowerCase()}`;
+        status.textContent = unit.availability;
+        const distance = document.createElement('span');
+        distance.className = 'distance';
+        distance.textContent = unit.distanceKm == null ? '' : `${unit.distanceKm.toFixed(1)} km`;
+        row.append(status, distance);
+        info.append(name, location, row);
+        left.append(icon, info);
+        const call = document.createElement('button');
+        call.className = 'call-btn';
+        call.type = 'button';
+        call.dataset.name = unit.unitName || unit.fullName;
+        call.textContent = 'Call';
+        card.append(left, call);
+        listContainer.append(card);
+      });
+    }
+  } catch (error) {
+    listContainer.textContent = error.message;
+  }
 
   // Render Bottom Nav
   const bottomNav = document.getElementById('bottomNav');
   bottomNav.innerHTML = `
-    <div class="nav-item active">${ICONS.navFind}<span>Find</span></div>
-    <div class="nav-item">${ICONS.navResponder}<span>Responder</span></div>
-    <div class="nav-item">${ICONS.navLog}<span>Log</span></div>
+<<<<<<< HEAD
+    <a class="nav-item active" href="citizen.html">${ICONS.navFind}<span>Find</span></a>
+=======
+    <a class="nav-item active" href="citizen.html" aria-current="page">${ICONS.navFind}<span>Find</span></a>
+>>>>>>> c15c58f9dfd149c3beb1cb2cc71cd0ae8bf35f38
+    <a class="nav-item" href="responders.html">${ICONS.navResponder}<span>Responder</span></a>
+    <a class="nav-item" href="log.html">${ICONS.navLog}<span>Log</span></a>
   `;
 
-  // Attach Call Button Event
   listContainer.addEventListener('click', (e) => {
-    if (e.target.classList.contains('call-btn')) {
-      const unitName = e.target.getAttribute('data-name');
-      alert(`Calling ${unitName}... Incident logged.`);
+    const button = e.target.closest('.call-btn');
+    if (button) {
+      EmergencyApi.reportCall(button, 'Medical', `Citizen requested ${button.dataset.name}.`, feedback);
     }
   });
 }

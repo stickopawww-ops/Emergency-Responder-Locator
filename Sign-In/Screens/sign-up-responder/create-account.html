@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Responder Account</title>
+    <link rel="stylesheet" href="create-account.css">
+    <link rel="stylesheet" href="../auth-layout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="phone">
+
+    <button class="back" type="button" aria-label="Back to sign in">
+        <span>‹</span>
+    </button>
+
+    <form id="signupForm">
+    <h1>Create responder account</h1>
+
+    <p class="subtitle">
+        Step 1 out of 2. Tell us who you are and which unit you are requesting.
+        An admin reviews every request.
+    </p>
+
+    <section>
+        <label>ABOUT YOU</label>
+
+        <small>Full name</small>
+        <input id="fullName" type="text" placeholder="Juan Dela Cruz" required>
+
+        <small>Mobile Number</small>
+        <div class="phone-input">
+            <div class="code">+63</div>
+            <input id="mobileNumber" type="tel" inputmode="numeric" maxlength="10" placeholder="991 654 2601" required>
+        </div>
+    </section>
+
+
+    <section>
+        <label>YOUR UNIT</label>
+
+        <small>Unit type</small>
+
+        <div class="units">
+            <button type="button" class="active">Ambulance</button>
+            <button type="button">Fire Truck</button>
+            <button type="button">Tanod</button>
+            <button type="button">Police</button>
+        </div>
+
+
+        <small>Unit name you are requesting</small>
+        <input id="unitName" type="text" placeholder="Ambulance 1" required>
+
+
+        <small>Base station</small>
+        <input id="baseStation" type="text" placeholder="Health Center, Sambigan" required>
+
+    </section>
+
+
+    <section>
+
+        <label>PASSWORD</label>
+
+        <small>Create password</small>
+
+        <div class="password-box">
+            <input id="createPassword" type="password" minlength="8" placeholder="********" required>
+            <button type="button" class="show">Show</button>
+        </div>
+
+        <p class="hint">
+            At least 8 characters
+        </p>
+
+
+        <small>Confirm password</small>
+
+        <div class="password-box">
+            <input id="confirmPassword" type="password" minlength="8" placeholder="********" required>
+        </div>
+
+    </section>
+
+
+    <button class="main-btn" type="submit">
+        Send code
+    </button>
+    <p id="signupMessage" role="status" aria-live="polite"></p>
+    </form>
+
+
+    <p class="terms">
+        We will text a code to verify your number
+    </p>
+
+    <a class="signin" href="../responder-sign-in/sign-in.html">
+        Already have account? Sign in
+    </a>
+
+</div>
+
+
+<script src="../../../api-client.js"></script>
+<script src="../password-utils.js"></script>
+<script src="create-account.js"></script>
+
+</body>
+</html>

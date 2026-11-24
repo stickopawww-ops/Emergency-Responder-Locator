@@ -1,40 +1,83 @@
-const team = [
-  { name: "Ambulance 1", location: "Ginatilan Rural Health Unit", status: "Available" },
-  { name: "Ambulance 1", location: "Ginatilan Municipal Health Office", status: "Available" },
-  { name: "Fire Truck 1", location: "BFP R7 Ginatilan Fire Station", status: "Available" },
-  { name: "Tanod Post A", location: "San Roque Barangay Hall", status: "Available" },
-  { name: "Police Station", location: "Ginatilan Municipal Police Station", status: "Available" },
-  { name: "Tanod Post B", location: "San Roque Barangay Hall", status: "Off" },
-];
+let currentFilter = "All";
 
-function render(filter = "All") {
+if (!sessionStorage.getItem("adminAuthToken")) {
+  window.location.replace("admin-signin.html");
+}
+
+function matchesFilter(responder) {
+  if (currentFilter === "All") return true;
+  if (currentFilter === "Off") return responder.availability === "OFF_DUTY";
+  return responder.availability === currentFilter.toUpperCase();
+}
+
+async function render() {
   const list = document.getElementById("teamList");
-  const filtered = team.filter(t => filter === "All" || t.status === filter);
-  
-  if (filtered.length === 0) {
-    list.innerHTML = `<div class="empty"><h3>No units</h3><p>Nobody matches this filter.</p></div>`;
-    return;
+  list.replaceChildren();
+  try {
+    const team = await EmergencyApi.request("/api/admin/responders", { role: "admin" });
+    const filtered = team.filter(matchesFilter);
+    if (!filtered.length) {
+      const empty = document.createElement("div");
+      empty.className = "empty";
+      const heading = document.createElement("h3");
+      heading.textContent = "No units";
+      const message = document.createElement("p");
+      message.textContent = "Nobody matches this filter.";
+      empty.append(heading, message);
+      list.append(empty);
+      return;
+    }
+
+    filtered.forEach((responder) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      const heading = document.createElement("h3");
+      heading.textContent = responder.unitName || responder.fullName;
+      const location = document.createElement("p");
+      location.textContent = `${responder.unitType || "Responder"} · ${responder.baseStation || "No base station"}`;
+      const badge = document.createElement("span");
+      badge.className = `badge ${responder.availability.toLowerCase()}`;
+      badge.textContent = responder.availability.replace("_", " ");
+      card.append(heading, location, badge);
+      list.append(card);
+    });
+  } catch (error) {
+    list.textContent = error.message;
   }
-
-  list.innerHTML = "";
-  filtered.forEach(t => {
-    const badgeText = t.status === "Off" ? "Off duty" : t.status;
-    list.innerHTML += `<div class="card">
-      <h3>${t.name}</h3>
-      <p>${t.location}</p>
-      <span class="badge ${t.status.toLowerCase()}">${badgeText}</span>
-    </div>`;
-  });
 }
 
-function filterTeam(status, btn) {
-  document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
-  btn.classList.add("active");
-  render(status);
+function filterTeam(status, button) {
+  currentFilter = status;
+  document.querySelectorAll(".filter").forEach((filter) => filter.classList.remove("active"));
+  button.classList.add("active");
+  render();
 }
 
+<<<<<<< HEAD
 function addResponder() {
-  alert("Add Responder clicked!");
+  window.location.href = "add-responder/add-responder.html";
+=======
+async function addResponder() {
+  const fullName = window.prompt("Responder contact name:");
+  if (!fullName) return;
+  const unitType = window.prompt("Unit type (for example Fire, Police, Medical):");
+  if (!unitType) return;
+  const unitName = window.prompt("Unit name:");
+  if (!unitName) return;
+  const baseStation = window.prompt("Base station:");
+  if (!baseStation) return;
+
+  try {
+    await EmergencyApi.request("/api/admin/responders", {
+      method: "POST",
+      role: "admin",
+      body: { fullName, unitType, unitName, baseStation, availability: "OFF_DUTY" }
+    });
+    render();
+  } catch (error) {
+    window.alert(error.message);
+  }
+>>>>>>> 5b4037accf7964c2fc84f6d459ec4c768d9628d3
 }
 
 render();

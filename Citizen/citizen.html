@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emergency Responder Locator</title>
   <link rel="stylesheet" href="citizen.css" />
+  <link rel="stylesheet" href="citizen-shell.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <script src="../api-client.js" defer></script>
   <script src="citizen.js" defer></script>
 </head>
 <body>
   <div class="phone">
     <header class="topbar">
       <button class="back-btn" aria-label="Back">
-        <svg viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M15 18L9 12L15 6" />
         </svg>
       </button>
@@ -27,7 +29,7 @@
       </svg>
       <input type="text" placeholder="Search" />
       <button class="mic-btn" aria-label="Voice Search">
-        <svg viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 15a3 3 0 0 0 3-3V7a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3z"></path>
           <path d="M19 11a7 7 0 0 1-14 0"></path>
           <path d="M12 18v3"></path>
@@ -50,52 +52,60 @@
         </div>
       </a>
 
-      <a class="card card-link" href="fire-station.html">
-        <div class="icon-wrap">
-          <i class="fa-solid fa-fire" aria-hidden="true"></i>
-        </div>
-        <div class="card-text">
-          <h3>Fire Station</h3>
-          <span>2 available</span>
-        </div>
-      </a>
+     
+<a class="card card-link" href="firestation.html">
+  <div class="icon-wrap">
+    <i class="fa-solid fa-fire" aria-hidden="true"></i>
+  </div>
+  <div class="card-text">
+    <h3>Fire Station</h3>
+    <span>2 available</span>
+  </div>
+</a>
 
-      <a class="card card-link" href="barangay-tanod.html">
-        <div class="icon-wrap">
-          <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
-        </div>
-        <div class="card-text">
-          <h3>Barangay Tanod</h3>
-          <span>1 available</span>
-        </div>
-      </a>
 
-      <a class="card card-link" href="police.html">
-        <div class="icon-wrap">
-          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-        </div>
-        <div class="card-text">
-          <h3>Police</h3>
-          <span>1 available</span>
-        </div>
-      </a>
+      <a class="card card-link" href="tanod.html">
+  <div class="icon-wrap">
+    <i class="fa-solid fa-user-shield"></i>
+  </div>
+  <div class="card-text">
+    <h3>Barangay Tanod</h3>
+    <span>1 available</span>
+  </div>
+</a>
+
+      
+<a class="card card-link" href="police.html">
+  <div class="icon-wrap">
+    <i class="fa-solid fa-shield-halved"
+       aria-hidden="true"></i>
+  </div>
+  <div class="card-text">
+    <h3>Police</h3>
+    <span>1 available</span>
+  </div>
+</a>
+
     
-      <a class="card card-link" href="nearest-any.html">
-        <div class="icon-wrap">
-          <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
-        </div>
-        <div class="card-text">
-          <h3>Nearest Any</h3>
-        </div>
-      </a>
+     
+<a class="card card-link" href="nearest.html">
+  <div class="icon-wrap">
+    <i class="fa-solid fa-location-crosshairs"
+       aria-hidden="true"></i>
+  </div>
+  <div class="card-text">
+    <h3>Nearest Any</h3>
+  </div>
+</a>
     </div>
+
 
     <div class="title">
       <h3>Other Services</h3>
     </div>
 
-    <div class="other-list">
-      <a class="other-item service-link" href="power-outage.html">
+    <a class="other-link" href="cebeco.html">
+      <div class="other-item">
         <div class="tiny-icon">
           <svg viewBox="0 0 24 24">
             <path d="M13 2L4 13h6l-1 9 9-11h-6l1-9z"></path>
@@ -103,39 +113,39 @@
         </div>
         <div class="other-text">Power Outage</div>
         <div class="other-tag">Cebeco</div>
-      </a>
-    </div>
+      </div>
+    </a>
 
     <button class="emergency-btn">Life-threatening? Call 911 now</button>
       </main>
 
-    <div class="bottom-nav">
-      <button class="nav-item active">
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <a class="nav-item active" href="citizen.html" aria-current="page">
         <svg viewBox="0 0 24 24">
           <circle cx="11" cy="11" r="6"></circle>
           <path d="M16 16L21 21"></path>
         </svg>
         <span>Find</span>
-      </button>
+      </a>
 
-      <button class="nav-item">
+      <a class="nav-item" href="responders.html">
         <svg viewBox="0 0 24 24">
           <path d="M12 3a9 9 0 1 0 9 9"></path>
           <path d="M12 7v5l3 2"></path>
         </svg>
         <span>Responder</span>
-      </button>
+      </a>
 
-      <button class="nav-item">
-        <svg viewBox="0 0 24 24">
+      <a class="nav-item" href="log.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M6 3.5h9l3 3V19a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2z"></path>
           <path d="M15 3.5v4h4"></path>
           <path d="M8 11h8"></path>
           <path d="M8 15h8"></path>
         </svg>
         <span>Log</span>
-      </button>
-    </div>
+      </a>
+    </nav>
   </div>
 </body>
 </html>

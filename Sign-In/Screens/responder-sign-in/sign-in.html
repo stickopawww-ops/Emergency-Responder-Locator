@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuickEmergency Finder - Responder Sign In</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="sign-in.css">
+    <link rel="stylesheet" href="../auth-layout.css">
 </head>
 <body>
 
@@ -12,48 +16,72 @@
 
         <header class="header">
             <div class="logo">
-                <span class="logo-icon">🚨</span>
+                <svg class="logo-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3.5 13.1 6.8 16.5 5.7 15.4 9.1 18.7 10.2 16.5 12.3 18.7 14.5 15.4 15.6 16.5 19 13.1 17.9 12 21.2 10.9 17.9 7.5 19 8.6 15.6 5.3 14.5 7.5 12.3 5.3 10.2 8.6 9.1 7.5 5.7 10.9 6.8Z"/>
+                    <circle cx="12" cy="12.3" r="3.4"/>
+                </svg>
                 <span>Emergency Responder Locator</span>
             </div>
         </header>
 
         <section class="safety-card">
             <div class="shield-icon">
-                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M12 2L4 5V11C4 16 7.5 20 12 22C16.5 20 20 16 20 11V5L12 2Z"/>
-                    <path d="M12 2V22"/>
+                <svg viewBox="0 0 64 64" aria-hidden="true">
+                    <path d="M32 6 14 12v15c0 12 7 21 18 27 11-6 18-15 18-27V12L32 6Z"/>
+                    <path d="M32 6v48"/>
+                    <path d="M22 34h20M32 24v20"/>
                 </svg>
             </div>
-
-            <h2>For Your Safety</h2>
-            <p>Your identity will be verified.</p>
+            <div class="safety-copy">
+                <h2>For verified</h2>
+                <p>responders only</p>
+            </div>
         </section>
 
         <section class="signin-section">
 
             <h1>Responder sign in</h1>
             <p class="description">
-                Enter your registered mobile number to sign in.
+                Enter your mobile number and password to access your responder account.
             </p>
 
             <form id="signinForm">
 
-                <label for="mobileNumber">Mobile Number</label>
-
-                <div class="phone-input">
-                    <span class="country-code">+63</span>
-                    <input
-                        type="tel"
-                        id="mobileNumber"
-                        placeholder="991 666 3601"
-                        maxlength="10"
-                        required
-                    >
+                <div class="field-group">
+                    <label for="mobileNumber">Mobile Number</label>
+                    <div class="phone-input">
+                        <span class="country-code">+63</span>
+                        <input
+                            type="tel"
+                            id="mobileNumber"
+                            placeholder="991 654 2601"
+                            maxlength="10"
+                            aria-describedby="message"
+                            required
+                        >
+                    </div>
                 </div>
 
-                <button type="submit" class="send-code-btn">
-                    Send Code
-                </button>
+                <div class="field-group password-group">
+                    <label for="password">Password</label>
+                    <div class="password-input">
+                        <input
+                            type="password"
+                            id="password"
+                            minlength="8"
+                            placeholder="Enter password"
+                            required
+                        >
+                        <button type="button" id="togglePassword" aria-label="Show password">Show</button>
+                    </div>
+                </div>
+
+                <div class="account-links">
+                    <a href="../forgot-password/forgot-password.html" id="forgotPassword">Forgot password?</a>
+                    <a href="../sign-up-responder/create-account.html">New responder? <strong>Create an account</strong></a>
+                </div>
+
+                <button type="submit" class="send-code-btn">Sign in</button>
 
             </form>
 
@@ -73,6 +101,8 @@
 
     </main>
 
+    <script src="../../../api-client.js"></script>
+    <script src="../password-utils.js"></script>
     <script src="sign-in.js"></script>
 </body>
 </html>
