@@ -19,7 +19,7 @@ $env:CORS_ALLOWED_ORIGINS = "http://127.0.0.1:5500,http://localhost:5500"
 mvn spring-boot:run
 ```
 
-The development profile uses a file-backed H2 database (`emergency-db`) and runs schema migrations automatically. Development responder sample records are seeded once into that database. There are no default admin credentials or fixed OTPs. In `dev`, one-time codes are printed to the backend terminal; use a Philippine number format for accounts.
+The development profile uses a file-backed H2 database (`emergency-db`) and runs schema migrations automatically. It seeds sample responder records, including available and busy ambulance units, when missing. There are no default admin credentials or fixed OTPs. In `dev`, one-time codes are printed to the backend terminal; use a Philippine number format for accounts.
 
 Serve `Emergency-Responder-Locator` with VS Code Live Server on port 5500 and open `index.html`. The frontend calls `http://localhost:8080`; change `baseUrl` in its `api-client.js` when using a different backend address. Do not open the frontend through `file://`.
 

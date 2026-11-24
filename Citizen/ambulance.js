@@ -70,11 +70,7 @@ async function initFrame2() {
   // Render Bottom Nav
   const bottomNav = document.getElementById('bottomNav');
   bottomNav.innerHTML = `
-<<<<<<< HEAD
-    <a class="nav-item active" href="citizen.html">${ICONS.navFind}<span>Find</span></a>
-=======
     <a class="nav-item active" href="citizen.html" aria-current="page">${ICONS.navFind}<span>Find</span></a>
->>>>>>> c15c58f9dfd149c3beb1cb2cc71cd0ae8bf35f38
     <a class="nav-item" href="responders.html">${ICONS.navResponder}<span>Responder</span></a>
     <a class="nav-item" href="log.html">${ICONS.navLog}<span>Log</span></a>
   `;

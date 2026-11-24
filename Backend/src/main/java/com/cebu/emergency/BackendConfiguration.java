@@ -97,13 +97,17 @@ class BackendConfiguration {
     @Profile("dev")
     ApplicationRunner seedDevelopmentResponders(ResponderRepository responders) {
         return args -> {
-            if (responders.count() != 0) return;
-            responders.saveAll(Arrays.asList(
-                sampleResponder("Medical", "Cebu City Ambulance 1", "Cebu City", "AVAILABLE"),
-                sampleResponder("Fire", "Cebu City Fire Station", "Cebu City", "AVAILABLE"),
-                sampleResponder("Police", "Cebu City Police Unit", "Cebu City", "AVAILABLE"),
-                sampleResponder("Barangay tanod", "Central Cebu Tanod Unit", "Cebu City", "AVAILABLE")
-            ));
+            if (responders.count() == 0) {
+                responders.saveAll(Arrays.asList(
+                    sampleResponder("Medical", "Cebu City Ambulance 1", "Cebu City", "AVAILABLE"),
+                    sampleResponder("Fire", "Cebu City Fire Station", "Cebu City", "AVAILABLE"),
+                    sampleResponder("Police", "Cebu City Police Unit", "Cebu City", "AVAILABLE"),
+                    sampleResponder("Barangay tanod", "Central Cebu Tanod Unit", "Cebu City", "AVAILABLE")
+                ));
+            }
+            if (!responders.existsByUnitName("Cebu City Ambulance 2")) {
+                responders.save(sampleResponder("Medical", "Cebu City Ambulance 2", "Cebu City", "BUSY"));
+            }
         };
     }
 
