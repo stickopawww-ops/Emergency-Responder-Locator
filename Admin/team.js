@@ -34,7 +34,7 @@ function filterTeam(status, btn) {
 }
 
 function addResponder() {
-  alert("Add Responder clicked!");
+  window.location.href = "add-responder/add-responder.html";
 }
 
 render();

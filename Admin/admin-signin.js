@@ -48,21 +48,6 @@ loginForm.addEventListener("submit", function (event) {
     passwordInput.focus();
 });
 
-<<<<<<< HEAD
-
-// =====================================
-// FORGOT PASSWORD
-// =====================================
-
-forgotButton.addEventListener("click", function() {
-
-    alert(
-        "Please contact your system administrator to reset your password."
-    );
-
-});
-=======
 forgotButton.addEventListener("click", function () {
     alert("Please contact your system administrator to reset your password.");
 });
->>>>>>> 52d8accef406ef8986dc098684a4a1cb296b0c0c
