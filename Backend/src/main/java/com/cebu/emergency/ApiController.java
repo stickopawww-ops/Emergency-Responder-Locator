@@ -438,7 +438,7 @@ class ApiController {
         challenge.expiresAt = Instant.now().plus(Duration.ofMinutes(5));
         challenge.attempts = 0;
         challenge.lastSentAt = Instant.now();
-        String code = String.format("%04d", random.nextInt(10_000));
+        String code = String.format("%06d", random.nextInt(1_000_000));
         challenge.codeHash = passwords.encode(code);
         challenges.save(challenge);
         if (phone != null) sms.send(phone, message + code + ".");
@@ -626,7 +626,7 @@ class ApiController {
         @Size(max = 160) String unitName,
         @Size(max = 240) String baseStation
     ) {}
-    record VerifyRequest(@NotBlank String challengeId, @NotBlank @Pattern(regexp = "\\d{4}") String code) {}
+    record VerifyRequest(@NotBlank String challengeId, @NotBlank @Pattern(regexp = "\\d{6}") String code) {}
     record ChallengeRequest(@NotBlank String challengeId) {}
     record LoginRequest(@NotBlank String phone, @NotBlank String password) {}
     record PhoneRequest(@NotBlank String phone) {}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History - Cebu City Dispatch</title>
+  <link rel="stylesheet" href="admin-history.css">
+</head>
+<body>
+  <div class="phone">
+    <header class="top">
+      <div>
+        <small>Cebu City Dispatch</small>
+        <h1>History</h1>
+      </div>
+      <div class="avatar">RV</div>
+    </header>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-tab="incident">Incident</button>
+      <button class="tab" data-tab="activity">Activity Log</button>
+    </div>
+
+    <!-- Search -->
+    <input type="text" id="searchInput" placeholder="Search Incidents, places, units" />
+
+    <!-- Filters - Incident only -->
+    <div class="filters" id="filters">
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="available">Available</button>
+      <button class="filter" data-filter="busy">Busy</button>
+    </div>
+
+    <!-- INCIDENT LIST -->
+    <div id="incidentView" class="list"></div>
+
+    <!-- ACTIVITY LOG LIST -->
+    <div id="activityView" class="list hidden"></div>
+
+    <button id="exportBtn" class="export">Export report (CSV)</button>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+      <span>Live <b>1</b></span>
+      <span>Map</span>
+      <span>Approval <b>3</b></span>
+      <span>Team</span>
+      <span class="active-nav">History</span>
+    </nav>
+  </div>
+  <script src="admin-history.js"></script>
+</body>
+</html>
