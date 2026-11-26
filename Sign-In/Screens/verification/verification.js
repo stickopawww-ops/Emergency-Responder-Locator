@@ -10,7 +10,7 @@ if (!phoneNumber || !challengeId || !["signup", "password-reset"].includes(verif
     document.getElementById("phoneNumber").textContent = `+63 ${phoneNumber}`;
     if (verificationPurpose === "password-reset") {
         document.getElementById("verificationPrompt").textContent =
-            "Enter the 4-digit code sent to";
+            "Enter the 6-digit code sent to";
     }
 }
 
@@ -38,7 +38,7 @@ inputs.forEach((input,index)=>{
 });
 
 document.querySelector(".otp").addEventListener("paste", (event) => {
-    const pastedCode = event.clipboardData.getData("text").replace(/\D/g, "").slice(0, 4);
+    const pastedCode = event.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6);
     if (!pastedCode) {
         return;
     }
@@ -61,8 +61,8 @@ document.querySelector(".verify").onclick = async () => {
 
     const code=[...inputs].map(i=>i.value).join("");
 
-    if (code.length !== 4) {
-        message.textContent = "Please enter all 4 digits.";
+    if (code.length !== 6) {
+        message.textContent = "Please enter all 6 digits.";
         inputs[[...inputs].findIndex((input) => !input.value)].focus();
         return;
     }
