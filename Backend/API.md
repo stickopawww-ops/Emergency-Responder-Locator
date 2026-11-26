@@ -35,7 +35,8 @@ Base URL: `http://localhost:8080`. JSON is used unless noted. Authenticated requ
 ## Admin operations
 
 - `GET /api/admin/dashboard` — counts of active/unassigned incidents, available responders, pending approvals, and total responders.
-- `GET /api/admin/incidents` — incident history.
+- `GET /api/admin/incidents` — all incidents, including `OPEN`, `ASSIGNED`, and `RESOLVED` records. A resolved incident includes `resolvedAt`.
+- `GET /api/admin/audit` — the most recent 200 authenticated admin actions, newest first.
 - `POST /api/admin/incidents/{id}/assign` — body `{ "responderId": 123 }`; if omitted/null, assigns the first available unit. Returns `409` if none is available.
 - `PATCH /api/admin/incidents/{id}/status` — body `{ "status": "OPEN|ASSIGNED|RESOLVED|CANCELLED" }`.
 - `GET /api/admin/responders` — responder accounts/units.

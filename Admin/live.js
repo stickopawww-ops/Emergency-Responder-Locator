@@ -4,6 +4,8 @@ const incidentContainer = document.querySelector(".incident-container");
 const alertAll = document.getElementById("alertAll");
 const navItems = document.querySelectorAll(".nav-item");
 const statValues = document.querySelectorAll(".stat-card h2");
+const liveBadge = document.getElementById("liveBadge");
+const approvalBadge = document.getElementById("approvalBadge");
 let activeFilter = "all";
 
 if (!sessionStorage.getItem("adminAuthToken")) {
@@ -12,25 +14,58 @@ if (!sessionStorage.getItem("adminAuthToken")) {
 
 async function loadDashboard() {
     try {
-        const [stats, incidents] = await Promise.all([
+        const [stats, incidents, approvals] = await Promise.all([
             EmergencyApi.request("/api/admin/dashboard", { role: "admin" }),
-            EmergencyApi.request("/api/admin/incidents", { role: "admin" })
+            EmergencyApi.request("/api/admin/incidents", { role: "admin" }),
+            EmergencyApi.request("/api/admin/approvals", { role: "admin" })
         ]);
         [stats.openIncidents, stats.unassignedIncidents, stats.availableResponders]
             .forEach((value, index) => {
                 if (statValues[index]) statValues[index].textContent = String(value);
             });
+        updateBadge(liveBadge, stats.openIncidents);
+        updateBadge(approvalBadge, approvals.length);
         renderIncidents(incidents);
     } catch (error) {
-        incidentContainer.textContent = error.message;
+        incidentContainer.replaceChildren();
+        const empty = document.createElement("p");
+        empty.className = "empty-state";
+        empty.textContent = error.message;
+        incidentContainer.append(empty);
     }
+}
+
+function updateBadge(element, value) {
+    if (!element) return;
+    const count = Number(value) || 0;
+    element.textContent = String(count);
+    element.hidden = count === 0;
+}
+
+function formatIncidentTime(createdAt) {
+    const date = new Date(createdAt);
+    if (Number.isNaN(date.getTime())) return "Time unavailable";
+    return date.toLocaleString([], {
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit"
+    });
+}
+
+function formatWaitingTime(createdAt) {
+    const created = new Date(createdAt).getTime();
+    if (Number.isNaN(created)) return "Waiting time unavailable";
+    const minutes = Math.max(0, Math.floor((Date.now() - created) / 60000));
+    if (minutes < 1) return "Waiting for less than 1 min";
+    return `Waiting for ${minutes} min${minutes === 1 ? "" : "s"}`;
 }
 
 function renderIncidents(incidents) {
     incidentContainer.replaceChildren();
     const activeIncidents = incidents.filter((incident) =>
-        ["UNASSIGNED", "ASSIGNED"].includes(incident.status)
-        && (activeFilter !== "unassigned" || incident.status === "UNASSIGNED")
+        ["OPEN", "UNASSIGNED", "ASSIGNED"].includes(incident.status)
+        && (activeFilter !== "unassigned" || ["OPEN", "UNASSIGNED"].includes(incident.status))
     );
 
     if (!activeIncidents.length) {
@@ -44,31 +79,33 @@ function renderIncidents(incidents) {
     activeIncidents.forEach((incident) => {
         const card = document.createElement("article");
         card.className = "incident-card";
+        if (incident.status === "ASSIGNED") card.classList.add("assigned");
 
         const details = document.createElement("div");
         details.className = "incident-details";
         const title = document.createElement("h3");
-        title.textContent = incident.category;
+        title.textContent = incident.category || "Emergency incident";
         const location = document.createElement("p");
         location.className = "incident-location";
-        location.textContent = `${incident.description || "No details provided"} · ${new Date(incident.createdAt).toLocaleString()}`;
+        location.textContent = `${incident.description || "No details provided"} · ${formatIncidentTime(incident.createdAt)}`;
         const tags = document.createElement("div");
         tags.className = "incident-tags";
         const priority = document.createElement("span");
         priority.className = "priority-tag";
-        priority.textContent = `${incident.priority} priority`;
+        priority.textContent = `${String(incident.priority || "NORMAL").toUpperCase()} priority`;
         const assignment = document.createElement("span");
         assignment.className = "waiting-tag";
         assignment.textContent = incident.assignedResponderName
             ? `Assigned to ${incident.assignedResponderName}`
-            : "Unassigned";
+            : `Unassigned · ${formatWaitingTime(incident.createdAt)}`;
         tags.append(priority, assignment);
         details.append(title, location, tags);
 
         const button = document.createElement("button");
         button.className = "assign-button";
-        button.textContent = incident.status === "ASSIGNED" ? "Assigned" : "Assign";
-        button.disabled = incident.status !== "UNASSIGNED";
+        const unassignedIncident = ["OPEN", "UNASSIGNED"].includes(incident.status);
+        button.textContent = unassignedIncident ? "Assign" : "Assigned";
+        button.disabled = !unassignedIncident;
         button.addEventListener("click", async () => {
             button.disabled = true;
             try {

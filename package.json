@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:maven": "mvn -f Backend/pom.xml spring-boot:run",
+    "test": "node --test",
+    "test:maven": "mvn -f Backend/pom.xml test"
   },
   "repository": {
     "type": "git",

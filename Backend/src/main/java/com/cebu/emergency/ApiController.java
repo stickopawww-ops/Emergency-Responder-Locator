@@ -303,6 +303,24 @@ class ApiController {
         return incidents.findAllByOrderByCreatedAtDesc().stream().map(this::incidentView).toList();
     }
 
+    @GetMapping("/admin/audit")
+    @Transactional(readOnly = true)
+    List<Map<String, Object>> adminAudit(HttpServletRequest request) {
+        requireAdmin(request);
+        Map<Long, String> adminNames = new HashMap<>();
+        return auditEvents.findTop200ByOrderByCreatedAtDescIdDesc().stream().map(event -> {
+            Map<String, Object> view = new LinkedHashMap<>();
+            view.put("id", event.id);
+            view.put("action", event.action);
+            view.put("entityType", event.entityType);
+            view.put("entityId", event.entityId);
+            view.put("createdAt", event.createdAt);
+            view.put("adminName", adminNames.computeIfAbsent(event.adminId, id ->
+                admins.findById(id).map(admin -> admin.fullName).orElse("Administrator")));
+            return view;
+        }).toList();
+    }
+
     @PostMapping("/admin/incidents/{id}/assign")
     @Transactional
     Map<String, Object> assignIncident(
@@ -571,6 +589,7 @@ class ApiController {
             : Optional.ofNullable(incident.assignedResponder.unitName).orElse(incident.assignedResponder.fullName));
         view.put("createdAt", incident.createdAt);
         view.put("updatedAt", incident.updatedAt);
+        view.put("resolvedAt", "RESOLVED".equals(incident.status) ? incident.updatedAt : null);
         return view;
     }
 

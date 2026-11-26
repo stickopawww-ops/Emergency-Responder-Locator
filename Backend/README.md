@@ -9,15 +9,17 @@ Requirements: Java 25+ and Maven 3.9+.
 From PowerShell:
 
 ```powershell
-cd C:\Users\catherine.emia\Desktop\Backend
+cd .\Backend
 $env:BOOTSTRAP_ADMIN_ENABLED = "true"
 $env:BOOTSTRAP_ADMIN_EMAIL = "admin@example.gov"
-$env:BOOTSTRAP_ADMIN_PASSWORD = "replace-with-a-unique-12-character-password"
+$env:BOOTSTRAP_ADMIN_PASSWORD = "Choose-a-unique-password-123!"
 $env:BOOTSTRAP_ADMIN_NAME = "Dispatch Administrator"
 $env:BOOTSTRAP_ADMIN_PHONE = "+639171234567"
 $env:CORS_ALLOWED_ORIGINS = "http://127.0.0.1:5500,http://localhost:5500"
 mvn spring-boot:run
 ```
+
+Choose your own unique bootstrap password before running the command. Do not commit credentials.
 
 The development profile uses a file-backed H2 database (`emergency-db`) and runs schema migrations automatically. It seeds sample responder records, including available and busy ambulance units, when missing. There are no default admin credentials or fixed OTPs. In `dev`, one-time codes are printed to the backend terminal; use a Philippine number format for accounts.
 

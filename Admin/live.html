@@ -27,17 +27,17 @@
         <section class="statistics">
 
             <div class="stat-card">
-                <h2>1</h2>
+                <h2>0</h2>
                 <span>Active</span>
             </div>
 
             <div class="stat-card">
-                <h2>1</h2>
+                <h2>0</h2>
                 <span>Unassigned</span>
             </div>
 
             <div class="stat-card">
-                <h2>1</h2>
+                <h2>0</h2>
                 <span>Units free</span>
             </div>
 
@@ -62,38 +62,8 @@
         </section>
 
         <!-- LIVE INCIDENT -->
-        <section class="incident-container">
-
-            <div class="incident-card" id="incidentCard">
-
-                <div class="incident-details">
-
-                    <h3>Chest pain, adult male</h3>
-
-                    <p class="incident-location">
-                        Brgy. Lahug Ambulance · 12:59
-                    </p>
-
-                    <div class="incident-tags">
-
-                        <span class="priority-tag">
-                            High Priority
-                        </span>
-
-                        <span class="waiting-tag">
-                            Unassigned, waiting for 4 mins.
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <button class="assign-button" id="assignButton">
-                    Assign
-                </button>
-
-            </div>
-
+        <section class="incident-container" aria-live="polite">
+            <p class="empty-state">Loading incidents...</p>
         </section>
 
     </main>
@@ -101,27 +71,27 @@
     <!-- BOTTOM NAVIGATION -->
     <nav class="bottom-navigation">
 
-        <button class="nav-item selected">
+        <a class="nav-item selected" href="live.html" aria-current="page">
             <span>Live</span>
-            <span class="badge">1</span>
-        </button>
+            <span class="badge" id="liveBadge">0</span>
+        </a>
 
-        <button class="nav-item">
+        <a class="nav-item" href="../Admin(Responder)/map.html">
             Map
-        </button>
+        </a>
 
-        <button class="nav-item">
+        <a class="nav-item" href="approval.html">
             <span>Approval</span>
-            <span class="badge">3</span>
-        </button>
+            <span class="badge" id="approvalBadge">0</span>
+        </a>
 
-        <button class="nav-item">
+        <a class="nav-item" href="team.html">
             Team
-        </button>
+        </a>
 
-        <button class="nav-item">
+        <a class="nav-item" href="admin-history/admin-history.html">
             History
-        </button>
+        </a>
 
     </nav>
 
