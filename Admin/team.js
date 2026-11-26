@@ -53,8 +53,29 @@ function filterTeam(status, button) {
   render();
 }
 
+
 function addResponder() {
   window.location.href = "add-responder/add-responder.html";
+async function addResponder() {
+  const fullName = window.prompt("Responder contact name:");
+  if (!fullName) return;
+  const unitType = window.prompt("Unit type (for example Fire, Police, Medical):");
+  if (!unitType) return;
+  const unitName = window.prompt("Unit name:");
+  if (!unitName) return;
+  const baseStation = window.prompt("Base station:");
+  if (!baseStation) return;
+
+  try {
+    await EmergencyApi.request("/api/admin/responders", {
+      method: "POST",
+      role: "admin",
+      body: { fullName, unitType, unitName, baseStation, availability: "OFF_DUTY" }
+    });
+    render();
+  } catch (error) {
+    window.alert(error.message);
+  }
 }
 
 render();

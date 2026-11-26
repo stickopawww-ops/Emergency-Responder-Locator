@@ -1,0 +1,30 @@
+* { box-sizing: border-box; font-family: Arial, sans-serif; }
+body { background: #f2f2f2; margin: 0; display: flex; justify-content: center; }
+.phone { width: 400px; min-height: 100vh; background: #fff; padding: 20px 16px 80px; position: relative; }
+.top { display: flex; justify-content: space-between; align-items: center; }
+.top small { color: #666; }
+.top h1 { margin: 0; font-size: 28px; }
+.avatar { width: 38px; height: 38px; background: #111; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+.tabs { display: flex; gap: 8px; margin: 16px 0 12px; }
+.tab { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 10px; background: #fff; cursor: pointer; }
+.tab.active { background: #111; color: #fff; }
+#searchInput { width: 100%; padding: 12px; border: 1.5px solid #111; border-radius: 12px; outline: none; }
+.filters { display: flex; gap: 8px; margin: 14px 0; }
+.filter { flex: 1; padding: 10px; border: none; background: #eee; border-radius: 10px; cursor: pointer; }
+.filter.active { background: #111; color: #fff; }
+.card { border-bottom: 1px solid #eee; padding: 14px 4px; }
+.card h3 { margin: 0; font-size: 17px; }
+.card p { margin: 4px 0 8px; color: #666; font-size: 12px; }
+.badge { font-size: 11px; padding: 4px 10px; border-radius: 20px; display: inline-block; }
+.resolved { background: #d6f5df; color: #1a7a3a; }
+.false { background: #dbeafe; color: #1d4ed8; }
+.high { background: #fca5a5; color: #991b1b; }
+.med { background: #fde68a; color: #92400e; }
+.activity-item { padding: 14px 4px; border-bottom: 1px solid #eee; }
+.activity-item b { display: block; }
+.activity-item span { color: #888; font-size: 12px; }
+.export { width: 100%; padding: 14px; background: #fff; border: 1.5px solid #111; border-radius: 12px; margin-top: 16px; cursor: pointer; font-weight: bold; }
+.bottom-nav { position: fixed; bottom: 0; width: 400px; max-width: 100%; background: #eee; display: flex; justify-content: space-around; padding: 14px 0; font-size: 13px; border-radius: 12px 12px 0 0; }
+.bottom-nav b { background: red; color: #fff; font-size: 9px; padding: 2px 5px; border-radius: 50%; }
+.active-nav { font-weight: bold; border-bottom: 2px solid #111; }
+.hidden { display: none; }

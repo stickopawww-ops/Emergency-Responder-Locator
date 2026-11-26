@@ -97,10 +97,10 @@ class BackendConfiguration {
     @Profile("dev")
     ApplicationRunner seedDevelopmentResponders(ResponderRepository responders) {
         return args -> {
-            updateDevelopmentAmbulance(responders, "Ginatilan Ambulance 1", "Ginatilan Ambulance 1",
+            updateDevelopmentAmbulance(responders, "Cebu City Ambulance 1", "Ginatilan Ambulance 1",
                 "Ginatilan Rural Health Unit");
-            updateDevelopmentAmbulance(responders, "Ginatilan Ambulance 2", "Ginatilan Ambulance 2",
-                "Ginatilan Municipal Health Office");
+            deactivateDevelopmentAmbulance(responders, "Cebu City Ambulance 2");
+
             if (responders.count() == 0) {
                 responders.saveAll(Arrays.asList(
                     sampleResponder("Medical", "Ginatilan Ambulance 1", "Ginatilan Rural Health Unit", "AVAILABLE"),
@@ -128,6 +128,15 @@ class BackendConfiguration {
                 responder.unitName = unitName;
                 responder.fullName = unitName;
                 responder.baseStation = baseStation;
+                responders.save(responder);
+            });
+    }
+
+    private static void deactivateDevelopmentAmbulance(ResponderRepository responders, String unitName) {
+        responders.findAll().stream()
+            .filter(responder -> unitName.equals(responder.unitName))
+            .forEach(responder -> {
+                responder.active = false;
                 responders.save(responder);
             });
     }

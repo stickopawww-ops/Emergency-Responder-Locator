@@ -1,1 +1,9 @@
-node_modules/
+backend-responder/jdk/
+backend-responder/jdk.zip
+backend-responder/*.jar
+backend-responder/*.class
+backend-responder/*.db
+backend-responder/*.log
+.vscode/
+.DS_Store
+Thumbs.db
