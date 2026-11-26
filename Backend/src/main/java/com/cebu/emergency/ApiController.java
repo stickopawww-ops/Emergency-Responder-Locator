@@ -1,4 +1,4 @@
-package com.cebu.emergency;
+    package com.cebu.emergency;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -46,6 +46,11 @@ class ApiController {
         this.auditEvents = auditEvents;
         this.passwords = passwords;
         this.sms = sms;
+    }
+
+    @GetMapping("/message")
+    Map<String, String> backendMessage() {
+        return Map.of("message", "Emergency Responder Backend Connected Successfully!");
     }
 
     @PostMapping("/auth/responders/register")
@@ -350,7 +355,7 @@ class ApiController {
 
     @GetMapping("/admin/responders")
     List<Map<String, Object>> adminResponders(HttpServletRequest request) {
-        AdminUser admin = requireAdmin(request);
+        requireAdmin(request);
         return responders.findByActiveTrueOrderByIdAsc().stream().map(this::responderView).toList();
     }
 

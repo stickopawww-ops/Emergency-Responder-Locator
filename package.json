@@ -1,14 +1,28 @@
 {
-  "name": "cebu-emergency-finder",
+  "name": "emergency-responder-locator",
   "version": "1.0.0",
-  "private": true,
-  "engines": {
-    "node": ">=22.13"
-  },
+  "description": "This project is a static HTML, CSS, and vanilla JavaScript prototype. No build step or package installation is required; serve the repository root with any static file server and open `index.html`. ES modules require HTTP serving in browsers that do not allow modules from `file://`.",
+  "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node --test",
-    "admin:reset-password": "node scripts/reset-admin-password.js",
-    "admin:update-phone": "node scripts/update-admin-phone.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stickopawww-ops/Emergency-Responder-Locator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/stickopawww-ops/Emergency-Responder-Locator/issues"
+  },
+  "homepage": "https://github.com/stickopawww-ops/Emergency-Responder-Locator#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.2.0",
+    "cors": "^2.8.6",
+    "express": "^5.3.0"
   }
 }

@@ -80,11 +80,7 @@ body {
   border-radius: 12px;
   background: #d9d9d9;
   color: #141414;
-<<<<<<< HEAD
-  font-size: 20px;
-=======
   font-size: 16px;
->>>>>>> c15c58f9dfd149c3beb1cb2cc71cd0ae8bf35f38
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease;
@@ -95,37 +91,6 @@ body {
   color: #ffffff;
 }
 
-<<<<<<< HEAD
-.filter-button:focus-visible,
-.responder-card .call-btn:focus-visible,
-.bottom-nav .nav-item:focus-visible {
-  outline: 2px solid #5149a7;
-  outline-offset: 2px;
-  min-width: 122px;
-  min-height: 53px;
-}
-
-.responder-list {
-  gap: 3px;
-}
-
-.responder-card {
-  min-height: 82px;
-  min-width: 363px;
-  gap: 6px;
-  padding: 3px 7px;
-}
-
-.responder-card .fire-icon {
-  flex: 0 0 25px;
-  width: 22px;
-  height: 22px;
-}
-
-.responder-card .fire-icon svg {
-  width: 31px;
-  height: 31px;
-=======
 .station-list.responder-list {
   display: flex;
   flex-direction: column;
@@ -168,7 +133,6 @@ body {
 .station-info {
   flex: 1;
   min-width: 0;
->>>>>>> c15c58f9dfd149c3beb1cb2cc71cd0ae8bf35f38
 }
 
 .responder-card .station-info h2 {
@@ -199,10 +163,6 @@ body {
 }
 
 .responder-card .availability {
-<<<<<<< HEAD
-  padding: 1px 5px;
-  font-size: 13px;
-=======
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -220,7 +180,6 @@ body {
   height: 7px;
   border-radius: 50%;
   background: #238642;
->>>>>>> c15c58f9dfd149c3beb1cb2cc71cd0ae8bf35f38
 }
 
 .responder-card .availability.busy {
@@ -239,13 +198,6 @@ body {
 }
 
 .responder-card .call-btn {
-<<<<<<< HEAD
-  min-width: 81px;
-  min-height: 49px;
-  padding: 0 8px;
-  font-size: 17px;
-  radius: 15px;
-=======
   flex: 0 0 80px;
   min-width: 80px;
   min-height: 48px;
@@ -261,7 +213,6 @@ body {
 
 .responder-card .call-btn:active {
   transform: scale(0.96);
->>>>>>> c15c58f9dfd149c3beb1cb2cc71cd0ae8bf35f38
 }
 
 .responder-card[hidden] {
@@ -374,17 +325,12 @@ body {
   }
 
   .responder-card .fire-icon svg {
-<<<<<<< HEAD
-    width: 31px;
-    height: 31px;
-=======
     width: 24px;
     height: 24px;
   }
 
   .responder-card .station-info h2 {
     font-size: 14px;
->>>>>>> c15c58f9dfd149c3beb1cb2cc71cd0ae8bf35f38
   }
 
   .responder-card .station-location {

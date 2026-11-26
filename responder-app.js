@@ -107,7 +107,10 @@
       }
     } catch (error) {
       window.alert(error.message);
-      if (error.message.includes("Sign in required")) redirectToSignIn();
+      if (error.status === 401 || error.message === "Authentication is required."
+        || error.message === "Session is invalid or expired.") {
+        redirectToSignIn();
+      }
     }
   }
 
