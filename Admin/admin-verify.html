@@ -16,8 +16,7 @@
 
         <section class="verify-content">
             <h1>Verify your sign in</h1>
-            <p id="phoneDescription">Enter the 6-digit verification code sent to your registered mobile number.</p>
-            <p class="demo-code">Demo code: <strong id="demoCode">123456</strong></p>
+            <p id="phoneDescription">Enter the six-digit code printed in the backend terminal, or your configured local code.</p>
 
             <form id="otpForm">
                 <div class="otp-row" aria-label="6-digit verification code">
@@ -36,10 +35,6 @@
         </section>
     </main>
     <script src="../api-client.js"></script>
-    <script>
-        const demoCode = sessionStorage.getItem("adminDemoOtp");
-        if (demoCode) document.getElementById("demoCode").textContent = demoCode;
-    </script>
     <script src="admin-verify.js"></script>
 </body>
 </html>

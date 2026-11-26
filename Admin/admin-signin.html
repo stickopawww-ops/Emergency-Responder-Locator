@@ -23,7 +23,9 @@
                 For dispatch staff only. Responders and citizens use the main app.
             </p>
 
-            <form id="loginForm">
+            <form id="loginForm" novalidate>
+                <p id="loginError" class="login-error" role="alert" aria-live="assertive" hidden></p>
+
                 <div class="form-group">
                     <label for="email">Work email</label>
                     <input
@@ -32,6 +34,7 @@
                         name="email"
                         placeholder="example@gmail.com"
                         autocomplete="username"
+                        aria-describedby="loginError"
                         required
                     >
                 </div>
@@ -45,6 +48,7 @@
                             name="password"
                             placeholder="Enter password"
                             autocomplete="current-password"
+                            aria-describedby="loginError"
                             required
                         >
                         <button type="button" class="show-button" id="togglePassword">

@@ -2,7 +2,13 @@
   "name": "cebu-emergency-finder",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=22.13"
+  },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node --test",
+    "admin:reset-password": "node scripts/reset-admin-password.js",
+    "admin:update-phone": "node scripts/update-admin-phone.js"
   }
 }

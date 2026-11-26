@@ -11,15 +11,15 @@ const logoutButton = document.getElementById("logoutButton");
 const statusMessage = document.getElementById("statusMessage");
 
 function setStatus(status) {
-    [step1, step2, step3].forEach((step) => step.classList.remove("completed"));
+    [step1, step2, step3].forEach(step => step.classList.remove("completed"));
     startButton.classList.add("hidden");
     advanceStatusButton.classList.remove("hidden");
     advanceStatusButton.disabled = false;
-    advanceStatusButton.textContent = "Refresh status";
+    advanceStatusButton.textContent = status === "REJECTED" ? "Check again" : "Refresh status";
     contactButton.style.display = "block";
     step1.classList.add("completed");
 
-    if (status === "approved") {
+    if (status === "APPROVED") {
         pageTitle.textContent = "You're approved!";
         pageDescription.textContent = "Your responder account is active and may accept emergency requests.";
         headerIcon.className = "fa-solid fa-circle-check";
@@ -31,11 +31,10 @@ function setStatus(status) {
         return;
     }
 
-    if (status === "rejected") {
+    if (status === "REJECTED") {
         pageTitle.textContent = "Application not approved";
         pageDescription.textContent = "Your registration was not approved. Contact the city emergency administration for next steps.";
         headerIcon.className = "fa-regular fa-circle-xmark";
-        advanceStatusButton.textContent = "Check again";
         return;
     }
 
@@ -44,11 +43,6 @@ function setStatus(status) {
     headerIcon.className = "fa-regular fa-hourglass-half";
 }
 
-<<<<<<< HEAD
-advanceStatusButton.addEventListener("click", () => {
-    window.location.reload();
-});
-=======
 async function loadApprovalStatus() {
     if (!sessionStorage.getItem("responderAuthToken")) {
         window.location.replace("../responder-sign-in/sign-in.html");
@@ -64,7 +58,7 @@ async function loadApprovalStatus() {
         document.getElementById("unitName").textContent = responder.unitName || "Unit name not provided";
         document.getElementById("unitLocation").textContent = responder.baseStation || "Base station not provided";
         localStorage.setItem("responderApprovalStatus", responder.approvalStatus.toLowerCase());
-        setStatus(responder.approvalStatus.toLowerCase());
+        setStatus(responder.approvalStatus);
     } catch (error) {
         statusMessage.textContent = error.message;
         if (error.message.includes("Sign in required")) {
@@ -77,7 +71,6 @@ async function loadApprovalStatus() {
 }
 
 advanceStatusButton.addEventListener("click", loadApprovalStatus);
->>>>>>> origin/main
 
 startButton.addEventListener("click", () => {
     window.location.href = "../../../Responder today (avail, profile and history/responders(avail)/to.avail.html";
@@ -88,7 +81,7 @@ contactButton.addEventListener("click", () => {
 });
 
 if (logoutButton) {
-    logoutButton.addEventListener("click", async (event) => {
+    logoutButton.addEventListener("click", async event => {
         event.preventDefault();
         try {
             await EmergencyApi.request("/api/responder/logout", { method: "POST" });
@@ -99,45 +92,9 @@ if (logoutButton) {
         sessionStorage.removeItem("responderAuthToken");
         sessionStorage.removeItem("responderChallengeId");
         localStorage.removeItem("responderVerified");
-<<<<<<< HEAD
         localStorage.removeItem("responderApprovalStatus");
-        localStorage.removeItem("responderToken");
-=======
->>>>>>> origin/main
         window.location.replace("../responder-sign-in/sign-in.html");
     });
 }
 
-<<<<<<< HEAD
-advanceStatusButton.textContent = "Refresh approval status";
-
-async function refreshFromServer() {
-    const token = localStorage.getItem("responderToken");
-    if (!token) return;
-
-    try {
-        const response = await fetch("/api/responder/status", {
-            headers: { "Authorization": `Bearer ${token}` }
-        });
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.message || "Unable to check approval.");
-
-        const serverStatus = data.responder.status;
-        currentStatus = serverStatus === "approved"
-            ? STATUS.APPROVED
-            : serverStatus === "rejected"
-                ? STATUS.PENDING
-                : STATUS.PENDING;
-        localStorage.setItem("responderApprovalStatus", currentStatus);
-        setStatus(currentStatus);
-    } catch (error) {
-        pageDescription.textContent = error.message;
-    }
-}
-
-setStatus(currentStatus);
-refreshFromServer();
-setInterval(refreshFromServer, 5000);
-=======
 loadApprovalStatus();
->>>>>>> origin/main

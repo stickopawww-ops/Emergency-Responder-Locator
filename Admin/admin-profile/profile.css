@@ -1,0 +1,548 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+
+body{
+    min-height:100vh;
+    background:#F3F3F3;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+
+/* PHONE */
+
+.phone{
+    width:412px;
+    height:917px;
+    background:#ECE9F8;
+    border-radius:22px;
+    padding:32px 36px;
+    overflow:hidden;
+    position:relative;
+}
+
+.back-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+
+.arrow{
+    width:10px;
+    height:10px;
+    border-left:2px solid #1E2A44;
+    border-bottom:2px solid #1E2A44;
+    transform:rotate(45deg);
+}
+
+/* BACK ICON */
+
+.arrow-icon{
+    width:9px;
+    height:9px;
+    border-left:2px solid #1E2A44;
+    border-bottom:2px solid #1E2A44;
+    transform:rotate(45deg);
+}
+
+
+
+/* LOGO ICON */
+
+.logo-icon{
+
+    width:18px;
+    height:18px;
+
+    background:#1E2A44;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+}
+
+
+
+.logo-inner{
+
+    width:7px;
+    height:7px;
+
+    background:#ECE9F8;
+
+    border-radius:50%;
+
+}
+
+
+.app-logo{
+
+    width:18px;
+    height:18px;
+
+    border-radius:50%;
+
+    background:#1E2A44;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.app-logo span{
+
+    width:6px;
+    height:6px;
+
+    background:white;
+
+    border-radius:50%;
+
+}
+
+/* HEADER */
+
+header{
+
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+
+    margin-bottom:32px;
+
+}
+
+
+.back-btn{
+
+    width:28px;
+    height:28px;
+
+    border:none;
+    background:white;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+
+
+.arrow{
+
+    width:7px;
+    height:7px;
+
+    border-left:1.5px solid #111052;
+    border-bottom:1.5px solid #111052;
+
+    transform:rotate(45deg);
+
+}
+
+
+
+.app-header{
+
+    display:flex;
+
+    align-items:center;
+
+    margin-left:0;
+
+    gap:5px;
+
+}
+
+
+
+.shield-icon{
+
+    width:18px;
+    height:18px;
+    color:#101044;
+    flex-shrink:0;
+
+}
+
+
+
+.app-name{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#111052;
+
+}
+
+
+
+.admin-badge{
+
+    background:#111052;
+
+    color:white;
+
+    font-size:5px;
+
+    font-weight:800;
+
+    padding:3px 7px;
+
+    border-radius:10px;
+
+}
+/* TITLE */
+
+.page-title{
+
+    margin-bottom:30px;
+
+}
+
+
+.page-title h1{
+
+    font-size:32px;
+
+    font-weight:800;
+
+    color:#1E2A44;
+
+    margin-bottom:6px;
+
+}
+
+
+.page-title p{
+
+    font-size:14px;
+
+    color:#6B6B6B;
+
+}
+
+
+
+/* PROFILE CARD */
+
+.profile-card{
+
+    width:100%;
+
+    background:#91A6A5;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-bottom:28px;
+
+}
+
+
+
+.avatar{
+
+    width:68px;
+
+    height:68px;
+
+    border-radius:50%;
+
+    background:#F5F1FF;
+
+    color:#4A2D7C;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:22px;
+
+    font-weight:800;
+
+}
+
+
+
+.profile-info h3{
+
+    font-size:18px;
+
+    font-weight:800;
+
+    color:#1E2A44;
+
+    margin-bottom:6px;
+
+}
+
+
+
+.profile-info span{
+
+    font-size:13px;
+
+    color:#555;
+
+}
+
+
+
+/* ADMIN SECTION */
+
+.section-label{
+
+    font-size:13px;
+
+    font-weight:800;
+
+    color:#777;
+
+    margin-bottom:14px;
+
+}
+
+
+
+.admin-item{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:14px;
+
+}
+
+
+
+.admin-left h4{
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#1E2A44;
+
+    margin-bottom:5px;
+
+}
+
+
+
+.admin-left span{
+
+    font-size:12px;
+
+    color:#777;
+
+}
+
+
+
+.status{
+
+    padding:7px 15px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+
+.active{
+
+    background:#D8F3DC;
+
+    color:#218739;
+
+}
+
+
+
+.pending{
+
+    background:#FFF1CC;
+
+    color:#C58A00;
+
+}
+
+
+
+.pending-right{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:10px;
+
+}
+
+
+
+.cancel-btn{
+
+    border:none;
+
+    background:#FFE1E1;
+
+    color:#C62828;
+
+    padding:7px 12px;
+
+    border-radius:12px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+
+/* BUTTONS */
+
+.actions{
+
+    margin-top:30px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+
+
+.primary-btn{
+
+    width:100%;
+
+    height:54px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#1E2A44;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+}
+
+
+
+.secondary-btn{
+
+    width:100%;
+
+    height:54px;
+
+    border-radius:16px;
+
+    border:2px solid #1E2A44;
+
+    background:transparent;
+
+    color:#1E2A44;
+
+    font-size:15px;
+
+    font-weight:700;
+
+}
+
+
+
+/* BUTTON EFFECT */
+
+button:active{
+
+    transform:scale(.97);
+
+}
+
+
+
+/* MOBILE */
+
+@media(max-width:430px){
+
+    body{
+
+        background:#ECE9F8;
+
+    }
+
+
+    .phone{
+
+        width:100vw;
+
+        height:100vh;
+
+        border-radius:0;
+
+    }
+
+}

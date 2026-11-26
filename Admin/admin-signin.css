@@ -169,6 +169,21 @@ body {
     margin-bottom: 12px;
 }
 
+.login-error {
+    margin-bottom: 12px;
+    padding: 10px 12px;
+    border: 1px solid #c62828;
+    border-radius: 8px;
+    background: #fff1f1;
+    color: #a61b1b;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.form-group input[aria-invalid="true"] {
+    border-color: #c62828;
+}
+
 .form-group label {
 
     display: block;

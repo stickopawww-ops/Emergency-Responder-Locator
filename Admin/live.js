@@ -29,8 +29,8 @@ async function loadDashboard() {
 function renderIncidents(incidents) {
     incidentContainer.replaceChildren();
     const activeIncidents = incidents.filter((incident) =>
-        ["OPEN", "ASSIGNED"].includes(incident.status)
-        && (activeFilter !== "unassigned" || incident.status === "OPEN")
+        ["UNASSIGNED", "ASSIGNED"].includes(incident.status)
+        && (activeFilter !== "unassigned" || incident.status === "UNASSIGNED")
     );
 
     if (!activeIncidents.length) {
@@ -68,7 +68,7 @@ function renderIncidents(incidents) {
         const button = document.createElement("button");
         button.className = "assign-button";
         button.textContent = incident.status === "ASSIGNED" ? "Assigned" : "Assign";
-        button.disabled = incident.status !== "OPEN";
+        button.disabled = incident.status !== "UNASSIGNED";
         button.addEventListener("click", async () => {
             button.disabled = true;
             try {

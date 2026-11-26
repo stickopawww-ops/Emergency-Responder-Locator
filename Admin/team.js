@@ -53,6 +53,10 @@ function filterTeam(status, button) {
   render();
 }
 
+<<<<<<< HEAD
+function addResponder() {
+  window.location.href = "add-responder/add-responder.html";
+=======
 async function addResponder() {
   const fullName = window.prompt("Responder contact name:");
   if (!fullName) return;
@@ -73,6 +77,7 @@ async function addResponder() {
   } catch (error) {
     window.alert(error.message);
   }
+>>>>>>> 5b4037accf7964c2fc84f6d459ec4c768d9628d3
 }
 
 render();

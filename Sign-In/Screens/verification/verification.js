@@ -1,4 +1,4 @@
-const inputs = document.querySelectorAll(".otp input");
+const inputs = [...document.querySelectorAll(".otp input")];
 const message = document.getElementById("message");
 const phoneNumber = localStorage.getItem("responderPhone");
 const verificationPurpose = localStorage.getItem("responderVerificationPurpose");
@@ -9,45 +9,30 @@ if (!phoneNumber || !challengeId || !["signup", "password-reset"].includes(verif
 } else {
     document.getElementById("phoneNumber").textContent = `+63 ${phoneNumber}`;
     if (verificationPurpose === "password-reset") {
-        document.getElementById("verificationPrompt").textContent =
-            "Enter the 4-digit code sent to";
+        document.getElementById("verificationPrompt").textContent = "Enter the 4-digit code sent to";
     }
 }
 
-inputs.forEach((input,index)=>{
-
-    input.addEventListener("input",()=>{
-
-        input.value=input.value.replace(/[^0-9]/g,'');
+inputs.forEach((input, index) => {
+    input.addEventListener("input", () => {
+        input.value = input.value.replace(/\D/g, "").slice(0, 1);
         message.textContent = "";
-
-        if(input.value && index<inputs.length-1){
-            inputs[index+1].focus();
-        }
-
+        if (input.value && index < inputs.length - 1) inputs[index + 1].focus();
     });
 
-    input.addEventListener("keydown",(e)=>{
-
-        if(e.key==="Backspace" && input.value==="" && index>0){
-            inputs[index-1].focus();
-        }
-
+    input.addEventListener("keydown", event => {
+        if (event.key === "Backspace" && !input.value && index > 0) inputs[index - 1].focus();
     });
-
 });
 
-document.querySelector(".otp").addEventListener("paste", (event) => {
-    const pastedCode = event.clipboardData.getData("text").replace(/\D/g, "").slice(0, 4);
-    if (!pastedCode) {
-        return;
-    }
-
+document.querySelector(".otp").addEventListener("paste", event => {
+    const code = event.clipboardData.getData("text").replace(/\D/g, "").slice(0, 4);
+    if (!code) return;
     event.preventDefault();
-    [...inputs].forEach((input, index) => {
-        input.value = pastedCode[index] || "";
+    inputs.forEach((input, index) => {
+        input.value = code[index] || "";
     });
-    inputs[Math.min(pastedCode.length, inputs.length - 1)].focus();
+    inputs[Math.min(code.length, inputs.length - 1)].focus();
 });
 
 document.querySelector(".back").addEventListener("click", () => {
@@ -57,50 +42,14 @@ document.querySelector(".back").addEventListener("click", () => {
     window.location.href = destination;
 });
 
-<<<<<<< HEAD
-    window.location.href="../responder-sign-in/sign-in.html";
-
-};
-
-document.querySelector(".verify").onclick=async ()=>{
-=======
-document.querySelector(".verify").onclick = async () => {
->>>>>>> origin/main
-
-    const code=[...inputs].map(i=>i.value).join("");
-
+document.querySelector(".verify").addEventListener("click", async () => {
+    const code = inputs.map(input => input.value).join("");
     if (code.length !== 4) {
         message.textContent = "Please enter all 4 digits.";
-        inputs[[...inputs].findIndex((input) => !input.value)].focus();
+        inputs.find(input => !input.value)?.focus();
         return;
     }
 
-<<<<<<< HEAD
-    const challengeId = localStorage.getItem("responderChallengeId");
-    if (!challengeId) {
-        message.textContent = "Verification expired. Please send a new code.";
-        return;
-    }
-
-    try {
-        const response = await fetch("/api/responder/verify-otp", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ challengeId, code })
-        });
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.message || "Verification failed.");
-
-        localStorage.setItem("responderToken", data.token);
-        localStorage.setItem("responderVerified", "true");
-        localStorage.setItem("responderApprovalStatus", data.responder.status);
-        localStorage.removeItem("responderChallengeId");
-        window.location.href="../approval-status/approval-status.html";
-    } catch (error) {
-        message.textContent = error.message;
-    }
-
-=======
     try {
         if (verificationPurpose === "password-reset") {
             const result = await EmergencyApi.request("/api/auth/responders/password-reset/verify", {
@@ -111,22 +60,21 @@ document.querySelector(".verify").onclick = async () => {
             sessionStorage.setItem("responderResetToken", result.resetToken);
             localStorage.setItem("responderVerified", "true");
             window.location.href = "../new-password/new-password.html";
-        } else {
-            const result = await EmergencyApi.request("/api/auth/responders/verify", {
-                method: "POST",
-                auth: false,
-                body: { challengeId, code }
-            });
-            sessionStorage.setItem("responderAuthToken", result.token);
-            localStorage.setItem("responderVerified", "true");
-            localStorage.setItem("responderApprovalStatus", result.responder.approvalStatus.toLowerCase());
-            sessionStorage.removeItem("responderChallengeId");
-            localStorage.removeItem("responderVerificationPurpose");
-            window.location.href = "../approval-status/approval-status.html";
+            return;
         }
+
+        const result = await EmergencyApi.request("/api/auth/responders/verify", {
+            method: "POST",
+            auth: false,
+            body: { challengeId, code }
+        });
+        sessionStorage.setItem("responderAuthToken", result.token);
+        sessionStorage.removeItem("responderChallengeId");
+        localStorage.setItem("responderVerified", "true");
+        localStorage.setItem("responderApprovalStatus", result.responder.approvalStatus.toLowerCase());
+        localStorage.removeItem("responderVerificationPurpose");
+        window.location.href = "../approval-status/approval-status.html";
     } catch (error) {
         message.textContent = error.message;
     }
-
->>>>>>> origin/main
-};
+});

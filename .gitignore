@@ -1,0 +1,12 @@
+backend-responder/jdk/
+backend-responder/jdk.zip
+backend-responder/*.jar
+backend-responder/*.class
+backend-responder/*.db
+backend-responder/*.log
+data/*.sqlite
+data/*.sqlite-shm
+data/*.sqlite-wal
+.vscode/
+.DS_Store
+Thumbs.db

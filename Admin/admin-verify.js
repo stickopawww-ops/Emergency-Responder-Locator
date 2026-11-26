@@ -80,10 +80,10 @@ otpForm.addEventListener("submit", async function (event) {
             body: { challengeId, code }
         });
 
+        sessionStorage.setItem("adminAuthToken", data.token);
         sessionStorage.setItem("adminToken", data.token);
         sessionStorage.setItem("adminUser", JSON.stringify(data.admin));
         sessionStorage.removeItem("adminChallengeId");
-        sessionStorage.removeItem("adminDemoOtp");
         window.location.href = "approval.html";
     } catch (error) {
         alert(error.message);
@@ -149,12 +149,7 @@ async function resendCode() {
 
         sessionStorage.setItem("adminChallengeId", data.challengeId);
         sessionStorage.setItem("adminMaskedPhone", data.maskedPhone || "");
-        if (data.demoOtp) {
-            sessionStorage.setItem("adminDemoOtp", data.demoOtp);
-            alert(`A new demo verification code has been requested: ${data.demoOtp}`);
-        } else {
-            alert("A new verification code has been requested.");
-        }
+        alert("A new code is available in the backend terminal or matches your configured local code.");
         startCountdown();
     } catch (error) {
         alert(error.message);
