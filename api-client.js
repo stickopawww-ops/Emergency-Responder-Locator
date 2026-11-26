@@ -36,12 +36,21 @@
     }
 
     const contentType = response.headers.get("content-type") || "";
-    const payload = contentType.includes("application/json")
-      ? await response.json()
-      : await response.text();
+    let payload;
+    try {
+      payload = contentType.includes("application/json")
+        ? await response.json()
+        : await response.text();
+    } catch (error) {
+      throw new Error("The server returned an invalid response.");
+    }
 
     if (!response.ok) {
-      throw new Error(payload && payload.message ? payload.message : "The request could not be completed.");
+      const error = new Error(payload && payload.message
+        ? payload.message
+        : "The request could not be completed.");
+      error.status = response.status;
+      throw error;
     }
     return payload;
   }

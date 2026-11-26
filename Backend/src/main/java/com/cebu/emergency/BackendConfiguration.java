@@ -97,18 +97,39 @@ class BackendConfiguration {
     @Profile("dev")
     ApplicationRunner seedDevelopmentResponders(ResponderRepository responders) {
         return args -> {
+            updateDevelopmentAmbulance(responders, "Ginatilan Ambulance 1", "Ginatilan Ambulance 1",
+                "Ginatilan Rural Health Unit");
+            updateDevelopmentAmbulance(responders, "Ginatilan Ambulance 2", "Ginatilan Ambulance 2",
+                "Ginatilan Municipal Health Office");
             if (responders.count() == 0) {
                 responders.saveAll(Arrays.asList(
-                    sampleResponder("Medical", "Cebu City Ambulance 1", "Cebu City", "AVAILABLE"),
+                    sampleResponder("Medical", "Ginatilan Ambulance 1", "Ginatilan Rural Health Unit", "AVAILABLE"),
                     sampleResponder("Fire", "Cebu City Fire Station", "Cebu City", "AVAILABLE"),
                     sampleResponder("Police", "Cebu City Police Unit", "Cebu City", "AVAILABLE"),
                     sampleResponder("Barangay tanod", "Central Cebu Tanod Unit", "Cebu City", "AVAILABLE")
                 ));
             }
-            if (!responders.existsByUnitName("Cebu City Ambulance 2")) {
-                responders.save(sampleResponder("Medical", "Cebu City Ambulance 2", "Cebu City", "BUSY"));
+            if (!responders.existsByUnitName("Ginatilan Ambulance 2")) {
+                responders.save(sampleResponder("Medical", "Ginatilan Ambulance 2",
+                    "Ginatilan Municipal Health Office", "BUSY"));
             }
         };
+    }
+
+    private static void updateDevelopmentAmbulance(
+        ResponderRepository responders,
+        String oldName,
+        String unitName,
+        String baseStation
+    ) {
+        responders.findAll().stream()
+            .filter(responder -> oldName.equals(responder.unitName) || unitName.equals(responder.unitName))
+            .forEach(responder -> {
+                responder.unitName = unitName;
+                responder.fullName = unitName;
+                responder.baseStation = baseStation;
+                responders.save(responder);
+            });
     }
 
     private static Responder sampleResponder(String type, String unitName, String baseStation, String availability) {

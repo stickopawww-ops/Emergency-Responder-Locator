@@ -62,7 +62,8 @@ async function loadApprovalStatus() {
         setStatus(responder.approvalStatus.toLowerCase());
     } catch (error) {
         statusMessage.textContent = error.message;
-        if (error.message.includes("Sign in required")) {
+        if (error.status === 401 || error.message === "Authentication is required."
+          || error.message === "Session is invalid or expired.") {
             sessionStorage.removeItem("responderAuthToken");
             window.location.replace("../responder-sign-in/sign-in.html");
         }
