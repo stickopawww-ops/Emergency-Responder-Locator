@@ -8,7 +8,6 @@ const incidents = [
 const activities = [
   { text: "SOS Received: chest pain, adult male", time: "12:20 Rosa Villanueva" },
   { text: "Rosa sign in", time: "12:20 Rosa Villanueva" },
-  { text: "Unit dispatched: Fire Truck 1 to Brgy. Mabolo", time: "12:25 Admin" },
 ];
 
 let currentFilter = "all";
