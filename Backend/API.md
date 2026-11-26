@@ -7,14 +7,14 @@ Base URL: `http://localhost:8080`. JSON is used unless noted. Authenticated requ
 ### Admin
 
 - `POST /api/admin/auth/login` — body `{ "email": "admin@example.gov", "password": "..." }`; returns `{ "challengeId", "maskedPhone", "expiresInSeconds" }`.
-- `POST /api/admin/auth/verify` — body `{ "challengeId": "...", "code": "1234" }`; returns `{ "token", "admin": { "id", "email", "phoneSuffix", "fullName" } }`.
+- `POST /api/admin/auth/verify` — body `{ "challengeId": "...", "code": "123456" }`; returns `{ "token", "admin": { "id", "email", "phoneSuffix", "fullName" } }`.
 - `POST /api/admin/auth/resend` — body `{ "challengeId": "..." }`; returns a new challenge. Resends are throttled.
 - `GET /api/admin/auth/me` — authenticated admin profile.
 - `POST /api/admin/auth/logout` — revokes the current admin session; returns `204`.
 
 ### Responder
 
-- `POST /api/auth/responders/register` — body `{ "fullName", "phone", "password", "unitType", "unitName", "baseStation" }`; `phone` is required and accepts Philippine mobile format such as `+639916542601` or `09916542601`; creates a pending account and sends a 4-digit verification code; returns `201` and a challenge.
+- `POST /api/auth/responders/register` — body `{ "fullName", "phone", "password", "unitType", "unitName", "baseStation" }`; `phone` is required and accepts Philippine mobile format such as `+639916542601` or `09916542601`; creates a pending account and sends a 6-digit verification code; returns `201` and a challenge.
 - `POST /api/auth/responders/verify` — body `{ "challengeId", "code" }`; verifies the phone and returns `{ "token", "responder" }`. A pending responder can use this token to check approval status.
 - `POST /api/auth/responders/login` — body `{ "phone", "password" }`; `phone` is required and uses the same Philippine mobile-number normalization; only verified and approved responder accounts can sign in.
 - `POST /api/auth/responders/password-reset/request` — body `{ "phone" }`; requests a reset code without disclosing whether the account exists.
