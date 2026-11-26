@@ -10,3 +10,12 @@ data/*.sqlite-wal
 .vscode/
 .DS_Store
 Thumbs.db
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+# Logs
+npm-debug.log*
